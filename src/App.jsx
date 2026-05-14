@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import SceneBackground from "./components/SceneBackground";
 import SectionHeading from "./components/SectionHeading";
 import FeatureCard from "./components/FeatureCard";
 import PortfolioCard from "./components/PortfolioCard";
@@ -234,8 +233,6 @@ export default function App({ page = "home" }) {
 function SiteLayout({ page, children }) {
   return (
     <div className="relative overflow-hidden bg-void text-white">
-      <SceneBackground />
-
       <div className="pointer-events-none absolute inset-0 bg-grid bg-[size:92px_92px] opacity-[0.03]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.08),transparent_24%)]" />
       <div className="pointer-events-none absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent opacity-60" />
@@ -342,7 +339,7 @@ function HomePage() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <img src="./cybersigilism.jpeg" alt="" className="hero-title-sigil" />
-            <div className="section-kicker">Black signal // Local intelligence // Cosmic systems</div>
+            <div className="section-kicker">Black signal // Local intelligence // System architecture</div>
 
             <motion.h1
               className="title-glow font-display text-6xl leading-[0.86] tracking-[-0.07em] text-white sm:text-7xl md:text-8xl xl:text-[8.6rem]"
@@ -409,25 +406,28 @@ function HomePage() {
             transition={{ duration: 1.1, delay: 0.16 }}
           >
             <div className="hero-reliquary sigil-frame glass-panel monochrome-frame relative w-full max-w-xl overflow-hidden rounded-[2rem] border-white/8 bg-black/35 p-6 md:p-8">
-              <img
-                src="./angel-reference.png"
-                alt="Angelic reference mood"
-                className="absolute inset-0 h-full w-full object-cover opacity-[0.1] grayscale"
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.05),transparent_34%,rgba(255,255,255,0.02))]" />
+              <div
+                className="absolute inset-0 opacity-30"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+                  backgroundSize: "32px 32px",
+                }}
               />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.14),transparent_26%)]" />
-              <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] via-transparent to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/65" />
-              <div className="absolute left-1/2 top-0 h-48 w-px -translate-x-1/2 bg-gradient-to-b from-white/70 via-white/15 to-transparent" />
+              <div className="absolute right-8 top-0 h-24 w-px bg-gradient-to-b from-white/40 to-transparent" />
+              <div className="absolute bottom-8 left-0 h-px w-24 bg-gradient-to-r from-white/25 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/24 to-black/55" />
 
               <div className="relative">
                 <div className="mb-7 flex items-center justify-between">
-                  <span className="text-xs uppercase tracking-[0.28em] text-white/42">Constellation hub</span>
+                  <span className="text-xs uppercase tracking-[0.28em] text-white/42">Signal frame</span>
                   <span className="h-2 w-2 rounded-full bg-white shadow-glow" />
                 </div>
 
-                <div className="relative flex justify-center">
-                  <div className="absolute top-[-1.5rem] h-32 w-32 rounded-full border border-white/10" />
-                  <div className="absolute top-[-0.5rem] h-56 w-56 rounded-full border border-white/[0.06]" />
+                <div className="relative mx-auto flex w-full max-w-[22rem] items-center justify-center rounded-[2rem] border border-white/10 bg-black/35 px-8 py-10">
+                  <div className="absolute inset-4 rounded-[1.35rem] border border-white/[0.05]" />
+                  <div className="absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
                   <img
                     src="./infinity-logo.png"
                     alt="Infinity logo"
