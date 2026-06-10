@@ -1,0 +1,32 @@
+{
+  "rewrites": [
+    {
+      "source": "/systems",
+      "destination": "/systems.html"
+    },
+    {
+      "source": "/portfolio",
+      "destination": "/portfolio.html"
+    },
+    {
+      "source": "/marika",
+      "destination": "/marika.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/portfolio-unreal",
+      "destination": "/portfolio-unreal.html"
+    },
+    {
+      "source": "/portfolio-blender",
+      "destination": "/portfolio-blender.html"
+    },
+    {
+      "source": "/portfolio-vscode",
+      "destination": "/portfolio-vscode.html"
+    }
+  ]
+}
