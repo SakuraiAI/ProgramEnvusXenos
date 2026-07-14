@@ -163,7 +163,8 @@ const INTELLIGENCE_CARDS = [
     href: "./portfolio.html",
     cta: "Discover Luna",
     accent: "blue",
-    scene: "luna-portrait",
+    image: "./characters/luna.png",
+    imagePosition: "center top",
   },
   {
     title: "Xeno",
@@ -173,7 +174,9 @@ const INTELLIGENCE_CARDS = [
     href: "./portfolio-unreal.html",
     cta: "Discover Xeno",
     accent: "silver",
-    scene: "xeno-portrait",
+    image: "./characters/xeno.png",
+    imagePosition: "center top",
+    contentSide: "right",
   },
 ];
 
@@ -1102,13 +1105,19 @@ function CenteredHeading({ eyebrow, title }) {
 function IntelligenceCard({ card, index, compact = false }) {
   return (
     <motion.article
-      className={`panel intelligence-card accent-${card.accent} ${compact ? "is-compact" : ""}`}
+      className={`panel intelligence-card accent-${card.accent} ${card.image ? "has-character-image" : ""} ${card.contentSide === "right" ? "content-right" : ""} ${compact ? "is-compact" : ""}`}
       initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.55, delay: index * 0.05 }}
     >
-      <SceneFrame scene={card.scene} accent={card.accent} className="intelligence-media" />
+      {card.image ? (
+        <div className="intelligence-media character-media" aria-hidden="true">
+          <img src={card.image} alt="" style={{ objectPosition: card.imagePosition }} />
+        </div>
+      ) : (
+        <SceneFrame scene={card.scene} accent={card.accent} className="intelligence-media" />
+      )}
       <div className="intelligence-content">
         <h3>{card.title}</h3>
         <div className="card-kicker">{card.subtitle}</div>
