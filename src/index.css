@@ -448,7 +448,8 @@ img {
   padding: 0;
 }
 
-.reference-crop {
+.reference-crop,
+.scene-frame {
   position: relative;
   width: 100%;
   height: 100%;
@@ -456,13 +457,19 @@ img {
   background: #080808;
 }
 
-.reference-crop img {
+.reference-crop img,
+.scene-frame .scene-svg {
   width: 100%;
   height: 100%;
+  display: block;
+}
+
+.reference-crop img {
   object-fit: cover;
 }
 
-.reference-crop::after {
+.reference-crop::after,
+.scene-frame::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -475,6 +482,12 @@ img {
 
 .hero-media {
   min-height: 34rem;
+}
+
+.booking-card-art {
+  aspect-ratio: 1.25 / 0.72;
+  margin-bottom: 0.9rem;
+  border-radius: 16px;
 }
 
 .hero-brand-badge {
@@ -845,7 +858,8 @@ img {
   background: linear-gradient(90deg, rgba(3, 8, 15, 0.96) 0%, rgba(3, 8, 15, 0.9) 58%, rgba(4, 4, 6, 0.22) 100%);
 }
 
-.accent-blue .reference-crop::after {
+.accent-blue .reference-crop::after,
+.accent-blue .scene-frame::after {
   background:
     linear-gradient(180deg, rgba(4, 6, 12, 0.14), rgba(4, 6, 12, 0.36)),
     radial-gradient(circle at top right, rgba(77, 163, 255, 0.18), transparent 22%),
@@ -861,7 +875,8 @@ img {
   color: var(--silver);
 }
 
-.accent-silver .reference-crop::after {
+.accent-silver .reference-crop::after,
+.accent-silver .scene-frame::after {
   background:
     linear-gradient(180deg, rgba(8, 9, 11, 0.14), rgba(8, 9, 11, 0.36)),
     radial-gradient(circle at top right, rgba(214, 217, 225, 0.16), transparent 22%),

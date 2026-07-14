@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { motion } from "framer-motion";
 
 const BRAND = {
@@ -10,13 +11,6 @@ const BOOK_SERVICE_HREF = "./portfolio-vscode.html";
 const MAPS_HREF = "https://www.google.com/maps/search/?api=1&query=K+Letisti+123%2C+252+25+Jinocany%2C+Czech+Republic";
 
 const REFERENCES = {
-  home: "./references/home-reference.png",
-  services: "./references/services-reference.png",
-  technology: "./references/technology-reference.png",
-  projects: "./references/projects-reference.png",
-  about: "./references/about-reference.png",
-  contact: "./references/contact-reference.png",
-  booking: "./references/booking-reference.png",
   logo: "./infinity-logo.png",
 };
 
@@ -110,37 +104,43 @@ const SERVICE_OPTIONS = [
     title: "Diagnostics",
     features: ["Full vehicle diagnostics", "Error code reading", "System check"],
     pricing: ["Labour", "from 1 000 Kc"],
+    scene: "diagnostics",
   },
   {
     icon: "disc",
     title: "Brake Service",
     features: ["Brake pads / discs", "System inspection", "Safety check"],
     pricing: ["Est. total", "from 4 700 Kc"],
+    scene: "brakes",
     active: true,
   },
   {
-    icon: "chip",
+    icon: "engine",
     title: "Engine Service",
     features: ["Oil & filter change", "Engine inspection", "Performance check"],
     pricing: ["Labour", "from 2 000 Kc"],
+    scene: "engine",
   },
   {
     icon: "suspension",
     title: "Suspension",
     features: ["Shock absorbers", "Control arms", "Alignment check"],
     pricing: ["Labour", "from 1 800 Kc"],
+    scene: "suspension",
   },
   {
     icon: "bolt",
     title: "Electrical",
     features: ["Diagnostics", "Electrical repairs", "Coding & adaptation"],
     pricing: ["Labour", "from 1 200 Kc"],
+    scene: "electrical",
   },
   {
     icon: "gauge",
     title: "Performance",
     features: ["Performance upgrades", "Exhaust systems", "ECU tuning"],
     pricing: ["Price", "Individual"],
+    scene: "performance",
   },
 ];
 
@@ -153,8 +153,7 @@ const INTELLIGENCE_CARDS = [
     href: "./marika.html",
     cta: "Discover Marika",
     accent: "gold",
-    image: REFERENCES.technology,
-    position: "18% 41%",
+    scene: "marika-portrait",
   },
   {
     title: "Luna",
@@ -164,8 +163,7 @@ const INTELLIGENCE_CARDS = [
     href: "./portfolio.html",
     cta: "Discover Luna",
     accent: "blue",
-    image: REFERENCES.technology,
-    position: "50% 43%",
+    scene: "luna-portrait",
   },
   {
     title: "Xeno",
@@ -175,8 +173,7 @@ const INTELLIGENCE_CARDS = [
     href: "./portfolio-unreal.html",
     cta: "Discover Xeno",
     accent: "silver",
-    image: REFERENCES.technology,
-    position: "83% 43%",
+    scene: "xeno-portrait",
   },
 ];
 
@@ -190,12 +187,12 @@ const HOME_WORKSHOP_SERVICES = [
 ];
 
 const SERVICES_GRID = [
-  { icon: "chip", title: "Diagnostics", text: "Advanced diagnostic solutions for all vehicle systems using professional equipment.", image: REFERENCES.services, position: "8% 54%" },
-  { icon: "engine", title: "Engine Service", text: "Complete engine maintenance, repairs and performance optimization.", image: REFERENCES.services, position: "24% 54%" },
-  { icon: "disc", title: "Brakes", text: "Brake system inspection, repair and upgrade for maximum safety and performance.", image: REFERENCES.services, position: "41% 54%" },
-  { icon: "suspension", title: "Suspension", text: "Suspension setup, repairs and upgrades for better handling and comfort.", image: REFERENCES.services, position: "58% 54%" },
-  { icon: "bolt", title: "Electrical", text: "Electrical system, diagnostics, repairs and custom solutions.", image: REFERENCES.services, position: "75% 54%" },
-  { icon: "gauge", title: "Performance", text: "Performance tuning, upgrades and custom builds to unlock your vehicle's potential.", image: REFERENCES.services, position: "92% 54%" },
+  { icon: "chip", title: "Diagnostics", text: "Advanced diagnostic solutions for all vehicle systems using professional equipment.", scene: "diagnostics" },
+  { icon: "engine", title: "Engine Service", text: "Complete engine maintenance, repairs and performance optimization.", scene: "engine" },
+  { icon: "disc", title: "Brakes", text: "Brake system inspection, repair and upgrade for maximum safety and performance.", scene: "brakes" },
+  { icon: "suspension", title: "Suspension", text: "Suspension setup, repairs and upgrades for better handling and comfort.", scene: "suspension" },
+  { icon: "bolt", title: "Electrical", text: "Electrical system, diagnostics, repairs and custom solutions.", scene: "electrical" },
+  { icon: "gauge", title: "Performance", text: "Performance tuning, upgrades and custom builds to unlock your vehicle's potential.", scene: "performance" },
 ];
 
 const PROJECT_FILTERS = [
@@ -215,8 +212,7 @@ const PROJECT_CARDS = [
     text: "1800 HP hybrid hypercar with hydrogen / e-fuel technology and 5 electric motors.",
     status: "In development",
     href: "./systems.html",
-    image: REFERENCES.projects,
-    position: "20% 50%",
+    scene: "hypercar",
     accent: "gold",
   },
   {
@@ -226,8 +222,7 @@ const PROJECT_CARDS = [
     text: "Central Artificial General Intelligence. Reasoning, learning and decision making at the highest level.",
     status: "In progress",
     href: "./marika.html",
-    image: REFERENCES.projects,
-    position: "48% 50%",
+    scene: "marika-core",
     accent: "blue",
   },
   {
@@ -237,8 +232,7 @@ const PROJECT_CARDS = [
     text: "High performance servers, simulation environments and secure data infrastructure.",
     status: "Active",
     href: "./portfolio.html",
-    image: REFERENCES.projects,
-    position: "84% 50%",
+    scene: "server-stack",
     accent: "gold",
   },
   {
@@ -248,8 +242,7 @@ const PROJECT_CARDS = [
     text: "Advanced robotic systems for manufacturing, prototyping and complex tasks.",
     status: "In development",
     href: "./portfolio.html",
-    image: REFERENCES.projects,
-    position: "18% 76%",
+    scene: "robot-arm",
     accent: "gold",
   },
   {
@@ -259,8 +252,7 @@ const PROJECT_CARDS = [
     text: "Next generation reusable spacecraft for long distance travel and payload delivery.",
     status: "Research",
     href: "./contact.html",
-    image: REFERENCES.projects,
-    position: "51% 76%",
+    scene: "starship",
     accent: "blue",
   },
   {
@@ -270,8 +262,7 @@ const PROJECT_CARDS = [
     text: "High performance sports car with a perfect balance of power and control.",
     status: "In development",
     href: "./systems.html",
-    image: REFERENCES.projects,
-    position: "84% 76%",
+    scene: "sportscar",
     accent: "gold",
   },
 ];
@@ -311,6 +302,12 @@ const SOCIALS = [
   { label: "DS", href: "#" },
   { label: "X", href: "#" },
 ];
+
+const SCENE_PALETTES = {
+  gold: { stroke: "#d8a54d", soft: "#f4c979", glow: "#ffe2a6", node: "#fff2cc" },
+  blue: { stroke: "#4da3ff", soft: "#97ceff", glow: "#dcefff", node: "#eef7ff" },
+  silver: { stroke: "#d6d9e1", soft: "#f2f4fa", glow: "#ffffff", node: "#ffffff" },
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -381,8 +378,7 @@ function HomePage() {
         description="Building intelligent systems that combine automotive engineering, artificial intelligence and advanced technology."
         primary={{ label: "Explore PGEX", href: "./portfolio-unreal.html" }}
         secondary={{ label: "Our Services", href: "./systems.html" }}
-        image={REFERENCES.home}
-        imagePosition="78% 44%"
+        scene="garage"
       />
 
       <StatStrip items={HOME_STATS} />
@@ -408,7 +404,7 @@ function HomePage() {
         </div>
 
         <div className="panel promo-panel">
-          <ReferenceCrop src={REFERENCES.services} alt="Workshop preview" position="79% 78%" className="promo-media" />
+          <SceneFrame scene="service-bay" accent="gold" className="promo-media" />
           <div className="promo-copy">
             <h3>
               Precision.
@@ -437,8 +433,7 @@ function ServicesPage() {
         goldLines={[2]}
         description="Professional automotive service built on technology, experience and passion."
         primary={{ label: "Book a Service", href: BOOK_SERVICE_HREF }}
-        image={REFERENCES.services}
-        imagePosition="74% 40%"
+        scene="service-bay"
       />
 
       <StatStrip items={SERVICE_HIGHLIGHTS} />
@@ -465,7 +460,7 @@ function ServicesPage() {
         </div>
 
         <div className="panel visual-panel">
-          <ReferenceCrop src={REFERENCES.services} alt="Service line art" position="55% 83%" className="lineart-preview" />
+          <SceneFrame scene="performance" accent="gold" className="lineart-preview" />
         </div>
 
         <div className="panel promise-panel">
@@ -494,8 +489,7 @@ function TechnologyPage() {
         goldLines={[1]}
         description="At PGEX, technology is more than code and hardware. It is the foundation of everything we build – systems that think, learn and evolve."
         primary={{ label: "Explore our systems", href: "./marika.html" }}
-        image={REFERENCES.technology}
-        imagePosition="71% 20%"
+        scene="tech-spire"
         callouts={[
           { title: "Infrastructure", text: "Scalable and secure system architecture.", position: "left-top" },
           { title: "Data & security", text: "Protecting what matters most.", position: "left-bottom" },
@@ -540,7 +534,7 @@ function TechnologyPage() {
               <span>Real-time monitoring</span>
             </div>
           </div>
-          <ReferenceCrop src={REFERENCES.technology} alt="Infrastructure" position="76% 76%" className="infrastructure-media" />
+          <SceneFrame scene="server-stack" accent="gold" className="infrastructure-media" />
         </div>
       </section>
 
@@ -577,8 +571,7 @@ function ProjectsPage() {
         goldLines={[1]}
         description="From high performance vehicles to artificial intelligence and space technologies – every project is a step towards a smarter, faster and more advanced future."
         primary={{ label: "Explore all projects", href: "./portfolio-unreal.html" }}
-        image={REFERENCES.projects}
-        imagePosition="77% 28%"
+        scene="covered-car"
       />
 
       <section className="section-block tight-top">
@@ -634,8 +627,7 @@ function MarikaPage() {
         description="Marika is the central intelligence behind PGEX systems – connecting research, language, planning, memory and execution into one evolving mind."
         primary={{ label: "Explore PGEX systems", href: "./portfolio.html" }}
         secondary={{ label: "See all projects", href: "./portfolio-unreal.html" }}
-        image={REFERENCES.technology}
-        imagePosition="18% 42%"
+        scene="marika-core"
       />
 
       <section className="section-block">
@@ -662,7 +654,7 @@ function MarikaPage() {
               <li>Coordination between Luna and Xeno layers</li>
             </ul>
           </div>
-          <ReferenceCrop src={REFERENCES.home} alt="Marika portrait" position="20% 63%" className="marika-media" />
+          <SceneFrame scene="marika-portrait" accent="gold" className="marika-media" />
         </div>
       </section>
 
@@ -696,8 +688,7 @@ function AboutPage() {
         goldLines={[1]}
         description="Program Envus Xenos was founded on a simple idea – use technology, passion and hard work to build intelligent systems that make a difference."
         primary={{ label: "Explore our projects", href: "./portfolio-unreal.html" }}
-        image={REFERENCES.about}
-        imagePosition="77% 24%"
+        scene="workshop-bay"
         signature="Envus Xenos"
       />
 
@@ -717,7 +708,7 @@ function AboutPage() {
             <h2 className="panel-heading">It started in a workshop.</h2>
             <p>We did not start in a laboratory. We started with tools, curiosity and a will to understand how things truly work.</p>
             <p>Every repair, every modification and every challenge made us better. This is where PGEX began.</p>
-            <ReferenceCrop src={REFERENCES.about} alt="Workshop" position="74% 37%" className="story-media" />
+            <SceneFrame scene="tool-wall" accent="gold" className="story-media" />
           </div>
 
           <div className="panel values-panel">
@@ -789,7 +780,7 @@ function AboutPage() {
               Join our journey
             </a>
           </div>
-          <ReferenceCrop src={REFERENCES.about} alt="PGEX future vision" position="73% 86%" className="journey-media" />
+          <SceneFrame scene="future-route" accent="gold" className="journey-media" />
         </div>
       </section>
     </>
@@ -804,8 +795,7 @@ function ContactPage() {
         lines={["Let’s build", "the future."]}
         goldLines={[1]}
         description="Have a question, a project in mind, or need our workshop services? We are here to help. Get in touch with us."
-        image={REFERENCES.contact}
-        imagePosition="78% 28%"
+        scene="contact-bay"
         signature="PGEX team"
       />
 
@@ -863,7 +853,7 @@ function ContactPage() {
         </div>
 
         <div className="panel map-panel">
-          <ReferenceCrop src={REFERENCES.contact} alt="Map preview" position="70% 67%" className="map-media" />
+          <SceneFrame scene="map-grid" accent="gold" className="map-media" />
           <div className="map-badge">
             <img src={REFERENCES.logo} alt="" />
             <div>
@@ -907,8 +897,7 @@ function BookingPage() {
         lines={["Book your", "service."]}
         goldLines={[1]}
         description="Professional care. Advanced technology. Built for performance."
-        image={REFERENCES.booking}
-        imagePosition="76% 27%"
+        scene="booking-bay"
       />
 
       <section className="section-block tight-top">
@@ -962,7 +951,7 @@ function BookingPage() {
               <li>{CONTACT_FOOTER.email}</li>
               <li>{CONTACT_FOOTER.address}</li>
             </ul>
-            <ReferenceCrop src={REFERENCES.booking} alt="Brake service" position="15% 82%" className="help-media" />
+            <SceneFrame scene="brakes" accent="gold" className="help-media" />
           </div>
         </div>
       </section>
@@ -971,7 +960,7 @@ function BookingPage() {
         <div className="panel process-visual">
           <a href="./systems.html" className="subtle-link">‹ Back to Services</a>
           <div className="process-hero">
-            <ReferenceCrop src={REFERENCES.booking} alt="Brake service detail" position="18% 76%" className="brake-media" />
+            <SceneFrame scene="brakes" accent="gold" className="brake-media" />
             <div className="process-copy">
               <div className="section-mini-label">Brake Service</div>
               <h2 className="panel-heading">Maximum safety and control.</h2>
@@ -1027,8 +1016,7 @@ function HeroSplit({
   description,
   primary,
   secondary,
-  image,
-  imagePosition,
+  scene,
   callouts,
   signature,
 }) {
@@ -1060,7 +1048,7 @@ function HeroSplit({
       </motion.div>
 
       <motion.div className="hero-visual panel" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9 }}>
-        <ReferenceCrop src={image} alt={eyebrow} position={imagePosition} className="hero-media" />
+        <SceneFrame scene={scene} accent="gold" className="hero-media" />
         <div className="hero-brand-badge">
           <img src={REFERENCES.logo} alt="" />
           <div>
@@ -1120,7 +1108,7 @@ function IntelligenceCard({ card, index, compact = false }) {
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.55, delay: index * 0.05 }}
     >
-      <ReferenceCrop src={card.image} alt={card.title} position={card.position} className="intelligence-media" />
+      <SceneFrame scene={card.scene} accent={card.accent} className="intelligence-media" />
       <div className="intelligence-content">
         <h3>{card.title}</h3>
         <div className="card-kicker">{card.subtitle}</div>
@@ -1165,7 +1153,7 @@ function ServiceCard({ service, index }) {
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
     >
-      <ReferenceCrop src={service.image} alt={service.title} position={service.position} className="service-media" />
+      <SceneFrame scene={service.scene} accent="gold" className="service-media" />
       <div className="service-body">
         <div className="service-badge"><Icon name={service.icon} /></div>
         <h3>{service.title}</h3>
@@ -1201,7 +1189,7 @@ function ProjectCard({ card, index }) {
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.45, delay: index * 0.04 }}
     >
-      <ReferenceCrop src={card.image} alt={card.title} position={card.position} className="project-media" />
+      <SceneFrame scene={card.scene} accent={card.accent} className="project-media" />
       <div className="project-content">
         <div className="card-kicker">{card.category}</div>
         <h3>{card.title}</h3>
@@ -1283,6 +1271,7 @@ function ContactChannel({ item }) {
 function BookingServiceCard({ item }) {
   return (
     <div className={`booking-service-card ${item.active ? "is-active" : ""}`}>
+      <SceneFrame scene={item.scene} accent="gold" className="booking-card-art" />
       <div className="booking-service-header">
         <div className="value-icon"><Icon name={item.icon} /></div>
         <div>
@@ -1372,11 +1361,321 @@ function Footer() {
   );
 }
 
-function ReferenceCrop({ src, alt, position = "50% 50%", className = "" }) {
+function SceneFrame({ scene, accent = "gold", className = "" }) {
   return (
-    <div className={`reference-crop ${className}`}>
-      <img src={src} alt={alt} style={{ objectPosition: position }} />
+    <div className={`scene-frame accent-${accent} ${className}`.trim()}>
+      <SceneArtwork variant={scene} accent={accent} />
     </div>
+  );
+}
+
+function SceneArtwork({ variant, accent = "gold" }) {
+  const uid = useId().replace(/:/g, "");
+  const palette = SCENE_PALETTES[accent] || SCENE_PALETTES.gold;
+  const bgId = `${uid}-bg`;
+  const gridId = `${uid}-grid`;
+  const glowId = `${uid}-glow`;
+
+  return (
+    <svg viewBox="0 0 600 420" className="scene-svg" aria-hidden="true">
+      <defs>
+        <linearGradient id={bgId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#050507" />
+          <stop offset="55%" stopColor="#0c0c10" />
+          <stop offset="100%" stopColor="#040405" />
+        </linearGradient>
+        <radialGradient id={glowId} cx="78%" cy="18%" r="58%">
+          <stop offset="0%" stopColor={palette.glow} stopOpacity="0.52" />
+          <stop offset="48%" stopColor={palette.stroke} stopOpacity="0.14" />
+          <stop offset="100%" stopColor={palette.stroke} stopOpacity="0" />
+        </radialGradient>
+        <pattern id={gridId} width="28" height="28" patternUnits="userSpaceOnUse">
+          <path d="M28 0H0V28" fill="none" stroke={palette.stroke} strokeOpacity="0.15" strokeWidth="0.75" />
+        </pattern>
+      </defs>
+
+      <rect width="600" height="420" fill={`url(#${bgId})`} />
+      <rect width="600" height="420" fill={`url(#${gridId})`} opacity="0.38" />
+      <circle cx="492" cy="70" r="170" fill={`url(#${glowId})`} />
+
+      <g fill="none" stroke={palette.stroke} strokeOpacity="0.18">
+        <path d="M54 74H546" />
+        <path d="M64 344H536" />
+        <ellipse cx="300" cy="314" rx="210" ry="58" />
+      </g>
+
+      <g fill={palette.node}>
+        <circle cx="128" cy="90" r="2.5" opacity="0.8" />
+        <circle cx="466" cy="116" r="2.5" opacity="0.75" />
+        <circle cx="502" cy="158" r="2" opacity="0.8" />
+      </g>
+
+      {renderSceneVariant(variant, palette)}
+    </svg>
+  );
+}
+
+function renderSceneVariant(variant, palette) {
+  switch (variant) {
+    case "garage":
+    case "service-bay":
+    case "contact-bay":
+    case "booking-bay":
+    case "workshop-bay":
+    case "covered-car":
+    case "hypercar":
+    case "sportscar":
+      return <CarScene palette={palette} variant={variant} />;
+    case "tech-spire":
+    case "server-stack":
+      return <SystemScene palette={palette} variant={variant} />;
+    case "marika-core":
+    case "marika-portrait":
+    case "luna-portrait":
+    case "xeno-portrait":
+      return <MindScene palette={palette} variant={variant} />;
+    case "diagnostics":
+    case "engine":
+    case "brakes":
+    case "suspension":
+    case "electrical":
+    case "performance":
+      return <ModuleScene palette={palette} variant={variant} />;
+    case "robot-arm":
+      return <RobotScene palette={palette} />;
+    case "starship":
+      return <StarshipScene palette={palette} />;
+    case "map-grid":
+      return <MapScene palette={palette} />;
+    case "tool-wall":
+      return <ToolWallScene palette={palette} />;
+    case "future-route":
+      return <RouteScene palette={palette} />;
+    default:
+      return <SystemScene palette={palette} variant="tech-spire" />;
+  }
+}
+
+function CarScene({ palette, variant }) {
+  const covered = variant === "covered-car";
+  const lifted = variant === "workshop-bay";
+  const sporty = variant === "hypercar" || variant === "sportscar";
+  const baseY = lifted ? 250 : 292;
+  const roofY = lifted ? 206 : 244;
+
+  return (
+    <>
+      <g opacity="0.88">
+        <rect x="102" y="84" width="12" height={lifted ? 208 : 176} rx="6" fill={palette.glow} opacity="0.78" />
+        <rect x="486" y="84" width="12" height={lifted ? 208 : 176} rx="6" fill={palette.glow} opacity="0.78" />
+        <rect x="294" y="92" width="8" height="150" rx="4" fill={palette.glow} opacity="0.52" />
+      </g>
+      <g fill="none" stroke={palette.stroke} strokeOpacity="0.28">
+        <path d={`M74 ${baseY + 34}H526`} />
+        <path d={`M118 ${baseY + 16}H482`} />
+      </g>
+      {covered ? (
+        <path
+          d="M154 286 C182 210 244 172 314 172 C392 172 458 214 484 280 C434 298 380 304 308 306 C242 308 190 304 154 286 Z"
+          fill={palette.stroke}
+          fillOpacity="0.12"
+          stroke={palette.glow}
+          strokeWidth="3.2"
+          strokeLinejoin="round"
+        />
+      ) : (
+        <>
+          <path d={`M132 ${baseY} C180 ${roofY} 236 ${roofY - 16} 306 ${roofY - 14} C378 ${roofY - 10} 438 ${roofY + 8} 488 ${baseY}`} fill="none" stroke={palette.glow} strokeWidth={sporty ? "4.4" : "3.7"} strokeLinecap="round" />
+          <path d={`M162 ${baseY - 44} C206 ${roofY - 16} 252 ${roofY - 26} 320 ${roofY - 22} C380 ${roofY - 18} 426 ${roofY - 2} 456 ${baseY - 24}`} fill="none" stroke={palette.stroke} strokeWidth="2.5" strokeLinecap="round" />
+          <path d={`M152 ${baseY + 4}H474`} fill="none" stroke={palette.glow} strokeWidth="3" strokeLinecap="round" />
+          <path d={`M458 ${baseY - 16}l24 8`} fill="none" stroke={palette.glow} strokeWidth="3" strokeLinecap="round" />
+        </>
+      )}
+      <circle cx="214" cy={baseY + 10} r={sporty ? "34" : "30"} fill="none" stroke={palette.glow} strokeWidth="3.2" />
+      <circle cx="214" cy={baseY + 10} r="11" fill="none" stroke={palette.stroke} strokeWidth="2" />
+      <circle cx="412" cy={baseY + 10} r={sporty ? "34" : "30"} fill="none" stroke={palette.glow} strokeWidth="3.2" />
+      <circle cx="412" cy={baseY + 10} r="11" fill="none" stroke={palette.stroke} strokeWidth="2" />
+      {variant === "contact-bay" ? (
+        <g stroke={palette.stroke} strokeOpacity="0.34">
+          <path d="M124 114H226M124 136H250M420 118H494M404 140H494" />
+        </g>
+      ) : null}
+      {variant === "booking-bay" ? (
+        <g fill="none" stroke={palette.stroke} strokeOpacity="0.34">
+          <circle cx="138" cy="118" r="16" />
+          <path d="M170 118H316M334 118H438" />
+        </g>
+      ) : null}
+    </>
+  );
+}
+
+function SystemScene({ palette, variant }) {
+  if (variant === "server-stack") {
+    return (
+      <>
+        <g fill={palette.stroke} fillOpacity="0.08" stroke={palette.stroke} strokeOpacity="0.34">
+          <rect x="118" y="102" width="110" height="210" rx="12" />
+          <rect x="246" y="86" width="108" height="226" rx="12" />
+          <rect x="372" y="108" width="110" height="204" rx="12" />
+        </g>
+        <g stroke={palette.glow} strokeOpacity="0.48">
+          {Array.from({ length: 7 }).map((_, index) => (
+            <g key={index}>
+              <path d={`M138 ${122 + index * 26}H206`} />
+              <path d={`M264 ${108 + index * 28}H336`} />
+              <path d={`M392 ${128 + index * 24}H462`} />
+            </g>
+          ))}
+        </g>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <g fill="none" stroke={palette.stroke} strokeOpacity="0.24">
+        <ellipse cx="334" cy="210" rx="176" ry="92" />
+        <ellipse cx="334" cy="210" rx="138" ry="70" />
+        <ellipse cx="334" cy="210" rx="100" ry="48" />
+      </g>
+      <g fill={palette.stroke} fillOpacity="0.08" stroke={palette.glow} strokeOpacity="0.42">
+        <rect x="286" y="94" width="96" height="188" rx="14" />
+        <rect x="306" y="52" width="56" height="64" rx="10" />
+        <rect x="318" y="24" width="32" height="42" rx="8" />
+      </g>
+    </>
+  );
+}
+
+function MindScene({ palette, variant }) {
+  const crown = variant === "marika-core" || variant === "marika-portrait";
+  const waves = variant === "luna-portrait";
+  const diagonals = variant === "xeno-portrait";
+
+  return (
+    <>
+      <g fill="none" stroke={palette.stroke} strokeOpacity="0.22">
+        <circle cx="300" cy="130" r="80" />
+        <circle cx="300" cy="130" r="108" />
+      </g>
+      <g fill={palette.stroke} fillOpacity="0.1" stroke={palette.glow} strokeOpacity="0.42">
+        <path d="M256 186 C264 132 282 102 300 100 C320 102 338 132 344 186 C328 208 316 216 300 218 C284 216 270 208 256 186 Z" />
+        <path d="M224 320 C236 258 268 226 300 226 C332 226 364 258 376 320 C344 334 322 340 300 340 C278 340 256 334 224 320 Z" />
+      </g>
+      <path d="M272 150 C282 136 292 130 300 128 C308 130 318 136 328 150" fill="none" stroke={palette.glow} strokeWidth="2.8" strokeLinecap="round" />
+      {crown ? <path d="M258 84 L300 54 L342 84 M282 78 L300 36 L318 78" fill="none" stroke={palette.glow} strokeWidth="2.8" strokeLinecap="round" /> : null}
+      {waves ? <path d="M194 116 C238 126 250 180 226 228 M406 116 C362 126 350 180 374 228" fill="none" stroke={palette.stroke} strokeOpacity="0.48" strokeWidth="2.3" /> : null}
+      {diagonals ? <path d="M196 122 L250 170 M178 248 L244 214 M352 176 L424 116 M346 248 L418 262" fill="none" stroke={palette.stroke} strokeOpacity="0.46" strokeWidth="2.2" /> : null}
+    </>
+  );
+}
+
+function ModuleScene({ palette, variant }) {
+  switch (variant) {
+    case "engine":
+      return (
+        <>
+          <rect x="168" y="152" width="224" height="116" rx="24" fill={palette.stroke} fillOpacity="0.08" stroke={palette.glow} strokeWidth="3" />
+          <path d="M208 138V152M352 138V152M154 188H194M154 228H194M392 186H436M392 228H436" fill="none" stroke={palette.glow} strokeWidth="3" strokeLinecap="round" />
+          <rect x="226" y="182" width="104" height="56" rx="16" fill="none" stroke={palette.stroke} strokeWidth="3" />
+        </>
+      );
+    case "brakes":
+      return (
+        <>
+          <circle cx="300" cy="214" r="94" fill={palette.stroke} fillOpacity="0.08" stroke={palette.glow} strokeWidth="3.4" />
+          <circle cx="300" cy="214" r="52" fill="none" stroke={palette.stroke} strokeWidth="3" />
+          <circle cx="300" cy="214" r="18" fill="none" stroke={palette.glow} strokeWidth="3" />
+        </>
+      );
+    case "suspension":
+      return (
+        <>
+          <path d="M300 110V314" fill="none" stroke={palette.glow} strokeWidth="4" strokeLinecap="round" />
+          <path d="M248 138 C288 160 312 160 352 138 C312 180 288 180 248 202 C288 224 312 224 352 202 C312 246 288 246 248 270 C288 292 312 292 352 270" fill="none" stroke={palette.stroke} strokeWidth="3.4" strokeLinecap="round" />
+        </>
+      );
+    case "electrical":
+      return <path d="M310 104L234 224H292L278 318L366 192H306L310 104Z" fill={palette.stroke} fillOpacity="0.16" stroke={palette.glow} strokeWidth="3" strokeLinejoin="round" />;
+    case "performance":
+      return (
+        <>
+          <path d="M186 274 A114 114 0 0 1 414 274" fill="none" stroke={palette.glow} strokeWidth="4" strokeLinecap="round" />
+          <path d="M300 274 L384 178" fill="none" stroke={palette.glow} strokeWidth="4" strokeLinecap="round" />
+          <circle cx="300" cy="274" r="16" fill={palette.stroke} fillOpacity="0.16" stroke={palette.glow} strokeWidth="3" />
+        </>
+      );
+    default:
+      return (
+        <>
+          <rect x="230" y="144" width="140" height="140" rx="28" fill={palette.stroke} fillOpacity="0.08" stroke={palette.glow} strokeWidth="3.2" />
+          <path d="M258 116V144M300 104V144M342 116V144M230 186H184M230 232H184M370 186H416M370 232H416M258 284V314M300 284V328M342 284V314" fill="none" stroke={palette.glow} strokeWidth="3" strokeLinecap="round" />
+        </>
+      );
+  }
+}
+
+function RobotScene({ palette }) {
+  return (
+    <>
+      <rect x="168" y="286" width="110" height="44" rx="12" fill={palette.stroke} fillOpacity="0.08" stroke={palette.glow} strokeWidth="3" />
+      <circle cx="254" cy="254" r="28" fill={palette.stroke} fillOpacity="0.1" stroke={palette.glow} strokeWidth="3" />
+      <circle cx="326" cy="196" r="22" fill={palette.stroke} fillOpacity="0.1" stroke={palette.glow} strokeWidth="3" />
+      <path d="M278 238L308 212L344 212L378 166" fill="none" stroke={palette.glow} strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" />
+    </>
+  );
+}
+
+function StarshipScene({ palette }) {
+  return (
+    <>
+      <path d="M40 338 C148 280 238 258 340 266 C430 274 514 300 586 346" fill="none" stroke={palette.stroke} strokeOpacity="0.34" strokeWidth="2.8" />
+      <path d="M220 278L378 126L416 164L264 292Z" fill={palette.stroke} fillOpacity="0.12" stroke={palette.glow} strokeWidth="3.2" strokeLinejoin="round" />
+      <path d="M394 144L470 110L428 188" fill="none" stroke={palette.glow} strokeWidth="3" strokeLinecap="round" />
+    </>
+  );
+}
+
+function MapScene({ palette }) {
+  return (
+    <>
+      <g stroke={palette.stroke} strokeOpacity="0.34" fill="none" strokeLinecap="round">
+        <path d="M78 356L220 62" strokeWidth="3" />
+        <path d="M152 336L340 104" strokeWidth="2" />
+        <path d="M312 362L496 84" strokeWidth="3" />
+      </g>
+      <path d="M338 208c0-26 20-46 46-46s46 20 46 46c0 34-46 82-46 82s-46-48-46-82Z" fill={palette.stroke} fillOpacity="0.18" stroke={palette.glow} strokeWidth="3.2" />
+      <circle cx="384" cy="208" r="14" fill="none" stroke={palette.glow} strokeWidth="3" />
+    </>
+  );
+}
+
+function ToolWallScene({ palette }) {
+  return (
+    <>
+      <g fill={palette.stroke} fillOpacity="0.06" stroke={palette.stroke} strokeOpacity="0.24">
+        <rect x="88" y="112" width="136" height="196" rx="16" />
+        <rect x="236" y="132" width="128" height="176" rx="16" />
+        <rect x="376" y="100" width="136" height="208" rx="16" />
+      </g>
+      <g stroke={palette.glow} strokeWidth="3" strokeLinecap="round">
+        <path d="M152 146V220M140 162H164" />
+        <path d="M172 184L186 214" />
+        <path d="M290 164L322 222" />
+        <path d="M426 154V222M410 172H442M418 212H434" />
+      </g>
+    </>
+  );
+}
+
+function RouteScene({ palette }) {
+  return (
+    <>
+      <path d="M30 306 C154 238 258 214 366 222 C468 230 544 264 590 298" fill="none" stroke={palette.stroke} strokeOpacity="0.34" strokeWidth="3.2" />
+      <path d="M112 302 C164 256 232 234 306 232 C388 230 454 252 502 296" fill="none" stroke={palette.glow} strokeWidth="3.8" strokeLinecap="round" />
+      <circle cx="504" cy="72" r="28" fill={palette.glow} opacity="0.65" />
+    </>
   );
 }
 
