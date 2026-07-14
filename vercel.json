@@ -1,6 +1,26 @@
 {
   "rewrites": [
     {
+      "source": "/services",
+      "destination": "/systems.html"
+    },
+    {
+      "source": "/technology",
+      "destination": "/portfolio.html"
+    },
+    {
+      "source": "/projects",
+      "destination": "/portfolio-unreal.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/portfolio-blender.html"
+    },
+    {
+      "source": "/book-service",
+      "destination": "/portfolio-vscode.html"
+    },
+    {
       "source": "/systems",
       "destination": "/systems.html"
     },
