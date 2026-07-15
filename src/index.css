@@ -84,14 +84,14 @@ img {
 
 .bg-mesh,
 .bg-noise {
-  position: fixed;
+  position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
 }
 
 .bg-mesh {
-  opacity: 0.45;
+  opacity: 0.28;
   background:
     linear-gradient(rgba(255, 191, 91, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 191, 91, 0.04) 1px, transparent 1px),
@@ -101,8 +101,8 @@ img {
 }
 
 .bg-noise {
-  opacity: 0.22;
-  mix-blend-mode: screen;
+  opacity: 0.1;
+  mix-blend-mode: normal;
   background-image:
     radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.18) 0 1px, transparent 2px),
     radial-gradient(circle at 78% 16%, rgba(255, 207, 120, 0.12) 0 1px, transparent 2px),
@@ -137,7 +137,6 @@ img {
   border: 1px solid var(--line);
   border-radius: 24px;
   background: rgba(6, 6, 8, 0.72);
-  backdrop-filter: blur(18px);
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.36);
 }
 
@@ -448,7 +447,6 @@ img {
   padding: 0;
 }
 
-.reference-crop,
 .scene-frame {
   position: relative;
   width: 100%;
@@ -457,18 +455,73 @@ img {
   background: #080808;
 }
 
-.reference-crop img,
-.scene-frame .scene-svg {
+.scene-frame .scene-image {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-.reference-crop img {
-  object-fit: cover;
+.scene-art {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 76% 18%, var(--scene-glow, rgba(255, 209, 126, 0.3)), transparent 28%),
+    linear-gradient(135deg, #050506 0%, #11100d 54%, #050505 100%);
 }
 
-.reference-crop::after,
+.scene-art::before {
+  content: "";
+  position: absolute;
+  inset: 12% 10%;
+  border: 1px solid var(--scene-line, rgba(255, 191, 91, 0.2));
+  border-radius: 48% 42% 52% 38%;
+  transform: rotate(-8deg);
+  box-shadow:
+    0 0 0 22px rgba(255, 255, 255, 0.015),
+    0 0 0 44px rgba(255, 191, 91, 0.02);
+}
+
+.scene-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(var(--scene-grid, rgba(255, 191, 91, 0.06)) 1px, transparent 1px),
+    linear-gradient(90deg, var(--scene-grid, rgba(255, 191, 91, 0.06)) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(135deg, transparent, #000 30%, #000 75%, transparent);
+  opacity: 0.62;
+}
+
+.accent-blue .scene-art {
+  --scene-glow: rgba(77, 163, 255, 0.28);
+  --scene-line: rgba(77, 163, 255, 0.26);
+  --scene-grid: rgba(77, 163, 255, 0.07);
+}
+
+.accent-silver .scene-art {
+  --scene-glow: rgba(214, 217, 225, 0.2);
+  --scene-line: rgba(214, 217, 225, 0.22);
+  --scene-grid: rgba(214, 217, 225, 0.06);
+}
+
+.scene-frame .scene-image {
+  object-fit: cover;
+  filter: saturate(0.92) contrast(1.06);
+  transform: scale(1.005);
+  transition:
+    transform 0.8s cubic-bezier(0.2, 0.75, 0.2, 1),
+    filter 0.35s ease;
+}
+
+.hero-visual:hover .scene-image,
+.project-card:hover .scene-image {
+  transform: scale(1.035);
+  filter: saturate(1) contrast(1.08);
+}
+
 .scene-frame::after {
   content: "";
   position: absolute;
@@ -500,8 +553,7 @@ img {
   padding: 1rem 1.1rem;
   border-radius: 18px;
   border: 1px solid rgba(255, 197, 94, 0.26);
-  background: rgba(8, 8, 10, 0.68);
-  backdrop-filter: blur(14px);
+  background: rgba(8, 8, 10, 0.94);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.24);
 }
 
@@ -542,8 +594,7 @@ img {
   padding: 0.9rem 1rem;
   border-radius: 16px;
   border: 1px solid rgba(255, 191, 91, 0.18);
-  background: rgba(8, 8, 10, 0.7);
-  backdrop-filter: blur(10px);
+  background: rgba(8, 8, 10, 0.94);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
 }
 
@@ -901,7 +952,6 @@ img {
   background: linear-gradient(90deg, rgba(3, 8, 15, 0.96) 0%, rgba(3, 8, 15, 0.9) 58%, rgba(4, 4, 6, 0.22) 100%);
 }
 
-.accent-blue .reference-crop::after,
 .accent-blue .scene-frame::after {
   background:
     linear-gradient(180deg, rgba(4, 6, 12, 0.14), rgba(4, 6, 12, 0.36)),
@@ -918,7 +968,6 @@ img {
   color: var(--silver);
 }
 
-.accent-silver .reference-crop::after,
 .accent-silver .scene-frame::after {
   background:
     linear-gradient(180deg, rgba(8, 9, 11, 0.14), rgba(8, 9, 11, 0.36)),
@@ -1664,8 +1713,7 @@ img {
   padding: 0.95rem;
   border-radius: 18px;
   border: 1px solid rgba(255, 191, 91, 0.26);
-  background: rgba(8, 8, 10, 0.74);
-  backdrop-filter: blur(12px);
+  background: rgba(8, 8, 10, 0.94);
 }
 
 .map-badge img {

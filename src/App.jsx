@@ -153,7 +153,8 @@ const INTELLIGENCE_CARDS = [
     href: "./marika.html",
     cta: "Discover Marika",
     accent: "gold",
-    scene: "marika-portrait",
+    image: "./characters/marika.png",
+    imagePosition: "center top",
   },
   {
     title: "Luna",
@@ -215,7 +216,8 @@ const PROJECT_CARDS = [
     text: "1800 HP hybrid hypercar with hydrogen / e-fuel technology and 5 electric motors.",
     status: "In development",
     href: "./systems.html",
-    scene: "hypercar",
+    image: "./vehicles/xenos-x2.png",
+    imagePosition: "center center",
     accent: "gold",
   },
   {
@@ -225,7 +227,8 @@ const PROJECT_CARDS = [
     text: "Central Artificial General Intelligence. Reasoning, learning and decision making at the highest level.",
     status: "In progress",
     href: "./marika.html",
-    scene: "marika-core",
+    image: "./characters/marika.png",
+    imagePosition: "center top",
     accent: "blue",
   },
   {
@@ -306,12 +309,6 @@ const SOCIALS = [
   { label: "X", href: "#" },
 ];
 
-const SCENE_PALETTES = {
-  gold: { stroke: "#d8a54d", soft: "#f4c979", glow: "#ffe2a6", node: "#fff2cc" },
-  blue: { stroke: "#4da3ff", soft: "#97ceff", glow: "#dcefff", node: "#eef7ff" },
-  silver: { stroke: "#d6d9e1", soft: "#f2f4fa", glow: "#ffffff", node: "#ffffff" },
-};
-
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0 },
@@ -381,7 +378,8 @@ function HomePage() {
         description="Building intelligent systems that combine automotive engineering, artificial intelligence and advanced technology."
         primary={{ label: "Explore PGEX", href: "./portfolio-unreal.html" }}
         secondary={{ label: "Our Services", href: "./systems.html" }}
-        scene="garage"
+        image="./vehicles/xenos-x2.png"
+        imagePosition="center center"
       />
 
       <StatStrip items={HOME_STATS} />
@@ -407,7 +405,7 @@ function HomePage() {
         </div>
 
         <div className="panel promo-panel">
-          <SceneFrame scene="service-bay" accent="gold" className="promo-media" />
+          <ImageFrame src="./vehicles/xenos-x2.png" position="center center" className="promo-media" />
           <div className="promo-copy">
             <h3>
               Precision.
@@ -436,7 +434,8 @@ function ServicesPage() {
         goldLines={[2]}
         description="Professional automotive service built on technology, experience and passion."
         primary={{ label: "Book a Service", href: BOOK_SERVICE_HREF }}
-        scene="service-bay"
+        image="./vehicles/xenos-x2.png"
+        imagePosition="center center"
       />
 
       <StatStrip items={SERVICE_HIGHLIGHTS} />
@@ -463,7 +462,7 @@ function ServicesPage() {
         </div>
 
         <div className="panel visual-panel">
-          <SceneFrame scene="performance" accent="gold" className="lineart-preview" />
+          <ImageFrame src="./vehicles/xenos-x2.png" position="center center" className="lineart-preview" />
         </div>
 
         <div className="panel promise-panel">
@@ -492,7 +491,8 @@ function TechnologyPage() {
         goldLines={[1]}
         description="At PGEX, technology is more than code and hardware. It is the foundation of everything we build – systems that think, learn and evolve."
         primary={{ label: "Explore our systems", href: "./marika.html" }}
-        scene="tech-spire"
+        image="./characters/marika.png"
+        imagePosition="center top"
         callouts={[
           { title: "Infrastructure", text: "Scalable and secure system architecture.", position: "left-top" },
           { title: "Data & security", text: "Protecting what matters most.", position: "left-bottom" },
@@ -537,7 +537,7 @@ function TechnologyPage() {
               <span>Real-time monitoring</span>
             </div>
           </div>
-          <SceneFrame scene="server-stack" accent="gold" className="infrastructure-media" />
+          <ImageFrame src="./vehicles/xenos-x2.png" position="center center" className="infrastructure-media" />
         </div>
       </section>
 
@@ -574,7 +574,8 @@ function ProjectsPage() {
         goldLines={[1]}
         description="From high performance vehicles to artificial intelligence and space technologies – every project is a step towards a smarter, faster and more advanced future."
         primary={{ label: "Explore all projects", href: "./portfolio-unreal.html" }}
-        scene="covered-car"
+        image="./vehicles/xenos-x2.png"
+        imagePosition="center center"
       />
 
       <section className="section-block tight-top">
@@ -630,7 +631,8 @@ function MarikaPage() {
         description="Marika is the central intelligence behind PGEX systems – connecting research, language, planning, memory and execution into one evolving mind."
         primary={{ label: "Explore PGEX systems", href: "./portfolio.html" }}
         secondary={{ label: "See all projects", href: "./portfolio-unreal.html" }}
-        scene="marika-core"
+        image="./characters/marika.png"
+        imagePosition="center top"
       />
 
       <section className="section-block">
@@ -657,7 +659,7 @@ function MarikaPage() {
               <li>Coordination between Luna and Xeno layers</li>
             </ul>
           </div>
-          <SceneFrame scene="marika-portrait" accent="gold" className="marika-media" />
+          <ImageFrame src="./characters/marika.png" position="center top" className="marika-media" />
         </div>
       </section>
 
@@ -691,7 +693,8 @@ function AboutPage() {
         goldLines={[1]}
         description="Program Envus Xenos was founded on a simple idea – use technology, passion and hard work to build intelligent systems that make a difference."
         primary={{ label: "Explore our projects", href: "./portfolio-unreal.html" }}
-        scene="workshop-bay"
+        image="./vehicles/xenos-x2.png"
+        imagePosition="center center"
         signature="Envus Xenos"
       />
 
@@ -711,7 +714,7 @@ function AboutPage() {
             <h2 className="panel-heading">It started in a workshop.</h2>
             <p>We did not start in a laboratory. We started with tools, curiosity and a will to understand how things truly work.</p>
             <p>Every repair, every modification and every challenge made us better. This is where PGEX began.</p>
-            <SceneFrame scene="tool-wall" accent="gold" className="story-media" />
+            <ImageFrame src="./vehicles/xenos-x2.png" position="center center" className="story-media" />
           </div>
 
           <div className="panel values-panel">
@@ -783,7 +786,7 @@ function AboutPage() {
               Join our journey
             </a>
           </div>
-          <SceneFrame scene="future-route" accent="gold" className="journey-media" />
+          <ImageFrame src="./vehicles/xenos-x2.png" position="center center" className="journey-media" />
         </div>
       </section>
     </>
@@ -798,7 +801,8 @@ function ContactPage() {
         lines={["Let’s build", "the future."]}
         goldLines={[1]}
         description="Have a question, a project in mind, or need our workshop services? We are here to help. Get in touch with us."
-        scene="contact-bay"
+        image="./vehicles/xenos-x2.png"
+        imagePosition="center center"
         signature="PGEX team"
       />
 
@@ -900,7 +904,8 @@ function BookingPage() {
         lines={["Book your", "service."]}
         goldLines={[1]}
         description="Professional care. Advanced technology. Built for performance."
-        scene="booking-bay"
+        image="./vehicles/xenos-x2.png"
+        imagePosition="center center"
       />
 
       <section className="section-block tight-top">
@@ -954,7 +959,7 @@ function BookingPage() {
               <li>{CONTACT_FOOTER.email}</li>
               <li>{CONTACT_FOOTER.address}</li>
             </ul>
-            <SceneFrame scene="brakes" accent="gold" className="help-media" />
+          <ImageFrame src="./vehicles/xenos-x2.png" position="center center" className="help-media" />
           </div>
         </div>
       </section>
@@ -963,7 +968,7 @@ function BookingPage() {
         <div className="panel process-visual">
           <a href="./systems.html" className="subtle-link">‹ Back to Services</a>
           <div className="process-hero">
-            <SceneFrame scene="brakes" accent="gold" className="brake-media" />
+            <ImageFrame src="./vehicles/xenos-x2.png" position="center center" className="brake-media" />
             <div className="process-copy">
               <div className="section-mini-label">Brake Service</div>
               <h2 className="panel-heading">Maximum safety and control.</h2>
@@ -1020,6 +1025,8 @@ function HeroSplit({
   primary,
   secondary,
   scene,
+  image,
+  imagePosition = "center",
   callouts,
   signature,
 }) {
@@ -1051,7 +1058,11 @@ function HeroSplit({
       </motion.div>
 
       <motion.div className="hero-visual panel" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9 }}>
-        <SceneFrame scene={scene} accent="gold" className="hero-media" />
+        {image ? (
+          <ImageFrame src={image} position={imagePosition} className="hero-media" />
+        ) : (
+          <SceneFrame scene={scene} accent="gold" className="hero-media" />
+        )}
         <div className="hero-brand-badge">
           <img src={REFERENCES.logo} alt="" />
           <div>
@@ -1198,7 +1209,11 @@ function ProjectCard({ card, index }) {
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.45, delay: index * 0.04 }}
     >
-      <SceneFrame scene={card.scene} accent={card.accent} className="project-media" />
+      {card.image ? (
+        <ImageFrame src={card.image} position={card.imagePosition} className="project-media" />
+      ) : (
+        <SceneFrame scene={card.scene} accent={card.accent} className="project-media" />
+      )}
       <div className="project-content">
         <div className="card-kicker">{card.category}</div>
         <h3>{card.title}</h3>
@@ -1373,7 +1388,15 @@ function Footer() {
 function SceneFrame({ scene, accent = "gold", className = "" }) {
   return (
     <div className={`scene-frame accent-${accent} ${className}`.trim()}>
-      <SceneArtwork variant={scene} accent={accent} />
+      <div className={`scene-art scene-art-${scene}`.trim()} aria-hidden="true" />
+    </div>
+  );
+}
+
+function ImageFrame({ src, alt = "", position = "center", className = "" }) {
+  return (
+    <div className={`scene-frame image-frame ${className}`.trim()}>
+      <img className="scene-image" src={src} alt={alt} style={{ objectPosition: position }} />
     </div>
   );
 }
