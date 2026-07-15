@@ -1229,6 +1229,22 @@ img {
   isolation: isolate;
 }
 
+.vision-strip .vision-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border: 0;
+  border-radius: inherit;
+  opacity: 0.58;
+  pointer-events: none;
+}
+
+.vision-strip .vision-media::after {
+  background:
+    linear-gradient(90deg, rgba(4, 4, 4, 0.98) 0%, rgba(4, 4, 4, 0.78) 42%, rgba(4, 4, 4, 0.14) 100%),
+    linear-gradient(180deg, rgba(4, 4, 4, 0.08), rgba(4, 4, 4, 0.68));
+}
+
 .vision-strip::before {
   content: "";
   position: absolute;

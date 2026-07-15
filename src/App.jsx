@@ -543,6 +543,7 @@ function TechnologyPage() {
 
       <section className="section-block">
         <div className="panel vision-strip">
+          <ImageFrame src="./space/planet.jpg" position="right center" className="vision-media" />
           <div className="vision-copy">
             <div className="section-mini-label">Our vision</div>
             <h2 className="panel-heading">
@@ -732,6 +733,7 @@ function AboutPage() {
 
       <section className="section-block">
         <div className="panel vision-strip">
+          <ImageFrame src="./space/planet.jpg" position="right center" className="vision-media" />
           <div className="vision-copy">
             <div className="section-mini-label">Our vision</div>
             <h2 className="panel-heading">Beyond today&apos;s technology.</h2>
@@ -874,6 +876,7 @@ function ContactPage() {
 
       <section className="section-block">
         <div className="panel vision-strip">
+          <ImageFrame src="./space/planet.jpg" position="right center" className="vision-media" />
           <div className="vision-copy">
             <div className="section-mini-label">Have a big project</div>
             <h2 className="panel-heading">
