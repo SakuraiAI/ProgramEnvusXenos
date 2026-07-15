@@ -216,7 +216,7 @@ const PROJECT_CARDS = [
     text: "1800 HP hybrid hypercar with hydrogen / e-fuel technology and 5 electric motors.",
     status: "In development",
     href: "./systems.html",
-    image: "./vehicles/xenos-x2.png",
+    image: "./vehicles/xenos-x2.jpg",
     imagePosition: "center center",
     accent: "gold",
   },
@@ -378,7 +378,7 @@ function HomePage() {
         description="Building intelligent systems that combine automotive engineering, artificial intelligence and advanced technology."
         primary={{ label: "Explore PGEX", href: "./portfolio-unreal.html" }}
         secondary={{ label: "Our Services", href: "./systems.html" }}
-        image="./vehicles/xenos-x2.png"
+        image="./vehicles/xenos-x2.jpg"
         imagePosition="center center"
       />
 
@@ -405,7 +405,7 @@ function HomePage() {
         </div>
 
         <div className="panel promo-panel">
-          <ImageFrame src="./vehicles/xenos-x2.png" position="center center" className="promo-media" />
+          <ImageFrame src="./vehicles/xenos-x2.jpg" position="center center" className="promo-media" />
           <div className="promo-copy">
             <h3>
               Precision.
@@ -434,7 +434,7 @@ function ServicesPage() {
         goldLines={[2]}
         description="Professional automotive service built on technology, experience and passion."
         primary={{ label: "Book a Service", href: BOOK_SERVICE_HREF }}
-        image="./vehicles/xenos-x2.png"
+        image="./vehicles/xenos-x2.jpg"
         imagePosition="center center"
       />
 
@@ -462,7 +462,7 @@ function ServicesPage() {
         </div>
 
         <div className="panel visual-panel">
-          <ImageFrame src="./vehicles/xenos-x2.png" position="center center" className="lineart-preview" />
+          <ImageFrame src="./vehicles/xenos-x2.jpg" position="center center" className="lineart-preview" />
         </div>
 
         <div className="panel promise-panel">
@@ -537,7 +537,7 @@ function TechnologyPage() {
               <span>Real-time monitoring</span>
             </div>
           </div>
-          <ImageFrame src="./vehicles/xenos-x2.png" position="center center" className="infrastructure-media" />
+          <ImageFrame src="./vehicles/xenos-x2.jpg" position="center center" className="infrastructure-media" />
         </div>
       </section>
 
@@ -574,7 +574,7 @@ function ProjectsPage() {
         goldLines={[1]}
         description="From high performance vehicles to artificial intelligence and space technologies – every project is a step towards a smarter, faster and more advanced future."
         primary={{ label: "Explore all projects", href: "./portfolio-unreal.html" }}
-        image="./vehicles/xenos-x2.png"
+        image="./vehicles/xenos-x2.jpg"
         imagePosition="center center"
       />
 
@@ -693,7 +693,7 @@ function AboutPage() {
         goldLines={[1]}
         description="Program Envus Xenos was founded on a simple idea – use technology, passion and hard work to build intelligent systems that make a difference."
         primary={{ label: "Explore our projects", href: "./portfolio-unreal.html" }}
-        image="./vehicles/xenos-x2.png"
+        image="./vehicles/xenos-x2.jpg"
         imagePosition="center center"
         signature="Envus Xenos"
       />
@@ -714,7 +714,7 @@ function AboutPage() {
             <h2 className="panel-heading">It started in a workshop.</h2>
             <p>We did not start in a laboratory. We started with tools, curiosity and a will to understand how things truly work.</p>
             <p>Every repair, every modification and every challenge made us better. This is where PGEX began.</p>
-            <ImageFrame src="./vehicles/xenos-x2.png" position="center center" className="story-media" />
+            <ImageFrame src="./vehicles/xenos-x2.jpg" position="center center" className="story-media" />
           </div>
 
           <div className="panel values-panel">
@@ -786,7 +786,7 @@ function AboutPage() {
               Join our journey
             </a>
           </div>
-          <ImageFrame src="./vehicles/xenos-x2.png" position="center center" className="journey-media" />
+          <ImageFrame src="./vehicles/xenos-x2.jpg" position="center center" className="journey-media" />
         </div>
       </section>
     </>
@@ -801,7 +801,7 @@ function ContactPage() {
         lines={["Let’s build", "the future."]}
         goldLines={[1]}
         description="Have a question, a project in mind, or need our workshop services? We are here to help. Get in touch with us."
-        image="./vehicles/xenos-x2.png"
+        image="./vehicles/xenos-x2.jpg"
         imagePosition="center center"
         signature="PGEX team"
       />
@@ -904,7 +904,7 @@ function BookingPage() {
         lines={["Book your", "service."]}
         goldLines={[1]}
         description="Professional care. Advanced technology. Built for performance."
-        image="./vehicles/xenos-x2.png"
+        image="./vehicles/xenos-x2.jpg"
         imagePosition="center center"
       />
 
@@ -959,7 +959,7 @@ function BookingPage() {
               <li>{CONTACT_FOOTER.email}</li>
               <li>{CONTACT_FOOTER.address}</li>
             </ul>
-          <ImageFrame src="./vehicles/xenos-x2.png" position="center center" className="help-media" />
+          <ImageFrame src="./vehicles/xenos-x2.jpg" position="center center" className="help-media" />
           </div>
         </div>
       </section>
@@ -968,7 +968,7 @@ function BookingPage() {
         <div className="panel process-visual">
           <a href="./systems.html" className="subtle-link">‹ Back to Services</a>
           <div className="process-hero">
-            <ImageFrame src="./vehicles/xenos-x2.png" position="center center" className="brake-media" />
+            <ImageFrame src="./vehicles/xenos-x2.jpg" position="center center" className="brake-media" />
             <div className="process-copy">
               <div className="section-mini-label">Brake Service</div>
               <h2 className="panel-heading">Maximum safety and control.</h2>
