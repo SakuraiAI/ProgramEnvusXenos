@@ -153,7 +153,7 @@ const INTELLIGENCE_CARDS = [
     href: "./marika.html",
     cta: "Discover Marika",
     accent: "gold",
-    image: "./characters/marika.png",
+    image: "./characters/marika.jpg",
     imagePosition: "center top",
   },
   {
@@ -227,7 +227,7 @@ const PROJECT_CARDS = [
     text: "Central Artificial General Intelligence. Reasoning, learning and decision making at the highest level.",
     status: "In progress",
     href: "./marika.html",
-    image: "./characters/marika.png",
+    image: "./characters/marika.jpg",
     imagePosition: "center top",
     accent: "blue",
   },
@@ -491,7 +491,7 @@ function TechnologyPage() {
         goldLines={[1]}
         description="At PGEX, technology is more than code and hardware. It is the foundation of everything we build – systems that think, learn and evolve."
         primary={{ label: "Explore our systems", href: "./marika.html" }}
-        image="./characters/marika.png"
+        image="./characters/marika.jpg"
         imagePosition="center top"
         callouts={[
           { title: "Infrastructure", text: "Scalable and secure system architecture.", position: "left-top" },
@@ -631,7 +631,7 @@ function MarikaPage() {
         description="Marika is the central intelligence behind PGEX systems – connecting research, language, planning, memory and execution into one evolving mind."
         primary={{ label: "Explore PGEX systems", href: "./portfolio.html" }}
         secondary={{ label: "See all projects", href: "./portfolio-unreal.html" }}
-        image="./characters/marika.png"
+        image="./characters/marika.jpg"
         imagePosition="center top"
       />
 
@@ -659,7 +659,7 @@ function MarikaPage() {
               <li>Coordination between Luna and Xeno layers</li>
             </ul>
           </div>
-          <ImageFrame src="./characters/marika.png" position="center top" className="marika-media" />
+          <ImageFrame src="./characters/marika.jpg" position="center top" className="marika-media" />
         </div>
       </section>
 
