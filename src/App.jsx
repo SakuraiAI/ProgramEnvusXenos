@@ -164,7 +164,7 @@ const INTELLIGENCE_CARDS = [
     href: "./portfolio.html",
     cta: "Discover Luna",
     accent: "blue",
-    image: "./characters/luna.png",
+    image: "./characters/luna.jpg",
     imagePosition: "center top",
   },
   {
