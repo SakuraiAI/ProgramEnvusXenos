@@ -84,8 +84,8 @@ const PHILOSOPHY = [
 ];
 
 const CONTACT_CHANNELS = [
-  { icon: "mail", title: "Email", text: "info@programenvusxenos.com", meta: "We respond within 24h" },
-  { icon: "phone", title: "Phone", text: "+420 123 456 789", meta: "Mon – Fri: 9:00 – 18:00" },
+  { icon: "mail", title: "Email", text: "programenvus@gmail.com", meta: "We respond within 24h" },
+  { icon: "phone", title: "Phone", text: "731 990 599", meta: "Mon – Fri: 9:00 – 18:00" },
   { icon: "pin", title: "Workshop", text: "K Letisti 123, 252 25 Jinocany, Czech Republic", meta: "PGEX Workshop" },
   { icon: "clock", title: "Business hours", text: "Monday – Friday 9:00 – 18:00", meta: "Saturday by appointment" },
 ];
@@ -297,8 +297,8 @@ const MARIKA_STACK = [
 ];
 
 const CONTACT_FOOTER = {
-  email: "info@programenvusxenos.com",
-  phone: "+420 123 456 789",
+  email: "programenvus@gmail.com",
+  phone: "731 990 599",
   address: "K Letisti 123, 252 25 Jinocany, Czech Republic",
 };
 
