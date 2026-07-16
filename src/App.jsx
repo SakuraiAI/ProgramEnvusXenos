@@ -305,9 +305,13 @@ const CONTACT_FOOTER = {
 const SOCIALS = [
   { label: "IG", href: "#" },
   { label: "YT", href: "#" },
-  { label: "DS", href: "#" },
+  { label: "DS", href: "https://discord.gg/DaNX74Tneb" },
   { label: "X", href: "#" },
 ];
+
+function getExternalLinkProps(href) {
+  return href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {};
+}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -834,7 +838,7 @@ function ContactPage() {
           </div>
           <div className="social-row">
             {SOCIALS.map((item) => (
-              <a key={item.label} href={item.href} className="social-chip">
+              <a key={item.label} href={item.href} className="social-chip" {...getExternalLinkProps(item.href)}>
                 {item.label}
               </a>
             ))}
@@ -1373,7 +1377,7 @@ function Footer() {
           <h4>Follow PGEX</h4>
           <div className="social-row footer-socials">
             {SOCIALS.map((item) => (
-              <a key={item.label} href={item.href} className="social-chip">
+              <a key={item.label} href={item.href} className="social-chip" {...getExternalLinkProps(item.href)}>
                 {item.label}
               </a>
             ))}
