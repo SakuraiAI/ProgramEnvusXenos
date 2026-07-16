@@ -175,7 +175,7 @@ const INTELLIGENCE_CARDS = [
     href: "./portfolio-unreal.html",
     cta: "Discover Xeno",
     accent: "silver",
-    image: "./characters/xeno.jpg",
+    image: "./characters/xeno-character.jpg",
     imagePosition: "center top",
     contentSide: "right",
   },
