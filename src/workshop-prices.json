@@ -510,51 +510,6 @@
     ]
   },
   {
-    "category": "Klimatizace a topení",
-    "items": [
-      {
-        "name": "Kontrola klimatizace",
-        "price": 490.0,
-        "onRequest": false
-      },
-      {
-        "name": "Dezinfekce klimatizace",
-        "price": 490.0,
-        "onRequest": false
-      },
-      {
-        "name": "Výměna kompresoru klimatizace",
-        "price": 2100,
-        "onRequest": false
-      },
-      {
-        "name": "Výměna kondenzátoru klimatizace",
-        "price": 1750,
-        "onRequest": false
-      },
-      {
-        "name": "Výměna ventilátoru topení",
-        "price": 1400,
-        "onRequest": false
-      },
-      {
-        "name": "Výměna radiátoru topení",
-        "price": 4200,
-        "onRequest": false
-      },
-      {
-        "name": "Diagnostika úniku chladiva",
-        "price": 1050,
-        "onRequest": false
-      },
-      {
-        "name": "Servis klimatizace – práce bez chladiva",
-        "price": 700,
-        "onRequest": false
-      }
-    ]
-  },
-  {
     "category": "Pneuservis",
     "items": [
       {
