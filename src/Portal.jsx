@@ -20,12 +20,12 @@ export default function Portal({ page }) {
  const area = ["auto", "booking"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "projects", "marika"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
  const [intro] = useState(() => {
    if (current !== "home" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
-   try { return sessionStorage.getItem("pgex-intro-seen") !== "1"; } catch { return false; }
+   try { return sessionStorage.getItem("pgex-intro-gold-v2-seen") !== "1"; } catch { return false; }
  });
  useEffect(() => {
    document.title = `${titles[current]} | PGEX`;
    document.documentElement.lang = ["auto", "tech", "projects", "marika"].includes(current) ? "en" : "cs";
-   if (current === "home") { try { sessionStorage.setItem("pgex-intro-seen", "1"); } catch { /* Storage is optional. */ } }
+   if (current === "home") { try { sessionStorage.setItem("pgex-intro-gold-v2-seen", "1"); } catch { /* Storage is optional. */ } }
  }, [current]);
  return <div className={`portal ${current === "home" ? "portal-home" : ""} ${intro ? "portal-intro" : ""}`}>
    <a className="skip-link" href="#content">Přejít na obsah</a>

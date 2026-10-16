@@ -242,16 +242,25 @@
 .portal-intro .portal-brand:after{content:'';
   position:absolute;
   inset:0;
-  background:linear-gradient(110deg,transparent 30%,#ffe5aa45,transparent 70%);
-  animation:brand-shine .8s ease-out both;
+  background:linear-gradient(110deg,transparent 24%,#e7ac3540 38%,#ffe6a9c7 47%,#fff9e9ed 50%,#ffd77a99 55%,transparent 72%);
+  mix-blend-mode:screen;
+  animation:brand-shine 1.25s .18s cubic-bezier(.2,.65,.35,1) both;
   pointer-events:none}
 @keyframes portal-reveal{from{opacity:0;
   transform:translateY(9px)}
 to{opacity:1;
   transform:translateY(0)}
 }
-@keyframes brand-shine{from{transform:translateX(-130%)}
-to{transform:translateX(130%)}
+.portal-intro .portal-brand strong{animation:brand-glow 1.25s .18s ease-in-out both}
+@keyframes brand-shine{
+  0%{transform:translateX(-130%);opacity:0}
+  18%{opacity:1}
+  75%{opacity:1}
+  100%{transform:translateX(130%);opacity:0}
+}
+@keyframes brand-glow{
+  0%,100%{color:#e1bc78;text-shadow:none}
+  45%{color:#fff0c9;text-shadow:0 0 12px #edbd65aa,0 0 28px #d99a3655}
 }
 
 @media(max-width:760px){.portal-header{gap:16px;
