@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TechnologyPage, ProjectsPage, MarikaPage } from "./App";
+import { TechnologyPage, ProjectsPage, MarikaPage } from "./Technology";
 import "./portal.css";
 import Workshop, { WorkshopLocation, WorkshopDocuments } from "./Workshop";
 
@@ -7,7 +7,7 @@ const aliases = { home: "home", systems: "auto", portfolio: "tech", "portfolio-u
 const routes = { "/services": "auto", "/systems": "auto", "/technology": "tech", "/portfolio": "tech", "/projects": "projects", "/about": "about", "/contact": "contact", "/book-service": "booking", "/marika": "marika", "/": "home", "/index.html": "home", "/autoservis": "auto", "/technologie": "tech", "/projekty": "projects", "/o-nas": "about", "/kontakt": "contact", "/poptavka": "booking" };
 const links = {
  auto: [["Autoservis", "/autoservis"], ["Ceník", "/autoservis#cenik"], ["Poptat servis", "/poptavka"], ["Kontakt", "/kontakt?oblast=autoservis"]],
- tech: [["Technologie", "/technologie"], ["Projekty", "/projekty"], ["Marika", "/marika.html"], ["Kontakt", "/kontakt?oblast=technologie"]],
+ tech: [["Technologie", "/technologie"], ["Projekty", "/projekty"], ["Novinky", "/technologie#novinky"], ["Kontakt", "/kontakt?oblast=technologie"]],
  shared: [["O nás", "/o-nas"], ["Kontakt", "/kontakt"]],
 };
 const titles = { home: "Vyberte si svou cestu", auto: "Autoservis", tech: "Vývoj a technologie", projects: "Projekty", marika: "Marika", about: "O nás", contact: "Kontakt", booking: "Poptat servis" };
@@ -25,7 +25,7 @@ export default function Portal({ page }) {
  });
  useEffect(() => {
    document.title = `${titles[current]} | PGEX`;
-   document.documentElement.lang = ["tech", "projects", "marika"].includes(current) ? "en" : "cs";
+   document.documentElement.lang = "cs";
    if (current === "home") { try { sessionStorage.setItem("pgex-intro-gold-v2-seen", "1"); } catch { /* Storage is optional. */ } }
  }, [current]);
  return <div className={`portal ${current === "home" ? "portal-home" : ""} ${intro ? "portal-intro" : ""}`}>
@@ -57,5 +57,5 @@ export default function Portal({ page }) {
 function Contact({ area, booking }) {
  const selectedService = booking ? new URLSearchParams(window.location.search).get("sluzba")?.slice(0, 100) : "";
  const subject = selectedService ? `Poptávka autoservisu: ${selectedService}` : booking || area === "auto" ? "Poptávka autoservisu" : area === "tech" ? "Vývoj a technologie" : "Kontakt PGEX";
- return <section className="portal-document"><p className="portal-eyebrow">{area === "auto" ? "PGEX AUTOSERVIS" : area === "tech" ? "PGEX TECHNOLOGIE" : "PGEX"}</p><h1>{booking ? "Poptat servis." : "Pojďme se spojit."}</h1><p className="portal-lead">{booking ? "Napište nám značku a model vozidla, co potřebujete vyřešit a jaký termín vám vyhovuje. Dostupnost a cenu si společně potvrdíme." : "Máte dotaz nebo nápad na spolupráci? Napište nám a uveďte, zda se zpráva týká autoservisu, nebo technologií."}</p>{selectedService && <p className="portal-lead">Vybraná služba: <strong>{selectedService}</strong></p>}<div className="contact-actions"><a className="gateway-button" href={`mailto:programenvus@gmail.com?subject=${encodeURIComponent(subject)}`}>Napsat e-mail →</a><a className="gateway-button outline" href="tel:+420731990599">Zavolat: +420 731 990 599</a></div><p className="contact-note">programenvus@gmail.com · Tlačítko otevře váš e-mailový program.</p>{area === "auto" && <><WorkshopLocation/><WorkshopDocuments/></>}{area === "shared" && <div className="about-directions"><a href="/kontakt?oblast=autoservis">Kontakt pro autoservis →</a><a href="/kontakt?oblast=technologie">Kontakt pro technologie →</a></div>}</section>;
+ return <section className="portal-document"><p className="portal-eyebrow">{area === "auto" ? "PGEX AUTOSERVIS" : area === "tech" ? "PGEX TECHNOLOGIE" : "PGEX"}</p><h1>{booking ? "Poptat servis." : "Pojďme se spojit."}</h1><p className="portal-lead">{booking ? "Napište nám značku a model vozidla, co potřebujete vyřešit a jaký termín vám vyhovuje. Dostupnost a cenu si společně potvrdíme." : area === "tech" ? "Zajímá vás PGEX AI, testování aplikace nebo spolupráce? Napište, co byste chtěli vyzkoušet nebo společně vytvořit." : "Máte dotaz nebo nápad na spolupráci? Napište nám a uveďte, zda se zpráva týká autoservisu, nebo technologií."}</p>{selectedService && <p className="portal-lead">Vybraná služba: <strong>{selectedService}</strong></p>}<div className="contact-actions"><a className="gateway-button" href={`mailto:programenvus@gmail.com?subject=${encodeURIComponent(subject)}`}>Napsat e-mail →</a><a className="gateway-button outline" href="tel:+420731990599">Zavolat: +420 731 990 599</a></div><p className="contact-note">programenvus@gmail.com · Tlačítko otevře váš e-mailový program.</p>{area === "auto" && <><WorkshopLocation/><WorkshopDocuments/></>}{area === "shared" && <div className="about-directions"><a href="/kontakt?oblast=autoservis">Kontakt pro autoservis →</a><a href="/kontakt?oblast=technologie">Kontakt pro technologie →</a></div>}</section>;
 }

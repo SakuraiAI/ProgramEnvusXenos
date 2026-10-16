@@ -40,7 +40,9 @@ The project is ready for:
 - `/kontakt`: společný kontakt; parametr `oblast` zachová kontext vybrané části.
 
 Původní HTML adresy zůstávají dostupné. Vercel rewrites směrují nové adresy na společný vstup.
-Rozcestník, autoservis, O nás, kontakt a menu jsou česky; původní odborné podstránky zůstávají anglicky.
+Rozcestník, autoservis, technologie, projekty, O nás i kontakt jsou česky. Technologickou část spravuje `src/Technology.jsx`; starší adresa Mariky zůstává jako stránka konceptu.
 E-mailový odkaz otevře poštovní program, web sám zprávy neodesílá ani nepotvrzuje rezervace.
 
 Autoservis obsahuje přehled služeb, postup opravy a mobilní kontaktní lištu. Odkazy ze služeb předávají výběr do poptávky a předmětu e-mailu.
+
+Technologie: PGEX AI je označený jako projekt ve vývoji. Funkce vycházejí z místního projektu PGEX-AI-01. Úvodní obrázek je ilustrace vývojářského pracoviště, nikoliv snímek aplikace. Novinky jsou ručně udržovaný obsah.
