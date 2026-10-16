@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/novinky", "destination": "/index.html" },
     {
       "source": "/autoservis",
       "destination": "/index.html"

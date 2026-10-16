@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { TechnologyPage, ProjectsPage, MarikaPage } from "./Technology";
+import { TechnologyPage, ProjectsPage, MarikaPage, NewsPage } from "./Technology";
 import "./portal.css";
 import Workshop, { WorkshopLocation, WorkshopDocuments } from "./Workshop";
 
 const aliases = { home: "home", systems: "auto", portfolio: "tech", "portfolio-unreal": "projects", marika: "marika", "portfolio-blender": "about", contact: "contact", "portfolio-vscode": "booking" };
-const routes = { "/services": "auto", "/systems": "auto", "/technology": "tech", "/portfolio": "tech", "/projects": "projects", "/about": "about", "/contact": "contact", "/book-service": "booking", "/marika": "marika", "/": "home", "/index.html": "home", "/autoservis": "auto", "/technologie": "tech", "/projekty": "projects", "/o-nas": "about", "/kontakt": "contact", "/poptavka": "booking" };
+const routes = { "/novinky": "news", "/services": "auto", "/systems": "auto", "/technology": "tech", "/portfolio": "tech", "/projects": "projects", "/about": "about", "/contact": "contact", "/book-service": "booking", "/marika": "marika", "/": "home", "/index.html": "home", "/autoservis": "auto", "/technologie": "tech", "/projekty": "projects", "/o-nas": "about", "/kontakt": "contact", "/poptavka": "booking" };
 const links = {
  auto: [["Autoservis", "/autoservis"], ["Ceník", "/autoservis#cenik"], ["Poptat servis", "/poptavka"], ["Kontakt", "/kontakt?oblast=autoservis"]],
- tech: [["Technologie", "/technologie"], ["Projekty", "/projekty"], ["Novinky", "/technologie#novinky"], ["Kontakt", "/kontakt?oblast=technologie"]],
+ tech: [["Technologie", "/technologie"], ["Projekty", "/projekty"], ["Novinky", "/novinky"], ["Kontakt", "/kontakt?oblast=technologie"]],
  shared: [["O nás", "/o-nas"], ["Kontakt", "/kontakt"]],
 };
-const titles = { home: "Vyberte si svou cestu", auto: "Autoservis", tech: "Vývoj a technologie", projects: "Projekty", marika: "Marika", about: "O nás", contact: "Kontakt", booking: "Poptat servis" };
+const titles = { news: "Novinky", home: "Vyberte si svou cestu", auto: "Autoservis", tech: "Vývoj a technologie", projects: "Projekty", marika: "Marika", about: "O nás", contact: "Kontakt", booking: "Poptat servis" };
 // Add only real, verified profile URLs here. Social links belong on About only.
 const socials = [{ name: "Discord", href: "https://discord.gg/DaNX74Tneb", detail: "Připojte se ke komunitě PGEX" }];
 
@@ -18,7 +18,7 @@ export default function Portal({ page }) {
  const pathname = window.location.pathname.replace(/\/$/, "") || "/";
  const current = routes[pathname] || aliases[page] || "home";
  const context = new URLSearchParams(window.location.search).get("oblast");
- const area = ["auto", "booking"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "projects", "marika"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
+ const area = ["auto", "booking"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "projects", "marika", "news"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
  const [intro] = useState(() => {
    if (current !== "home" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
    try { return sessionStorage.getItem("pgex-intro-gold-v2-seen") !== "1"; } catch { return false; }
@@ -47,6 +47,7 @@ export default function Portal({ page }) {
      {current === "tech" && <TechnologyPage/>}
      {current === "projects" && <ProjectsPage/>}
      {current === "marika" && <MarikaPage/>}
+     {current === "news" && <NewsPage/>}
      {current === "about" && <section className="portal-document"><p className="portal-eyebrow">PROGRAM ENVUS XENOS</p><h1>Jedna značka.<br/>Dva směry.</h1><p className="portal-lead">PGEX propojuje zájem o auta a technologie. Každému směru dáváme vlastní prostor, abyste snadno našli to, co vás zajímá.</p><div className="about-directions"><article><h2>Autoservis</h2><p>Služby, údržba a opravy vozidel na jednom místě.</p><a href="/autoservis">Přejít na autoservis →</a></article><article><h2>Vývoj a technologie</h2><p>AI, software a vlastní projekty. Prostor pro vývoj, experimenty i nové nápady.</p><a href="/technologie">Prozkoumat technologie →</a></article></div><section className="social-section"><h2>Sledujte PGEX</h2><p>Novinky a prostor pro společnou diskuzi.</p>{socials.map(s => <a className="social-link" key={s.href} href={s.href} target="_blank" rel="noopener noreferrer"><strong>{s.name} ↗</strong><span>{s.detail}</span></a>)}</section></section>}
      {["contact", "booking"].includes(current) && <Contact area={area} booking={current === "booking"}/>}
    </main>
