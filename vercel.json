@@ -1,6 +1,30 @@
 {
   "rewrites": [
     {
+      "source": "/autoservis",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/technologie",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/projekty",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/o-nas",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/kontakt",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/poptavka",
+      "destination": "/index.html"
+    },
+    {
       "source": "/services",
       "destination": "/systems.html"
     },

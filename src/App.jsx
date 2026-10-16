@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useId, useState } from "react";
 import { motion } from "framer-motion";
 
 const BRAND = {
@@ -7,11 +7,11 @@ const BRAND = {
   tagline: "Engineering the future",
 };
 
-const BOOK_SERVICE_HREF = "./portfolio-vscode.html";
+const BOOK_SERVICE_HREF = "/portfolio-vscode.html";
 const MAPS_HREF = "https://www.google.com/maps/search/?api=1&query=K+Letisti+123%2C+252+25+Jinocany%2C+Czech+Republic";
 
 const REFERENCES = {
-  logo: "./infinity-logo.png",
+  logo: "/infinity-logo.png",
 };
 
 const PAGE_GROUP = {
@@ -26,23 +26,23 @@ const PAGE_GROUP = {
 };
 
 const NAV_ITEMS = [
-  { key: "home", label: "Home", href: "./index.html", group: "home" },
-  { key: "systems", label: "Services", href: "./systems.html", group: "services" },
-  { key: "portfolio", label: "Technology", href: "./portfolio.html", group: "technology" },
-  { key: "portfolio-unreal", label: "Projects", href: "./portfolio-unreal.html", group: "projects" },
-  { key: "marika", label: "Marika", href: "./marika.html", group: "marika" },
-  { key: "portfolio-blender", label: "About", href: "./portfolio-blender.html", group: "about" },
-  { key: "contact", label: "Contact", href: "./contact.html", group: "contact" },
+  { key: "home", label: "Home", href: "/index.html", group: "home" },
+  { key: "systems", label: "Services", href: "/systems.html", group: "services" },
+  { key: "portfolio", label: "Technology", href: "/portfolio.html", group: "technology" },
+  { key: "portfolio-unreal", label: "Projects", href: "/portfolio-unreal.html", group: "projects" },
+  { key: "marika", label: "Marika", href: "/marika.html", group: "marika" },
+  { key: "portfolio-blender", label: "About", href: "/portfolio-blender.html", group: "about" },
+  { key: "contact", label: "Contact", href: "/contact.html", group: "contact" },
 ];
 
 const FOOTER_NAV = [
-  { label: "Home", href: "./index.html" },
-  { label: "Services", href: "./systems.html" },
-  { label: "Technology", href: "./portfolio.html" },
-  { label: "Projects", href: "./portfolio-unreal.html" },
-  { label: "Marika", href: "./marika.html" },
-  { label: "About", href: "./portfolio-blender.html" },
-  { label: "Contact", href: "./contact.html" },
+  { label: "Home", href: "/index.html" },
+  { label: "Services", href: "/systems.html" },
+  { label: "Technology", href: "/portfolio.html" },
+  { label: "Projects", href: "/portfolio-unreal.html" },
+  { label: "Marika", href: "/marika.html" },
+  { label: "About", href: "/portfolio-blender.html" },
+  { label: "Contact", href: "/contact.html" },
 ];
 
 const HOME_STATS = [
@@ -150,10 +150,10 @@ const INTELLIGENCE_CARDS = [
     subtitle: "Core AGI",
     text: "The central intelligence. Research, reasoning and decision making at the highest level.",
     points: ["Advanced reasoning", "Self-improvement", "Scientific research", "System orchestration"],
-    href: "./marika.html",
+    href: "/marika.html",
     cta: "Discover Marika",
     accent: "gold",
-    image: "./characters/marika.jpg",
+    image: "/characters/marika.jpg",
     imagePosition: "center top",
   },
   {
@@ -161,10 +161,10 @@ const INTELLIGENCE_CARDS = [
     subtitle: "Communication AI",
     text: "The voice between systems and humans. Natural language, planning and information flow.",
     points: ["Natural conversation", "Data translation", "Planning & scheduling", "Interface management"],
-    href: "./portfolio.html",
+    href: "/portfolio.html",
     cta: "Discover Luna",
     accent: "blue",
-    image: "./characters/luna.jpg",
+    image: "/characters/luna.jpg",
     imagePosition: "center top",
   },
   {
@@ -172,10 +172,10 @@ const INTELLIGENCE_CARDS = [
     subtitle: "Engineering AI",
     text: "The engineer within. Design, simulation and optimization of complex systems.",
     points: ["Engineering design", "Simulation & testing", "Optimization", "Predictive analysis"],
-    href: "./portfolio-unreal.html",
+    href: "/portfolio-unreal.html",
     cta: "Discover Xeno",
     accent: "silver",
-    image: "./characters/xeno-character.jpg",
+    image: "/characters/xeno-character.jpg",
     imagePosition: "center top",
     contentSide: "right",
   },
@@ -215,8 +215,8 @@ const PROJECT_CARDS = [
     subtitle: "Hypersport concept",
     text: "1800 HP hybrid hypercar with hydrogen / e-fuel technology and 5 electric motors.",
     status: "In development",
-    href: "./systems.html",
-    image: "./vehicles/xenos-x2.jpg",
+    href: "/kontakt?oblast=technologie",
+    image: "/vehicles/xenos-x2.jpg",
     imagePosition: "center center",
     accent: "gold",
   },
@@ -226,8 +226,8 @@ const PROJECT_CARDS = [
     subtitle: "Core AGI system",
     text: "Central Artificial General Intelligence. Reasoning, learning and decision making at the highest level.",
     status: "In progress",
-    href: "./marika.html",
-    image: "./characters/marika.jpg",
+    href: "/marika.html",
+    image: "/characters/marika.jpg",
     imagePosition: "center top",
     accent: "blue",
   },
@@ -237,7 +237,7 @@ const PROJECT_CARDS = [
     subtitle: "Infrastructure",
     text: "High performance servers, simulation environments and secure data infrastructure.",
     status: "Active",
-    href: "./portfolio.html",
+    href: "/portfolio.html",
     scene: "server-stack",
     accent: "gold",
   },
@@ -247,7 +247,7 @@ const PROJECT_CARDS = [
     subtitle: "Engineering robotics",
     text: "Advanced robotic systems for manufacturing, prototyping and complex tasks.",
     status: "In development",
-    href: "./portfolio.html",
+    href: "/portfolio.html",
     scene: "robot-arm",
     accent: "gold",
   },
@@ -257,7 +257,7 @@ const PROJECT_CARDS = [
     subtitle: "Space transport system",
     text: "Next generation reusable spacecraft for long distance travel and payload delivery.",
     status: "Research",
-    href: "./contact.html",
+    href: "/kontakt?oblast=technologie",
     scene: "starship",
     accent: "blue",
   },
@@ -267,7 +267,7 @@ const PROJECT_CARDS = [
     subtitle: "Sports car",
     text: "High performance sports car with a perfect balance of power and control.",
     status: "In development",
-    href: "./systems.html",
+    href: "/kontakt?oblast=technologie",
     scene: "sportscar",
     accent: "gold",
   },
@@ -343,7 +343,7 @@ function SiteLayout({ group, children }) {
 
       <header className="site-shell topbar-wrap">
         <div className="topbar">
-          <a href="./index.html" className="brand-lockup">
+          <a href="/index.html" className="brand-lockup">
             <img src={REFERENCES.logo} alt="Program Envus Xenos logo" className="brand-logo" />
             <div>
               <div className="brand-name">{BRAND.name}</div>
@@ -380,9 +380,9 @@ function HomePage() {
         lines={["Program", "Envus Xenos"]}
         goldLines={[1]}
         description="Building intelligent systems that combine automotive engineering, artificial intelligence and advanced technology."
-        primary={{ label: "Explore PGEX", href: "./portfolio-unreal.html" }}
-        secondary={{ label: "Our Services", href: "./systems.html" }}
-        image="./vehicles/xenos-x2.jpg"
+        primary={{ label: "Explore PGEX", href: "/portfolio-unreal.html" }}
+        secondary={{ label: "Our Services", href: "/systems.html" }}
+        image="/vehicles/xenos-x2.jpg"
         imagePosition="center center"
       />
 
@@ -409,7 +409,7 @@ function HomePage() {
         </div>
 
         <div className="panel promo-panel">
-          <ImageFrame src="./vehicles/xenos-x2.jpg" position="center center" className="promo-media" />
+          <ImageFrame src="/vehicles/xenos-x2.jpg" position="center center" className="promo-media" />
           <div className="promo-copy">
             <h3>
               Precision.
@@ -429,7 +429,7 @@ function HomePage() {
   );
 }
 
-function ServicesPage() {
+export function ServicesPage() {
   return (
     <>
       <HeroSplit
@@ -438,7 +438,7 @@ function ServicesPage() {
         goldLines={[2]}
         description="Professional automotive service built on technology, experience and passion."
         primary={{ label: "Book a Service", href: BOOK_SERVICE_HREF }}
-        image="./vehicles/xenos-x2.jpg"
+        image="/vehicles/xenos-x2.jpg"
         imagePosition="center center"
       />
 
@@ -466,7 +466,7 @@ function ServicesPage() {
         </div>
 
         <div className="panel visual-panel">
-          <ImageFrame src="./vehicles/xenos-x2.jpg" position="center center" className="lineart-preview" />
+          <ImageFrame src="/vehicles/xenos-x2.jpg" position="center center" className="lineart-preview" />
         </div>
 
         <div className="panel promise-panel">
@@ -486,7 +486,7 @@ function ServicesPage() {
   );
 }
 
-function TechnologyPage() {
+export function TechnologyPage() {
   return (
     <>
       <HeroSplit
@@ -494,8 +494,8 @@ function TechnologyPage() {
         lines={["Engineering", "Intelligence."]}
         goldLines={[1]}
         description="At PGEX, technology is more than code and hardware. It is the foundation of everything we build – systems that think, learn and evolve."
-        primary={{ label: "Explore our systems", href: "./marika.html" }}
-        image="./characters/marika.jpg"
+        primary={{ label: "Explore our systems", href: "/marika.html" }}
+        image="/characters/marika.jpg"
         imagePosition="center top"
         callouts={[
           { title: "Infrastructure", text: "Scalable and secure system architecture.", position: "left-top" },
@@ -541,20 +541,20 @@ function TechnologyPage() {
               <span>Real-time monitoring</span>
             </div>
           </div>
-          <ImageFrame src="./vehicles/xenos-x2.jpg" position="center center" className="infrastructure-media" />
+          <ImageFrame src="/vehicles/xenos-x2.jpg" position="center center" className="infrastructure-media" />
         </div>
       </section>
 
       <section className="section-block">
         <div className="panel vision-strip">
-          <ImageFrame src="./space/planet.jpg" position="right center" className="vision-media" />
+          <ImageFrame src="/space/planet.jpg" position="right center" className="vision-media" />
           <div className="vision-copy">
             <div className="section-mini-label">Our vision</div>
             <h2 className="panel-heading">
               Beyond limits
             </h2>
             <p>Technology is our way to explore the unknown, solve the impossible and build a future where humanity reaches further than ever before.</p>
-            <a href="./portfolio-unreal.html" className="btn btn-secondary">
+            <a href="/portfolio-unreal.html" className="btn btn-secondary">
               View our projects
             </a>
           </div>
@@ -570,7 +570,8 @@ function TechnologyPage() {
   );
 }
 
-function ProjectsPage() {
+export function ProjectsPage() {
+  const [filter, setFilter] = useState("All Projects");
   return (
     <>
       <HeroSplit
@@ -578,8 +579,8 @@ function ProjectsPage() {
         lines={["Building the future.", "One project at a time."]}
         goldLines={[1]}
         description="From high performance vehicles to artificial intelligence and space technologies – every project is a step towards a smarter, faster and more advanced future."
-        primary={{ label: "Explore all projects", href: "./portfolio-unreal.html" }}
-        image="./vehicles/xenos-x2.jpg"
+        primary={{ label: "Explore all projects", href: "/portfolio-unreal.html" }}
+        image="/vehicles/xenos-x2.jpg"
         imagePosition="center center"
       />
 
@@ -587,18 +588,18 @@ function ProjectsPage() {
         <div className="filter-bar panel">
           <div className="filter-list">
             {PROJECT_FILTERS.map((item, index) => (
-              <button key={item} className={`filter-pill ${index === 0 ? "is-active" : ""}`} type="button">
+              <button key={item} className={`filter-pill ${filter === item ? "is-active" : ""}`} type="button" aria-pressed={filter === item} onClick={() => setFilter(item)}>
                 {item}
               </button>
             ))}
           </div>
-          <div className="sort-box">Latest ▾</div>
+
         </div>
       </section>
 
       <section className="section-block">
         <div className="project-grid">
-          {PROJECT_CARDS.map((card, index) => (
+          {PROJECT_CARDS.filter(card => filter === "All Projects" || card.category === filter).map((card, index) => (
             <ProjectCard key={card.title} card={card} index={index} />
           ))}
         </div>
@@ -626,7 +627,7 @@ function ProjectsPage() {
   );
 }
 
-function MarikaPage() {
+export function MarikaPage() {
   return (
     <>
       <HeroSplit
@@ -634,9 +635,9 @@ function MarikaPage() {
         lines={["Core intelligence.", "Architected to think."]}
         goldLines={[1]}
         description="Marika is the central intelligence behind PGEX systems – connecting research, language, planning, memory and execution into one evolving mind."
-        primary={{ label: "Explore PGEX systems", href: "./portfolio.html" }}
-        secondary={{ label: "See all projects", href: "./portfolio-unreal.html" }}
-        image="./characters/marika.jpg"
+        primary={{ label: "Explore PGEX systems", href: "/portfolio.html" }}
+        secondary={{ label: "See all projects", href: "/portfolio-unreal.html" }}
+        image="/characters/marika.jpg"
         imagePosition="center top"
       />
 
@@ -664,7 +665,7 @@ function MarikaPage() {
               <li>Coordination between Luna and Xeno layers</li>
             </ul>
           </div>
-          <ImageFrame src="./characters/marika.jpg" position="center top" className="marika-media" />
+          <ImageFrame src="/characters/marika.jpg" position="center top" className="marika-media" />
         </div>
       </section>
 
@@ -697,8 +698,8 @@ function AboutPage() {
         lines={["Our story.", "Our purpose."]}
         goldLines={[1]}
         description="Program Envus Xenos was founded on a simple idea – use technology, passion and hard work to build intelligent systems that make a difference."
-        primary={{ label: "Explore our projects", href: "./portfolio-unreal.html" }}
-        image="./vehicles/xenos-x2.jpg"
+        primary={{ label: "Explore our projects", href: "/portfolio-unreal.html" }}
+        image="/vehicles/xenos-x2.jpg"
         imagePosition="center center"
         signature="Envus Xenos"
       />
@@ -719,7 +720,7 @@ function AboutPage() {
             <h2 className="panel-heading">It started in a workshop.</h2>
             <p>We did not start in a laboratory. We started with tools, curiosity and a will to understand how things truly work.</p>
             <p>Every repair, every modification and every challenge made us better. This is where PGEX began.</p>
-            <ImageFrame src="./vehicles/xenos-x2.jpg" position="center center" className="story-media" />
+            <ImageFrame src="/vehicles/xenos-x2.jpg" position="center center" className="story-media" />
           </div>
 
           <div className="panel values-panel">
@@ -737,7 +738,7 @@ function AboutPage() {
 
       <section className="section-block">
         <div className="panel vision-strip">
-          <ImageFrame src="./space/planet.jpg" position="right center" className="vision-media" />
+          <ImageFrame src="/space/planet.jpg" position="right center" className="vision-media" />
           <div className="vision-copy">
             <div className="section-mini-label">Our vision</div>
             <h2 className="panel-heading">Beyond today&apos;s technology.</h2>
@@ -788,11 +789,11 @@ function AboutPage() {
               To the stars.
             </h2>
             <p>Every great vision begins with a single step. This is ours.</p>
-            <a href="./portfolio-unreal.html" className="btn btn-secondary">
+            <a href="/portfolio-unreal.html" className="btn btn-secondary">
               Join our journey
             </a>
           </div>
-          <ImageFrame src="./vehicles/xenos-x2.jpg" position="center center" className="journey-media" />
+          <ImageFrame src="/vehicles/xenos-x2.jpg" position="center center" className="journey-media" />
         </div>
       </section>
     </>
@@ -807,7 +808,7 @@ function ContactPage() {
         lines={["Let’s build", "the future."]}
         goldLines={[1]}
         description="Have a question, a project in mind, or need our workshop services? We are here to help. Get in touch with us."
-        image="./vehicles/xenos-x2.jpg"
+        image="/vehicles/xenos-x2.jpg"
         imagePosition="center center"
         signature="PGEX team"
       />
@@ -880,7 +881,7 @@ function ContactPage() {
 
       <section className="section-block">
         <div className="panel vision-strip">
-          <ImageFrame src="./space/planet.jpg" position="right center" className="vision-media" />
+          <ImageFrame src="/space/planet.jpg" position="right center" className="vision-media" />
           <div className="vision-copy">
             <div className="section-mini-label">Have a big project</div>
             <h2 className="panel-heading">
@@ -911,7 +912,7 @@ function BookingPage() {
         lines={["Book your", "service."]}
         goldLines={[1]}
         description="Professional care. Advanced technology. Built for performance."
-        image="./vehicles/xenos-x2.jpg"
+        image="/vehicles/xenos-x2.jpg"
         imagePosition="center center"
       />
 
@@ -941,7 +942,7 @@ function BookingPage() {
               <div className="custom-title">Custom request</div>
               <p>Don&apos;t see the service you need? Tell us more about your issue.</p>
             </div>
-            <a href="./contact.html" className="btn btn-secondary">
+            <a href="/contact.html" className="btn btn-secondary">
               Contact Us
             </a>
           </div>
@@ -966,16 +967,16 @@ function BookingPage() {
               <li>{CONTACT_FOOTER.email}</li>
               <li>{CONTACT_FOOTER.address}</li>
             </ul>
-          <ImageFrame src="./vehicles/xenos-x2.jpg" position="center center" className="help-media" />
+          <ImageFrame src="/vehicles/xenos-x2.jpg" position="center center" className="help-media" />
           </div>
         </div>
       </section>
 
       <section className="section-block booking-detail-grid">
         <div className="panel process-visual">
-          <a href="./systems.html" className="subtle-link">‹ Back to Services</a>
+          <a href="/systems.html" className="subtle-link">‹ Back to Services</a>
           <div className="process-hero">
-            <ImageFrame src="./vehicles/xenos-x2.jpg" position="center center" className="brake-media" />
+            <ImageFrame src="/vehicles/xenos-x2.jpg" position="center center" className="brake-media" />
             <div className="process-copy">
               <div className="section-mini-label">Brake Service</div>
               <h2 className="panel-heading">Maximum safety and control.</h2>
@@ -1005,7 +1006,7 @@ function BookingPage() {
             <div className="total-row"><span>Estimated total</span><strong>from 4 700 Kc</strong></div>
           </div>
           <div className="notice-box">Final price depends on the vehicle model and repair scope. A quote is always confirmed before work begins.</div>
-          <a href="./contact.html" className="btn btn-primary btn-wide">
+          <a href="/contact.html" className="btn btn-primary btn-wide">
             Continue to Vehicle
           </a>
         </div>
@@ -1227,7 +1228,7 @@ function ProjectCard({ card, index }) {
         <div className="project-subtitle">{card.subtitle}</div>
         <p>{card.text}</p>
         <div className="project-actions">
-          <a href={card.href} className="btn btn-secondary btn-small">View Project</a>
+          <a href={card.href} className="btn btn-secondary btn-small">{card.href.includes("/kontakt") ? "Ask about this project" : "View Project"}</a>
           <span className="project-status">{card.status}</span>
         </div>
       </div>
