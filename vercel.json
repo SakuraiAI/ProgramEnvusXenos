@@ -1,6 +1,21 @@
 {
   "rewrites": [
-    { "source": "/novinky", "destination": "/index.html" },
+    {
+      "source": "/revenant",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/luna",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/xeno",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/novinky",
+      "destination": "/index.html"
+    },
     {
       "source": "/autoservis",
       "destination": "/index.html"
