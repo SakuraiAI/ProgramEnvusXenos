@@ -1,0 +1,677 @@
+[
+  {
+    "category": "Diagnostika",
+    "items": [
+      {
+        "name": "Načtení chybových kódů",
+        "price": 350,
+        "onRequest": false
+      },
+      {
+        "name": "Rozšířená diagnostika",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Diagnostika závady elektroinstalace",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Kontrola před koupí vozidla",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Kontrola vozidla před STK",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Měření dobíjení a baterie",
+        "price": 350,
+        "onRequest": false
+      },
+      {
+        "name": "Test akumulátoru",
+        "price": 210,
+        "onRequest": false
+      },
+      {
+        "name": "Diagnostika úniku provozních kapalin",
+        "price": 700,
+        "onRequest": false
+      }
+    ]
+  },
+  {
+    "category": "Pravidelný servis",
+    "items": [
+      {
+        "name": "Výměna motorového oleje a filtru",
+        "price": 560,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna vzduchového filtru",
+        "price": 210,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna kabinového filtru",
+        "price": 350,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna palivového filtru",
+        "price": 490.0,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna zapalovacích svíček",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna žhavicích svíček",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna brzdové kapaliny",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna chladicí kapaliny",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna oleje manuální převodovky",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna oleje automatické převodovky",
+        "price": 1750,
+        "onRequest": false
+      },
+      {
+        "name": "Servisní prohlídka",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Příprava na STK",
+        "price": 1050,
+        "onRequest": false
+      }
+    ]
+  },
+  {
+    "category": "Brzdy",
+    "items": [
+      {
+        "name": "Výměna brzdových destiček – náprava",
+        "price": 840,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna kotoučů a destiček – náprava",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna brzdového třmenu",
+        "price": 840,
+        "onRequest": false
+      },
+      {
+        "name": "Repase brzdového třmenu",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna brzdové hadice",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna brzdové trubky",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna lanovodu ruční brzdy",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Seřízení parkovací brzdy",
+        "price": 490.0,
+        "onRequest": false
+      },
+      {
+        "name": "Odvzdušnění brzd",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna hlavního brzdového válce",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Oprava elektronické parkovací brzdy",
+        "price": 1400,
+        "onRequest": false
+      }
+    ]
+  },
+  {
+    "category": "Podvozek a řízení",
+    "items": [
+      {
+        "name": "Výměna tlumičů – náprava",
+        "price": 2100,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna pružiny – kus",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna horního uložení tlumiče – kus",
+        "price": 1260,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna ramene – kus",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna čepu ramene – kus",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna čepu řízení – kus",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna axiálního táhla – kus",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna stabilizační tyčky – kus",
+        "price": 420,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna silentbloku – kus",
+        "price": 1260,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna ložiska kola – kus",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna náboje kola – kus",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna poloosy – kus",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna manžety poloosy",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna hřebenu řízení",
+        "price": 3500,
+        "onRequest": false
+      },
+      {
+        "name": "Kontrola vůlí podvozku",
+        "price": 490.0,
+        "onRequest": false
+      }
+    ]
+  },
+  {
+    "category": "Motor a rozvody",
+    "items": [
+      {
+        "name": "Výměna rozvodového řemene – sada",
+        "price": 3500,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna rozvodového řetězu – sada",
+        "price": 6300,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna vodní pumpy",
+        "price": 2100,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna termostatu",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna chladiče",
+        "price": 1750,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna ventilátoru chlazení",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna těsnění víka ventilů",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna těsnění pod hlavou",
+        "price": 8400,
+        "onRequest": false
+      },
+      {
+        "name": "Demontáž a montáž hlavy válců",
+        "price": 7000,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna motorového silentbloku",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna řemene příslušenství",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna napínáku řemene",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna vstřikovače – kus",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna turbodmychadla",
+        "price": 3500,
+        "onRequest": false
+      },
+      {
+        "name": "Čištění EGR ventilu",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna EGR ventilu",
+        "price": 1750,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna snímače motoru",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna palivového čerpadla",
+        "price": 2100,
+        "onRequest": false
+      },
+      {
+        "name": "Demontáž a montáž motoru",
+        "price": 9800,
+        "onRequest": false
+      }
+    ]
+  },
+  {
+    "category": "Spojka a převodovka",
+    "items": [
+      {
+        "name": "Výměna spojkové sady",
+        "price": 4900,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna dvouhmotového setrvačníku se spojkou",
+        "price": 5600,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna spojkového válce",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Odvzdušnění spojky",
+        "price": 490.0,
+        "onRequest": false
+      },
+      {
+        "name": "Demontáž a montáž převodovky",
+        "price": 4900,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna uložení převodovky",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna řadicího mechanismu",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Oprava netěsnosti převodovky",
+        "price": 2100,
+        "onRequest": false
+      }
+    ]
+  },
+  {
+    "category": "Výfuk a emise",
+    "items": [
+      {
+        "name": "Výměna koncového tlumiče",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna středního dílu výfuku",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna pružného dílu výfuku",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna lambda sondy",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna DPF filtru",
+        "price": 2100,
+        "onRequest": false
+      },
+      {
+        "name": "Demontáž a montáž katalyzátoru",
+        "price": 1750,
+        "onRequest": false
+      },
+      {
+        "name": "Diagnostika emisního systému",
+        "price": 1050,
+        "onRequest": false
+      }
+    ]
+  },
+  {
+    "category": "Elektro a příslušenství",
+    "items": [
+      {
+        "name": "Výměna autobaterie",
+        "price": 350,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna alternátoru",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna startéru",
+        "price": 1750,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna žárovky – jednoduchý přístup",
+        "price": 140,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna světlometu",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Seřízení světlometů",
+        "price": 350,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna motorku stěračů",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna stěračů",
+        "price": 140,
+        "onRequest": false
+      },
+      {
+        "name": "Oprava centrálního zamykání",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna zámku dveří",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Montáž parkovacích senzorů",
+        "price": 2100,
+        "onRequest": false
+      },
+      {
+        "name": "Montáž palubní kamery",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna pojistky / relé",
+        "price": 210,
+        "onRequest": false
+      },
+      {
+        "name": "Oprava kabelového svazku",
+        "price": 1400,
+        "onRequest": false
+      }
+    ]
+  },
+  {
+    "category": "Klimatizace a topení",
+    "items": [
+      {
+        "name": "Kontrola klimatizace",
+        "price": 490.0,
+        "onRequest": false
+      },
+      {
+        "name": "Dezinfekce klimatizace",
+        "price": 490.0,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna kompresoru klimatizace",
+        "price": 2100,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna kondenzátoru klimatizace",
+        "price": 1750,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna ventilátoru topení",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna radiátoru topení",
+        "price": 4200,
+        "onRequest": false
+      },
+      {
+        "name": "Diagnostika úniku chladiva",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Servis klimatizace – práce bez chladiva",
+        "price": 700,
+        "onRequest": false
+      }
+    ]
+  },
+  {
+    "category": "Pneuservis",
+    "items": [
+      {
+        "name": "Přezutí 4 pneumatik do 16 palců",
+        "price": 910,
+        "onRequest": false
+      },
+      {
+        "name": "Přezutí 4 pneumatik 17–18 palců",
+        "price": 1120,
+        "onRequest": false
+      },
+      {
+        "name": "Přezutí 4 pneumatik 19–20 palců",
+        "price": 1400,
+        "onRequest": false
+      },
+      {
+        "name": "Přezutí 4 pneumatik 21 palců a více",
+        "price": 1750,
+        "onRequest": false
+      },
+      {
+        "name": "Přehození kompletních kol – 4 ks",
+        "price": 490.0,
+        "onRequest": false
+      },
+      {
+        "name": "Vyvážení 4 kol",
+        "price": 560,
+        "onRequest": false
+      },
+      {
+        "name": "Oprava defektu knotem – jen vhodné případy",
+        "price": 350,
+        "onRequest": false
+      },
+      {
+        "name": "Oprava defektu vnitřní záplatou",
+        "price": 630,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna ventilku – kus",
+        "price": 140,
+        "onRequest": false
+      },
+      {
+        "name": "Servis TPMS – kus",
+        "price": 350,
+        "onRequest": false
+      },
+      {
+        "name": "Uskladnění sady kol – sezóna",
+        "price": 0,
+        "onRequest": true
+      },
+      {
+        "name": "Likvidace pneumatiky – kus",
+        "price": 0,
+        "onRequest": true
+      }
+    ]
+  },
+  {
+    "category": "Ostatní práce",
+    "items": [
+      {
+        "name": "Výměna čelního skla – práce",
+        "price": 2100,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna zrcátka",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna kliky dveří",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Demontáž nárazníku",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Montáž tažného zařízení",
+        "price": 3500,
+        "onRequest": false
+      },
+      {
+        "name": "Kontrola úniku oleje",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Čištění škrticí klapky",
+        "price": 1050,
+        "onRequest": false
+      },
+      {
+        "name": "Výměna ostřikovacího čerpadla",
+        "price": 700,
+        "onRequest": false
+      },
+      {
+        "name": "Drobné mechanické práce",
+        "price": 350,
+        "onRequest": false
+      },
+      {
+        "name": "Zakázková práce – hodinová sazba",
+        "price": 700,
+        "onRequest": false
+      }
+    ]
+  }
+]
