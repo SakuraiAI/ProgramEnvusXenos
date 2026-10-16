@@ -11,7 +11,7 @@ const BOOK_SERVICE_HREF = "/portfolio-vscode.html";
 const MAPS_HREF = "https://www.google.com/maps/search/?api=1&query=K+Letisti+123%2C+252+25+Jinocany%2C+Czech+Republic";
 
 const REFERENCES = {
-  logo: "/infinity-logo.png",
+  logo: "/pgex-monogram.png",
 };
 
 const PAGE_GROUP = {

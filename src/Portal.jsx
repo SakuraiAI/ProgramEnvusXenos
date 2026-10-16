@@ -31,7 +31,7 @@ export default function Portal({ page }) {
  return <div className={`portal ${current === "home" ? "portal-home" : ""} ${intro ? "portal-intro" : ""}`}>
    <a className="skip-link" href="#content">Přejít na obsah</a>
    <header className="portal-header">
-     <a className="portal-brand" href="/" aria-label="PGEX — úvodní rozcestník"><img src="/infinity-logo.png" alt=""/><span><strong>PGEX</strong><small>PROGRAM ENVUS XENOS</small></span></a>
+     <a className="portal-brand" href="/" aria-label="PGEX — úvodní rozcestník"><img src="/pgex-monogram.png" alt=""/><span><strong>PGEX</strong><small>PROGRAM ENVUS XENOS</small></span></a>
      {area !== "shared" && <span className="area-label">{area === "auto" ? "AUTOSERVIS" : "VÝVOJ A TECHNOLOGIE"}</span>}
      <nav aria-label="Hlavní navigace">{links[area].map(([label, href]) => <a key={href} href={href} aria-current={pathname === href ? "page" : undefined}>{label}</a>)}</nav>
    </header>
