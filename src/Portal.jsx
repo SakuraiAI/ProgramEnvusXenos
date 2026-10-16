@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { TechnologyPage, ProjectsPage, MarikaPage } from "./App";
 import "./portal.css";
-import Workshop, { WorkshopVisual, WorkshopLocation, WorkshopDocuments } from "./Workshop";
+import Workshop, { WorkshopLocation, WorkshopDocuments } from "./Workshop";
 
 const aliases = { home: "home", systems: "auto", portfolio: "tech", "portfolio-unreal": "projects", marika: "marika", "portfolio-blender": "about", contact: "contact", "portfolio-vscode": "booking" };
 const routes = { "/services": "auto", "/systems": "auto", "/technology": "tech", "/portfolio": "tech", "/projects": "projects", "/about": "about", "/contact": "contact", "/book-service": "booking", "/marika": "marika", "/": "home", "/index.html": "home", "/autoservis": "auto", "/technologie": "tech", "/projekty": "projects", "/o-nas": "about", "/kontakt": "contact", "/poptavka": "booking" };
@@ -39,7 +39,7 @@ export default function Portal({ page }) {
      {current === "home" && <>
        <div className="gateway-heading"><p className="portal-eyebrow">PROGRAM ENVUS XENOS</p><h1>Vyberte si svou cestu.</h1></div>
        <div className="gateway-grid">
-         <a className="gateway-card" href="/autoservis"><div className="gateway-art garage-art"><WorkshopVisual/></div><div className="gateway-copy"><h2>Autoservis</h2><p>Diagnostika, údržba a opravy vozidel.</p><span className="gateway-button">Přejít na autoservis <span aria-hidden="true">→</span></span></div></a>
+         <a className="gateway-card" href="/autoservis"><div className="gateway-art garage-art"><img src="/workshop/workshop-hero.jpg" alt="Ilustrace auta s otevřenou kapotou v dílně" width="1536" height="1024"/><span className="image-note">AI ilustrace</span></div><div className="gateway-copy"><h2>Autoservis</h2><p>Diagnostika, údržba a opravy vozidel.</p><span className="gateway-button">Přejít na autoservis <span aria-hidden="true">→</span></span></div></a>
          <a className="gateway-card" href="/technologie"><div className="gateway-art technology-art" aria-hidden="true"><div className="code-lines"><span>&lt;PGEX /&gt;</span><i/><i/><i/><i/></div><div className="tech-display"><span className="display-dots">● ● ●</span><strong>PGEX</strong><span className="display-message">Nápady měníme v projekty.</span><span className="display-input">AI · SOFTWARE · VÝVOJ <b>↗</b></span></div></div><div className="gateway-copy"><h2>Vývoj a technologie</h2><p>AI, software a vlastní projekty.</p><span className="gateway-button outline">Prozkoumat projekty <span aria-hidden="true">→</span></span></div></a>
        </div>
      </>}
