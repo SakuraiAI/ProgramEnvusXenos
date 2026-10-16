@@ -6,7 +6,7 @@ import Workshop, { WorkshopVisual } from "./Workshop";
 const aliases = { home: "home", systems: "auto", portfolio: "tech", "portfolio-unreal": "projects", marika: "marika", "portfolio-blender": "about", contact: "contact", "portfolio-vscode": "booking" };
 const routes = { "/services": "auto", "/systems": "auto", "/technology": "tech", "/portfolio": "tech", "/projects": "projects", "/about": "about", "/contact": "contact", "/book-service": "booking", "/marika": "marika", "/": "home", "/index.html": "home", "/autoservis": "auto", "/technologie": "tech", "/projekty": "projects", "/o-nas": "about", "/kontakt": "contact", "/poptavka": "booking" };
 const links = {
- auto: [["Autoservis", "/autoservis"], ["Poptat servis", "/poptavka"], ["Kontakt", "/kontakt?oblast=autoservis"]],
+ auto: [["Autoservis", "/autoservis"], ["Ceník", "/autoservis#cenik"], ["Poptat servis", "/poptavka"], ["Kontakt", "/kontakt?oblast=autoservis"]],
  tech: [["Technologie", "/technologie"], ["Projekty", "/projekty"], ["Marika", "/marika.html"], ["Kontakt", "/kontakt?oblast=technologie"]],
  shared: [["O nás", "/o-nas"], ["Kontakt", "/kontakt"]],
 };

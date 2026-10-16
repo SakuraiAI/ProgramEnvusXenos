@@ -3,3 +3,14 @@
 @media(max-width:600px){.workshop-page{padding-bottom:75px}.workshop-hero{grid-template-columns:1fr;padding:20px 0 36px;gap:30px}.workshop-hero h1{font-size:46px}.workshop-lead{font-size:18px}.workshop-visual{min-height:220px;padding:22px}.workshop-services{grid-template-columns:1fr}.workshop-services article{padding:23px}.workshop-section{padding:32px 0}.workshop-contact{grid-template-columns:1fr;gap:24px}.workshop-steps{grid-template-columns:1fr;gap:20px}.workshop-mobile-contact{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:20;gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#0b0c0cf5;border-top:1px solid #c9a45e70}.workshop-mobile-contact a{display:flex;flex:1;justify-content:center;align-items:center;min-height:45px;border:1px solid #c9a45e;border-radius:7px;font-size:13px;color:#e3c181}.workshop-mobile-contact a:first-child{background:#dfb96f;color:#17140c;font-weight:600}}
 
 @media(max-width:600px){.portal:has(.workshop-page) .portal-footer{padding-bottom:calc(90px + env(safe-area-inset-bottom))}}
+.workshop-photo{margin:0;position:relative;overflow:hidden;border:1px solid #cda85840;border-radius:16px;background:#141511}
+.workshop-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.workshop-hero-photo{height:430px}.workshop-hero-photo img{object-position:48% center}
+.workshop-photo figcaption{position:absolute;bottom:0;left:0;right:0;padding:28px 16px 12px;background:linear-gradient(transparent,#000b);color:#d6d0c4;font-size:10px;letter-spacing:.3px}
+.workshop-pricing{display:grid;grid-template-columns:1.15fr 1fr;gap:55px;align-items:center}
+.workshop-price-intro,.workshop-price-note{color:#bcbcb2;font-size:14px;line-height:1.8}
+.workshop-price-list{margin:26px 0 18px}.workshop-price-list>div{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:18px 0;border-bottom:1px solid #c6a2672b}
+.workshop-price-list dt{font-size:15px}.workshop-price-list dd{margin:0;color:#e0bc78;font-size:14px;white-space:nowrap}
+.workshop-price-note{font-size:12px;margin-bottom:25px}.workshop-detail-photo{height:530px}
+@media(max-width:900px){.workshop-pricing{gap:28px}.workshop-hero-photo{height:360px}}
+@media(max-width:600px){.workshop-pricing{grid-template-columns:1fr}.workshop-hero-photo{height:300px}.workshop-detail-photo{height:300px}.workshop-price-list>div{gap:12px;flex-wrap:wrap}.workshop-price-list dt{font-size:14px}.workshop-price-list dd{font-size:13px}}
