@@ -14,3 +14,5 @@
 .workshop-price-note{font-size:12px;margin-bottom:25px}.workshop-detail-photo{height:530px}
 @media(max-width:900px){.workshop-pricing{gap:28px}.workshop-hero-photo{height:360px}}
 @media(max-width:600px){.workshop-pricing{grid-template-columns:1fr}.workshop-hero-photo{height:300px}.workshop-detail-photo{height:300px}.workshop-price-list>div{gap:12px;flex-wrap:wrap}.workshop-price-list dt{font-size:14px}.workshop-price-list dd{font-size:13px}}
+.workshop-location{display:grid;grid-template-columns:1fr 1.3fr;gap:40px;align-items:center}.workshop-location address{font-style:normal;font-size:22px;line-height:1.6;color:#e0bc78}.workshop-location p{color:#bcbcb2;font-size:14px;line-height:1.8;margin:18px 0 24px}.workshop-map{display:block;width:100%;height:360px;border:1px solid #cda85840;border-radius:16px;background:#141511}.portal-document .workshop-location{margin-top:48px}.workshop-location>div{min-width:0}
+@media(max-width:760px){.workshop-location{grid-template-columns:1fr;gap:24px}.workshop-map{height:300px}}

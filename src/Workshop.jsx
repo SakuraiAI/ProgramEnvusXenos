@@ -18,6 +18,14 @@ export function WorkshopVisual() {
  return <div className="workshop-visual" aria-hidden="true"><span className="workshop-visual-label">PGEX / AUTOSERVIS</span><svg viewBox="0 0 600 270" fill="none"><g stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M62 177 80 134l91-18 62-61h147l70 63 71 22 21 37v30h-45m-80 0H205m-80 0H62v-30Z"/><path d="m187 117 56-48h53v48h-109Zm123-48h60l52 48H310V69ZM88 145h61l-13 19H76m410-21h32l11 21h-47M225 137h28m77 0h28"/><circle cx="165" cy="199" r="40"/><circle cx="165" cy="199" r="19"/><circle cx="457" cy="199" r="40"/><circle cx="457" cy="199" r="19"/><path opacity=".4" d="M40 247h520M300 14v22M30 199h18m507 0h18"/></g></svg><div className="workshop-visual-tags"><span>DIAGNOSTIKA</span><span>ÚDRŽBA</span><span>OPRAVY</span></div></div>;
 }
 
+export function WorkshopLocation() {
+ const address = "Suchdolská 710, Horoměřice, Česko";
+ const query = encodeURIComponent(address);
+ return <section id="kde-nas-najdete" className="workshop-section workshop-location" aria-labelledby="location-title">
+   <div><p className="portal-eyebrow">KDE NÁS NAJDETE</p><h2 id="location-title">Cesta do servisu.</h2><address>Suchdolská 710<br/>Horoměřice</address><p>Návštěvu si prosím domluvte předem telefonicky.</p><a className="gateway-button" href={`https://www.google.com/maps/dir/?api=1&destination=${query}`} target="_blank" rel="noopener noreferrer">Navigovat do servisu ↗</a></div>
+   <iframe className="workshop-map" title="Google mapa — Suchdolská 710, Horoměřice" src={`https://maps.google.com/maps?q=${query}&z=16&output=embed`} width="600" height="360" loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+ </section>;
+}
 export default function Workshop() {
  return <div className="workshop-page">
    <section className="workshop-hero" aria-labelledby="workshop-title">
@@ -31,6 +39,7 @@ export default function Workshop() {
    </section>
    <section className="workshop-section" aria-labelledby="process-title"><p className="portal-eyebrow">OD PRVNÍHO KONTAKTU K OPRAVĚ</p><h2 id="process-title">Jak to u nás probíhá.</h2><ol className="workshop-steps">{steps.map(([title,text],i)=><li key={title}><span className="workshop-number">0{i+1}</span><h3>{title}</h3><p>{text}</p></li>)}</ol></section>
    <section id="servis-kontakt" className="workshop-contact workshop-section" aria-labelledby="contact-title"><div><p className="portal-eyebrow">DOMLUVME SE</p><h2 id="contact-title">Co potřebuje vaše auto?</h2><p>Termín návštěvy si prosím domluvte předem.</p><a className="workshop-phone" href="tel:+420731990599">+420 731 990 599</a><a className="workshop-email" href="mailto:programenvus@gmail.com?subject=Popt%C3%A1vka%20autoservisu">programenvus@gmail.com</a></div><div className="workshop-hours"><h3>Otevírací doba</h3><dl><div><dt>Pondělí–pátek</dt><dd>9:00–18:00</dd></div><div><dt>Sobota</dt><dd>Po domluvě</dd></div></dl><a className="gateway-button" href="/poptavka">Poptat servis →</a></div></section>
+   <WorkshopLocation/>
    <div className="workshop-mobile-contact"><a href="tel:+420731990599">Zavolat do servisu</a><a href="/poptavka">Poptat servis ↗</a></div>
  </div>;
 }
