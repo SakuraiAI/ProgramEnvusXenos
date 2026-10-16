@@ -22,7 +22,7 @@ The project is ready for:
 - Vercel
 - GitHub Pages
 
-`vite.config.js` uses `base: "./"` so static assets resolve correctly in simple static hosting setups too.
+`vite.config.js` uses `base: "/"`. Clean routes require the rewrites in `vercel.json` or equivalent host configuration.
 
 ## Notes
 
@@ -40,5 +40,7 @@ The project is ready for:
 - `/kontakt`: společný kontakt; parametr `oblast` zachová kontext vybrané části.
 
 Původní HTML adresy zůstávají dostupné. Vercel rewrites směrují nové adresy na společný vstup.
-Rozcestník, O nás, kontakt a menu jsou česky; původní odborné podstránky zůstávají anglicky.
+Rozcestník, autoservis, O nás, kontakt a menu jsou česky; původní odborné podstránky zůstávají anglicky.
 E-mailový odkaz otevře poštovní program, web sám zprávy neodesílá ani nepotvrzuje rezervace.
+
+Autoservis obsahuje přehled služeb, postup opravy a mobilní kontaktní lištu. Odkazy ze služeb předávají výběr do poptávky a předmětu e-mailu.
