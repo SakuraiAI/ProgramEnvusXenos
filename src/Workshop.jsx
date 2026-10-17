@@ -52,6 +52,6 @@ export default function Workshop() {
    <section id="servis-kontakt" className="workshop-contact workshop-section" aria-labelledby="contact-title"><div><p className="portal-eyebrow">DOMLUVME SE</p><h2 id="contact-title">Co potřebuje vaše auto?</h2><p>Termín návštěvy si prosím domluvte předem.</p><a className="workshop-phone" href="tel:+420731990599">+420 731 990 599</a><a className="workshop-email" href="mailto:programenvus@gmail.com?subject=Popt%C3%A1vka%20autoservisu">programenvus@gmail.com</a></div><div className="workshop-hours"><h3>Otevírací doba</h3><dl><div><dt>Pondělí–pátek</dt><dd>7:00–20:00</dd></div><div><dt>Sobota–neděle</dt><dd>9:00–18:30</dd></div></dl><a className="gateway-button" href="/poptavka">Servisní poptávka →</a></div></section>
    <WorkshopLocation/>
    <WorkshopDocuments/>
-   <div className="workshop-mobile-contact"><a href="tel:+420731990599">Zavolat do servisu</a><a href="/poptavka">Servisní poptávka ↗</a></div>
+   <nav className="workshop-mobile-contact" aria-label="Rychlý kontakt na servis"><a href="/poptavka">Servisní poptávka →</a><a href="tel:+420731990599">Zavolat</a></nav>
  </div>;
 }

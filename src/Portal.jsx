@@ -12,7 +12,7 @@ const links = {
 };
 const titles = { revenant: "Revenant", luna: "Luna", xeno: "Xeno", news: "Novinky", home: "Vyberte si svou cestu", auto: "Autoservis", tech: "Vývoj a technologie", projects: "Projekty", marika: "Marika", about: "O nás", contact: "Kontakt", booking: "Servisní poptávka" };
 // Add only real, verified profile URLs here. Social links belong on About only.
-const socials = [{ name: "Discord", href: "https://discord.gg/DaNX74Tneb", detail: "Připojte se ke komunitě PGEX" }];
+const socials = [{ name: "Instagram", href: "https://www.instagram.com/programenvusxenos_/", detail: "Fotky a dění kolem PGEX" }, { name: "TikTok", href: "https://www.tiktok.com/@programenvusxenos", detail: "Videa ze světa PGEX" }, { name: "X", href: "https://x.com/PGEnvus", detail: "Příspěvky ze světa PGEX" }, { name: "Reddit", href: "https://www.reddit.com/user/CicadaSensitive9928/", detail: "Profil u/CicadaSensitive9928" }, { name: "LinkedIn", href: "https://www.linkedin.com/in/program-envus-xenos-946294366/", detail: "Program Envus Xenos" }, { name: "Twitch", href: "https://www.twitch.tv/programenvusxenos", detail: "Kanál programenvusxenos" }, { name: "Kick", href: "https://kick.com/programenvusxenos", detail: "Kanál programenvusxenos" }, { name: "Discord", href: "https://discord.gg/DaNX74Tneb", detail: "Připojte se ke komunitě PGEX" }];
 
 export default function Portal({ page }) {
  const pathname = window.location.pathname.replace(/\/$/, "") || "/";
@@ -28,7 +28,7 @@ export default function Portal({ page }) {
    document.documentElement.lang = "cs";
    if (current === "home") { try { sessionStorage.setItem("pgex-intro-gold-v2-seen", "1"); } catch { /* Storage is optional. */ } }
  }, [current]);
- return <div className={`portal ${current === "home" ? "portal-home" : ""} ${intro ? "portal-intro" : ""}`}>
+ return <div className={`portal page-${current} ${current === "home" ? "portal-home" : ""} ${intro ? "portal-intro" : ""}`}>
    <a className="skip-link" href="#content">Přejít na obsah</a>
    <header className="portal-header">
      <a className="portal-brand" href="/" aria-label="PGEX — úvodní rozcestník"><span className="portal-wordmark"><img src="/pgex-wordmark.svg" alt="PGEX" width="230" height="44"/></span></a>
