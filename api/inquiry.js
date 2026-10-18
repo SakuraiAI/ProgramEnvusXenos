@@ -1,4 +1,15 @@
-import { createHash } from "node:crypto";
+import { createHmac } from "node:crypto";
+import { isIP } from "node:net";
+
+const SEND_WINDOW_MS = 60_000;
+
+function clientAddress(req) {
+ // Only Vercel's overwritten header is trusted in production, never a form field.
+ const raw = process.env.VERCEL === "1" ? req.headers["x-vercel-forwarded-for"] : req.socket?.remoteAddress;
+ if (typeof raw !== "string" || !isIP(raw.trim())) return null;
+ const ip = raw.trim();
+ return isIP(ip) === 6 ? new URL(`http://[${ip}]`).hostname : ip;
+}
 
 export default async function handler(req, res) {
  res.setHeader("Cache-Control", "no-store");
@@ -25,8 +36,18 @@ export default async function handler(req, res) {
  const apiKey = configuredKey || (/^re_[A-Za-z0-9_-]+$/.test(projectKey || "") ? projectKey : "");
  if (!apiKey) return fail(503, "Odesílání není dostupné. Zavolejte nám nebo napište e-mail.");
  const text = [`Jméno: ${fields.name}`, `Telefon: ${fields.phone}`, `Vozidlo: ${fields.vehicle}`, `Služba: ${fields.service || "Dle popisu"}`, `Požadovaný termín: ${fields.date || "Dle domluvy"}`, "", fields.description].join("\n");
- // Same content within an hour shares a key, preventing duplicate sends after a timeout.
- const key = createHash("sha256").update(JSON.stringify(fields) + Math.floor(Date.now()/3600000)).digest("hex");
+ const address = clientAddress(req);
+ if (!address) return fail(503, "Odesílání není dostupné. Zavolejte nám nebo napište e-mail.");
+ const window = Math.floor(Date.now() / SEND_WINDOW_MS);
+ // Resend atomically accepts one payload per key, across all function instances.
+ // Replays of that payload succeed without another email; changed payloads get 409.
+ // This limits delivered emails, not incoming HTTP traffic (which needs a WAF rule).
+ const key = createHmac("sha256", apiKey).update(`inquiry-slot-v1:${address}:${window}`).digest("hex");
+ const retryAfter = () => Math.max(1, Math.ceil(((window + 1) * SEND_WINDOW_MS - Date.now()) / 1000));
+ const throttled = (seconds, error) => {
+  res.setHeader("Retry-After", String(seconds));
+  return res.status(429).json({ error, retryAfter: seconds });
+ };
  try {
   const result = await fetch("https://api.resend.com/emails", {
    method: "POST", signal: AbortSignal.timeout(15000),
@@ -34,7 +55,13 @@ export default async function handler(req, res) {
    body: JSON.stringify({ from: "PGEX Autoservis <poptavky@programenvusxenos.com>", to: ["programenvus@gmail.com"], reply_to: "programenvus@gmail.com", subject: "Nová servisní poptávka z webu PGEX", text })
   });
   const response = await result.json();
-  if (!result.ok || !response.id) { console.error("Inquiry delivery rejected", result.status); return fail(502, "Poptávku se nepodařilo odeslat. Zkuste to znovu nebo nám zavolejte."); }
-  return res.status(200).json({ ok: true });
+  if (result.status === 409 && response?.name === "invalid_idempotent_request") {
+   return throttled(retryAfter(), "Poptávky odesíláte příliš rychle. Počkejte prosím na dokončení odpočtu.");
+  }
+  if (result.status === 409 && response?.name === "concurrent_idempotent_requests") {
+   return throttled(3, "Předchozí odeslání se ještě zpracovává. Za chvíli můžete zkusit znovu.");
+  }
+  if (!result.ok || !response?.id) { console.error("Inquiry delivery rejected", result.status); return fail(502, "Poptávku se nepodařilo odeslat. Zkuste to znovu nebo nám zavolejte."); }
+  return res.status(200).json({ ok: true, retryAfter: retryAfter() });
  } catch { console.error("Inquiry delivery unavailable"); return fail(502, "Odeslání se nepodařilo potvrdit. Zkuste to znovu nebo nám zavolejte."); }
 }
