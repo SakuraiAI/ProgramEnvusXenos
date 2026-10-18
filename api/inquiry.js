@@ -19,14 +19,18 @@ export default async function handler(req, res) {
  }
  if (!/^[+()\d\s.-]{7,40}$/.test(fields.phone) || fields.phone.replace(/\D/g, "").length < 7) return fail(400, "Zkontrolujte telefonní číslo.");
  if (fields.date && (!/^\d{4}-\d{2}-\d{2}$/.test(fields.date) || !Number.isFinite(Date.parse(fields.date)))) return fail(400, "Zkontrolujte datum.");
- if (!process.env.RESEND_API_KEY) return fail(503, "Odesílání není dostupné. Zavolejte nám nebo napište e-mail.");
+ // Support the existing project variable as well as the standard name.
+ const configuredKey = process.env.RESEND_API_KEY?.trim();
+ const projectKey = process.env.ProgramEnvusXenos?.trim();
+ const apiKey = configuredKey || (/^re_[A-Za-z0-9_-]+$/.test(projectKey || "") ? projectKey : "");
+ if (!apiKey) return fail(503, "Odesílání není dostupné. Zavolejte nám nebo napište e-mail.");
  const text = [`Jméno: ${fields.name}`, `Telefon: ${fields.phone}`, `Vozidlo: ${fields.vehicle}`, `Služba: ${fields.service || "Dle popisu"}`, `Požadovaný termín: ${fields.date || "Dle domluvy"}`, "", fields.description].join("\n");
  // Same content within an hour shares a key, preventing duplicate sends after a timeout.
  const key = createHash("sha256").update(JSON.stringify(fields) + Math.floor(Date.now()/3600000)).digest("hex");
  try {
   const result = await fetch("https://api.resend.com/emails", {
    method: "POST", signal: AbortSignal.timeout(15000),
-   headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json", "Idempotency-Key": `inquiry-${key}` },
+   headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json", "Idempotency-Key": `inquiry-${key}` },
    body: JSON.stringify({ from: "PGEX Autoservis <poptavky@programenvusxenos.com>", to: ["programenvus@gmail.com"], reply_to: "programenvus@gmail.com", subject: "Nová servisní poptávka z webu PGEX", text })
   });
   const response = await result.json();
