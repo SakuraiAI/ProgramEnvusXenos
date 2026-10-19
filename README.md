@@ -43,7 +43,7 @@ Původní HTML adresy zůstávají dostupné. Vercel rewrites směrují nové ad
 Rozcestník, autoservis, technologie, projekty, O nás i kontakt jsou česky. Technologickou část spravuje `src/Technology.jsx`; starší adresa Mariky zůstává jako stránka konceptu.
 Poptávkový formulář odesílá zprávy přes `/api/inquiry` a Resend. Úspěch znamená přijetí poskytovatelem k odeslání, nikoli potvrzenou rezervaci.
 
-Autoservis obsahuje přehled služeb, postup opravy a mobilní kontaktní lištu. Odkazy ze služeb i položek ceníku předávají výběr do pole Služba v poptávce. Ceník je rozdělený do kategorií. Při otevření stránky jsou všechny sbalené; zákazník si rozbalí vybranou kategorii.
+Autoservis obsahuje přehled služeb, postup opravy a mobilní kontaktní lištu. Odkazy z přehledu služeb předávají výběr do pole Služba v poptávce. Položky ceníku obsahují pouze název a cenu; pod ceníkem je společné tlačítko Servisní poptávka. Ceník je rozdělený do kategorií. Při otevření stránky jsou všechny sbalené; zákazník si rozbalí vybranou kategorii.
 
 Technologie: PGEX AI je označený jako projekt ve vývoji. Funkce vycházejí z místního projektu PGEX-AI-01. Úvodní obrázek je ilustrace vývojářského pracoviště, nikoliv snímek aplikace. Novinky jsou ručně udržovaný obsah.
 

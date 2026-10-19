@@ -23,9 +23,7 @@
 
 @media(max-width:600px){.page-auto{padding-bottom:calc(100px + env(safe-area-inset-bottom))}.page-auto .workshop-page{padding-bottom:0}.workshop-mobile-contact{box-sizing:border-box}.workshop-mobile-contact a{padding:8px 10px;box-sizing:border-box;text-align:center}.page-auto{scroll-padding-bottom:110px}}
 
-.workshop-price-list a:focus-visible{outline:2px solid #e0bc78;outline-offset:3px}
-.workshop-price-groups .workshop-price-list>div{align-items:center;gap:16px}
+.workshop-price-groups .workshop-price-list>div{align-items:baseline;gap:16px}
 .workshop-price-groups .workshop-price-list dt{min-width:0;overflow-wrap:anywhere;flex:1}
-.workshop-price-groups .workshop-price-list dd{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
-.workshop-price-list dd a{font-size:12px;color:#d9c59d;display:inline-flex;gap:8px;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:4px}
-@media(max-width:600px){.workshop-price-groups .workshop-price-list>div{flex-wrap:nowrap;gap:12px}.workshop-price-groups .workshop-price-list dt{font-size:14px}.workshop-price-list dd a{font-size:11px}}
+.workshop-price-groups .workshop-price-list dd{flex-shrink:0}
+@media(max-width:600px){.workshop-price-groups .workshop-price-list>div{flex-wrap:nowrap;gap:12px}.workshop-price-groups .workshop-price-list dt{font-size:14px}}
