@@ -31,7 +31,7 @@ export default function Tuning() {
     <a className="tuning-back" href="/autoservis">← Zpět na autoservis</a>
     <section className="workshop-hero tuning-hero" aria-labelledby="tuning-title">
       <div>
-        <p className="portal-eyebrow">PGEX AUTOSERVIS / HOROMĚŘICE</p>
+        <p className="portal-eyebrow">PGEX TUNING / HOROMĚŘICE</p>
         <h1 id="tuning-title">Tuning.<br/><span>Úpravy s jasným plánem.</span></h1>
         <p className="workshop-lead">Vaše představa. Konkrétní auto. Individuální řešení.</p>
         <p className="workshop-intro">Chcete svému vozu dát vlastní podobu nebo změnit některou z jeho vlastností? Popište nám svůj záměr. Společně probereme možnosti provedení, potřebné díly a rozsah práce.</p>
@@ -59,10 +59,10 @@ export default function Tuning() {
       <div>
         <p className="portal-eyebrow">SAMOSTATNÝ CENÍK</p>
         <h2 id="tuning-pricing-title">Ceník tuningu.</h2>
-        <p className="tuning-copy">Rozbalte oblast, která vás zajímá. U každé položky najdete cenu a přesný rozsah služby. Díly a další náklady uvedeme v nabídce zvlášť, pokud už nejsou zahrnuté v položce.</p>
+        <p className="tuning-copy">Výkonové a vzhledové úpravy, sportovní podvozky a zakázkové stavby. Rozbalte oblast, která vás zajímá, a prohlédněte si cenu i přesný rozsah úpravy. Díly a další náklady uvedeme v nabídce zvlášť, pokud už nejsou zahrnuté v položce.</p>
         <div className="tuning-price-groups">
           {prices.map(group => <details key={group.category}>
-            <summary><span>{group.category}</span><span className="tuning-category-count" aria-hidden="true">{group.items.length} položek</span></summary>
+            <summary><span>{group.category}</span><span className="tuning-category-count" aria-hidden="true">{group.items.length} {group.items.length === 1 ? "položka" : group.items.length < 5 ? "položky" : "položek"}</span></summary>
             <p className="tuning-category-description">{group.description}</p>
             <table className="tuning-price-table">
               <caption className="workshop-sr-only">{group.category} — ceny služeb a rozsah</caption>
