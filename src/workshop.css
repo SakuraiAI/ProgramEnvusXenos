@@ -30,3 +30,5 @@
 
 .workshop-services .workshop-service-help{grid-column:1 / -1;flex-direction:row;align-items:center;gap:24px}.workshop-service-help h3{margin:0 0 8px}.workshop-service-help p{margin:0}.workshop-service-help a{flex-shrink:0;margin:0;padding:10px 0}
 @media(max-width:600px){.workshop-services .workshop-service-help{flex-direction:column;align-items:flex-start;gap:12px}}
+
+.workshop-tuning-price-link{display:inline-block;color:#e0bc78;font-size:14px;line-height:1.6;margin:0 0 12px}

@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/tuning",
+      "destination": "/index.html"
+    },
+    {
       "source": "/revenant",
       "destination": "/index.html"
     },

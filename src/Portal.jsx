@@ -3,15 +3,16 @@ import { TechnologyPage, ProjectsPage, AIProfilePage, RevenantPage, NewsPage } f
 import "./portal.css";
 import ServiceInquiry from "./ServiceInquiry";
 import Workshop, { WorkshopLocation } from "./Workshop";
+import Tuning from "./Tuning";
 
 const aliases = { home: "home", systems: "auto", portfolio: "tech", "portfolio-unreal": "projects", marika: "marika", "portfolio-blender": "about", contact: "contact", "portfolio-vscode": "booking" };
-const routes = { "/revenant": "revenant", "/luna": "luna", "/xeno": "xeno", "/novinky": "news", "/services": "auto", "/systems": "auto", "/technology": "tech", "/portfolio": "tech", "/projects": "projects", "/about": "about", "/contact": "contact", "/book-service": "booking", "/marika": "marika", "/": "home", "/index.html": "home", "/autoservis": "auto", "/technologie": "tech", "/projekty": "projects", "/o-nas": "about", "/kontakt": "contact", "/poptavka": "booking" };
+const routes = { "/tuning": "tuning", "/revenant": "revenant", "/luna": "luna", "/xeno": "xeno", "/novinky": "news", "/services": "auto", "/systems": "auto", "/technology": "tech", "/portfolio": "tech", "/projects": "projects", "/about": "about", "/contact": "contact", "/book-service": "booking", "/marika": "marika", "/": "home", "/index.html": "home", "/autoservis": "auto", "/technologie": "tech", "/projekty": "projects", "/o-nas": "about", "/kontakt": "contact", "/poptavka": "booking" };
 const links = {
- auto: [["Autoservis", "/autoservis"], ["Ceník", "/autoservis#cenik"], ["Servisní poptávka", "/poptavka"], ["Kontakt", "/kontakt?oblast=autoservis"]],
+ auto: [["Autoservis", "/autoservis"], ["Tuning", "/tuning"], ["Ceník", "/autoservis#cenik"], ["Servisní poptávka", "/poptavka"], ["Kontakt", "/kontakt?oblast=autoservis"]],
  tech: [["Technologie", "/technologie"], ["Projekty", "/projekty"], ["Novinky", "/novinky"], ["Kontakt", "/kontakt?oblast=technologie"]],
  shared: [["O nás", "/o-nas"], ["Kontakt", "/kontakt"]],
 };
-const titles = { revenant: "Revenant", luna: "Luna", xeno: "Xeno", news: "Novinky", home: "Vyberte si svou cestu", auto: "Autoservis", tech: "Vývoj a technologie", projects: "Projekty", marika: "Marika", about: "O nás", contact: "Kontakt", booking: "Servisní poptávka" };
+const titles = { tuning: "Tuning a individuální úpravy", revenant: "Revenant", luna: "Luna", xeno: "Xeno", news: "Novinky", home: "Vyberte si svou cestu", auto: "Autoservis", tech: "Vývoj a technologie", projects: "Projekty", marika: "Marika", about: "O nás", contact: "Kontakt", booking: "Servisní poptávka" };
 // Add only real, verified profile URLs here. Social links belong on About only.
 const socials = [{ name: "Instagram", href: "https://www.instagram.com/programenvusxenos_/", detail: "Fotky a dění kolem PGEX" }, { name: "TikTok", href: "https://www.tiktok.com/@programenvusxenos", detail: "Videa ze světa PGEX" }, { name: "X", href: "https://x.com/PGEnvus", detail: "Příspěvky ze světa PGEX" }, { name: "Reddit", href: "https://www.reddit.com/user/CicadaSensitive9928/", detail: "Profil u/CicadaSensitive9928" }, { name: "LinkedIn", href: "https://www.linkedin.com/in/program-envus-xenos-946294366/", detail: "Program Envus Xenos" }, { name: "Twitch", href: "https://www.twitch.tv/programenvusxenos", detail: "Kanál programenvusxenos" }, { name: "Kick", href: "https://kick.com/programenvusxenos", detail: "Kanál programenvusxenos" }, { name: "Discord", href: "https://discord.gg/DaNX74Tneb", detail: "Připojte se ke komunitě PGEX" }];
 
@@ -19,7 +20,8 @@ export default function Portal({ page }) {
  const pathname = window.location.pathname.replace(/\/$/, "") || "/";
  const current = routes[pathname] || aliases[page] || "home";
  const context = new URLSearchParams(window.location.search).get("oblast");
- const area = ["auto", "booking"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "projects", "marika", "luna", "xeno", "news", "revenant"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
+ const area = ["auto", "booking", "tuning"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "projects", "marika", "luna", "xeno", "news", "revenant"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
+ const navigation = links[area].map(([label, href]) => [label, current === "tuning" && href === "/autoservis#cenik" ? "/tuning#cenik" : href]);
  const [intro] = useState(() => {
    if (current !== "home" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
    try { return sessionStorage.getItem("pgex-intro-gold-v2-seen") !== "1"; } catch { return false; }
@@ -34,7 +36,7 @@ export default function Portal({ page }) {
    <header className="portal-header">
      <a className="portal-brand" href="/" aria-label="PGEX — úvodní rozcestník"><span className="portal-wordmark"><img src="/pgex-wordmark.svg" alt="PGEX" width="230" height="44"/></span></a>
      {area !== "shared" && <span className="area-label">{area === "auto" ? "AUTOSERVIS" : "VÝVOJ A TECHNOLOGIE"}</span>}
-     <nav aria-label="Hlavní navigace">{links[area].map(([label, href]) => <a key={href} href={href} aria-current={pathname === href ? "page" : undefined}>{label}</a>)}</nav>
+     <nav aria-label="Hlavní navigace">{navigation.map(([label, href]) => <a key={href} href={href} aria-current={pathname === href ? "page" : undefined}>{label}</a>)}</nav>
    </header>
    <main id="content" className={current === "home" ? "gateway-main" : "portal-content"}>
      {current === "home" && <>
@@ -45,6 +47,7 @@ export default function Portal({ page }) {
        </div>
      </>}
      {current === "auto" && <Workshop/>}
+     {current === "tuning" && <Tuning/>}
      {current === "tech" && <TechnologyPage/>}
      {current === "projects" && <ProjectsPage/>}
      {["luna", "xeno", "marika"].includes(current) && <AIProfilePage profile={current}/>}

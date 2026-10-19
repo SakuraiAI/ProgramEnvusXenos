@@ -1,0 +1,40 @@
+.tuning-page{padding-bottom:20px}
+.tuning-back{display:inline-block;color:#cbb98e;font-size:13px;line-height:1.6;margin:27px 0 0;padding:8px 0}
+.tuning-hero{padding-top:30px;padding-bottom:42px}
+.tuning-hero-photo{height:440px}
+.tuning-hero-photo img{object-position:48% center}
+.tuning-section-nav{display:flex;flex-wrap:wrap;gap:10px 30px;border-top:1px solid #c6a2672b;padding:20px 0}
+.tuning-section-nav a{color:#e0bc78;font-size:13px;padding:8px 0;line-height:1.6}
+.tuning-page .workshop-section{scroll-margin-top:20px}
+.tuning-lead{max-width:830px;font-size:17px;line-height:1.8;color:#c5c2b9;margin:0 0 32px}
+.tuning-overview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.tuning-overview-grid article{border-top:1px solid #c6a26750;padding-top:22px}
+.tuning-overview-grid h3{font-size:19px;margin:16px 0 12px;line-height:1.4}
+.tuning-overview-grid p,.tuning-copy,.tuning-contact p{font-size:14px;line-height:1.8;color:#bcbcb2;margin:0}
+.tuning-pricing{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:50px;align-items:start}
+.tuning-price-table{border-collapse:collapse;width:100%;margin:28px 0 18px;table-layout:fixed}
+.tuning-price-table th,.tuning-price-table td{border-bottom:1px solid #c6a26740;padding:18px 12px 18px 0;text-align:left;vertical-align:top;line-height:1.7;overflow-wrap:anywhere}
+.tuning-price-table thead th{font-size:12px;font-weight:400;color:#bcbcb2}
+.tuning-price-table tbody th{font-size:15px;font-weight:400;color:#f3f0e8}
+.tuning-price-table th:last-child,.tuning-price-table td:last-child{width:36%;padding-right:0;text-align:right}
+.tuning-price-table td{font-size:14px;color:#e0bc78}
+.tuning-price-note{color:#bcbcb2;font-size:12px;line-height:1.8;margin:0 0 26px}
+.tuning-price-factors{padding:28px;border:1px solid #cda85840;border-radius:12px;background:#ffffff03}
+.tuning-price-factors h3{font-size:20px;margin:0 0 25px}
+.tuning-price-factors dl{margin:0}
+.tuning-price-factors dl div+div{margin-top:22px}
+.tuning-price-factors dt{font-size:14px;color:#e0bc78;margin-bottom:6px}
+.tuning-price-factors dd{font-size:13px;line-height:1.8;color:#bcbcb2;margin:0}
+.tuning-price-factors a{display:inline-block;color:#e0bc78;font-size:12px;line-height:1.8;margin-top:26px}
+.tuning-faq details{border-bottom:1px solid #c6a26740}
+.tuning-faq summary{font-size:16px;line-height:1.6;color:#e0bc78;padding:19px 0;cursor:pointer}
+.tuning-faq details p{font-size:14px;line-height:1.8;color:#bcbcb2;margin:0 0 22px;max-width:800px}
+.tuning-faq summary:focus-visible{outline:2px solid #e0bc78;outline-offset:4px}
+.tuning-contact{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:40px}
+.tuning-contact h2{margin-bottom:16px}
+.tuning-contact p{max-width:580px}
+.tuning-contact-link{display:inline-block;font-size:13px;color:#e0bc78;margin-top:20px;line-height:1.7}
+.tuning-contact-actions{display:flex;flex-direction:column;gap:12px}
+@media(max-width:900px){.tuning-pricing{gap:28px}.tuning-overview-grid{gap:20px}.tuning-hero-photo{height:370px}}
+@media(max-width:700px){.tuning-pricing,.tuning-overview-grid,.tuning-contact{grid-template-columns:1fr}.tuning-overview-grid{gap:25px}.tuning-lead{font-size:15px}.tuning-contact-actions{align-items:flex-start}.tuning-price-factors{padding:24px}}
+@media(max-width:600px){.tuning-back{margin-top:17px}.tuning-hero{padding-top:18px;padding-bottom:30px}.tuning-hero h1{font-size:42px}.tuning-hero-photo{height:290px}.tuning-section-nav{gap:4px 22px;padding:15px 0}.tuning-section-nav a{font-size:12px}.tuning-price-table tbody th,.tuning-price-table td{font-size:14px}}
