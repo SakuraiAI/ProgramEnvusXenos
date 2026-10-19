@@ -11,7 +11,7 @@
 .tuning-overview-grid article{border-top:1px solid #c6a26750;padding-top:22px}
 .tuning-overview-grid h3{font-size:19px;margin:16px 0 12px;line-height:1.4}
 .tuning-overview-grid p,.tuning-copy,.tuning-contact p{font-size:14px;line-height:1.8;color:#bcbcb2;margin:0}
-.tuning-pricing{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,340px);gap:50px;align-items:start}
+.tuning-pricing{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:55px;align-items:start}
 .tuning-price-table{border-collapse:collapse;width:100%;margin:28px 0 18px;table-layout:fixed}
 .tuning-price-table th,.tuning-price-table td{border-bottom:1px solid #c6a26740;padding:18px 12px 18px 0;text-align:left;vertical-align:top;line-height:1.7;overflow-wrap:anywhere}
 .tuning-price-table thead th{font-size:12px;font-weight:400;color:#bcbcb2}
