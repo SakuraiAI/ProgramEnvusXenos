@@ -76,11 +76,14 @@ export default function Tuning() {
         <a className="tuning-pdf-link" href="/dokumenty/pgex-tuning-cenik.pdf" download>Stáhnout kompletní ceník <span>PDF ↓</span></a>
         <a className="gateway-button" href={inquiryHref}>Poptat tuning <span aria-hidden="true">→</span></a>
       </div>
-      <aside className="tuning-price-factors" aria-labelledby="tuning-factors-title">
-        <p className="portal-eyebrow">MECHANICKÁ PRÁCE</p><p className="tuning-hourly-rate">990 <span>Kč/h</span></p><p className="tuning-rate-description">Hodinová sazba pro práce podle dohodnutého času. Specializované úpravy a stavby mají vlastní kalkulaci.</p><h3 id="tuning-factors-title">Co ovlivňuje cenu?</h3>
-        <dl><div><dt>Konkrétní vozidlo</dt><dd>Model, motorizace, technický stav a přístup k upravovaným částem.</dd></div><div><dt>Rozsah práce</dt><dd>Domluvené úpravy, jejich návaznost a čas potřebný k provedení.</dd></div><div><dt>Díly a materiál</dt><dd>Zvolená varianta, dostupnost a vhodnost pro vaše vozidlo.</dd></div></dl>
-        <a href="/autoservis#cenik">Hledáte ceník běžného servisu? →</a>
-      </aside>
+      <div className="tuning-pricing-sidebar">
+        <aside className="tuning-price-factors" aria-labelledby="tuning-factors-title">
+          <p className="portal-eyebrow">MECHANICKÁ PRÁCE</p><p className="tuning-hourly-rate">990 <span>Kč/h</span></p><p className="tuning-rate-description">Hodinová sazba pro práce podle dohodnutého času. Specializované úpravy a stavby mají vlastní kalkulaci.</p><h3 id="tuning-factors-title">Co ovlivňuje cenu?</h3>
+          <dl><div><dt>Konkrétní vozidlo</dt><dd>Model, motorizace, technický stav a přístup k upravovaným částem.</dd></div><div><dt>Rozsah práce</dt><dd>Domluvené úpravy, jejich návaznost a čas potřebný k provedení.</dd></div><div><dt>Díly a materiál</dt><dd>Zvolená varianta, dostupnost a vhodnost pro vaše vozidlo.</dd></div></dl>
+          <a href="/autoservis#cenik">Hledáte ceník běžného servisu? →</a>
+        </aside>
+        <figure className="workshop-photo tuning-detail-photo"><img src="/workshop/tuning-suspension.webp" width="1536" height="1024" alt="Ilustrace nastavení sportovního podvozku v tuningové dílně" loading="lazy" decoding="async"/></figure>
+      </div>
     </section>
     <section id="postup" className="workshop-section" aria-labelledby="tuning-process-title">
       <p className="portal-eyebrow">JAK TO PROBÍHÁ</p><h2 id="tuning-process-title">Nejdřív domluva. Potom úprava.</h2>

@@ -58,3 +58,7 @@
 .tuning-pdf-link{display:flex;align-items:center;justify-content:space-between;gap:18px;color:#e0bc78;font-size:14px;line-height:1.8;border-bottom:1px solid #c6a26740;padding:12px 0;margin:0 0 28px}
 .tuning-pdf-link span{white-space:nowrap}
 @media(max-width:600px){.tuning-price-groups summary{font-size:15px;gap:8px}.tuning-category-count{font-size:11px}.tuning-price-table th:last-child,.tuning-price-table td:last-child{width:32%}.tuning-price-table th,.tuning-price-table td{padding-top:14px;padding-bottom:14px}.tuning-price-table td{font-size:13px}.tuning-item-scope{font-size:12px}}
+
+.tuning-pricing-sidebar{display:grid;gap:24px;min-width:0}
+.tuning-detail-photo{aspect-ratio:3 / 2}
+.tuning-detail-photo img{height:auto;object-position:center}
