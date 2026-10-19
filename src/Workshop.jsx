@@ -1,5 +1,9 @@
 import "./workshop.css";
 import WorkshopPrices from "./WorkshopPrices";
+import priceGroups from "./workshop-prices.json";
+
+const hourlyWork = priceGroups.flatMap(group => group.items).find(item => item.unit === "hour");
+const formatRate = new Intl.NumberFormat("cs-CZ");
 
 const services = [
   ["01", "Diagnostika", "Svítí kontrolka nebo se auto chová jinak než obvykle? Začneme zjištěním příčiny a domluvíme další postup."],
@@ -47,7 +51,21 @@ export default function Workshop() {
        <WorkshopPrices/>
        <a className="workshop-tuning-price-link" href="/tuning#cenik">Ceník tuningu a individuálních úprav →</a>
        <p className="workshop-price-note">Diagnostiku navíc a případné komplikace naceníme samostatně. Odhad ceny a případné navýšení si s vámi předem odsouhlasíme.</p><a className="gateway-button" href="/poptavka">Servisní poptávka →</a></div>
-     <figure className="workshop-photo workshop-detail-photo"><img src="/workshop/brake-service.jpg" width="1536" height="1024" alt="Ilustrace kontroly brzdového kotouče a třmenu" loading="lazy"/></figure>
+     <div className="workshop-pricing-sidebar">
+       {hourlyWork && <aside className="workshop-rate-card" aria-labelledby="workshop-rate-title">
+         <p className="portal-eyebrow" id="workshop-rate-title">MECHANICKÁ PRÁCE</p>
+         <p className="workshop-hourly-rate">{formatRate.format(hourlyWork.price)} <span>Kč/h</span></p>
+         <p className="workshop-rate-description">Hodinová sazba pro běžné servisní práce podle dohodnutého času. Práci naceněnou samostatnou položkou neúčtujeme znovu hodinově.</p>
+         <h3>Co ovlivňuje cenu?</h3>
+         <dl>
+           <div><dt>Konkrétní vozidlo</dt><dd>Model, motorizace, technický stav a přístup k opravovaným částem.</dd></div>
+           <div><dt>Rozsah opravy</dt><dd>Dohodnuté práce, jejich náročnost a čas potřebný k provedení.</dd></div>
+           <div><dt>Díly a materiál</dt><dd>Náhradní díly, kapaliny a další materiál podle domluveného výběru.</dd></div>
+         </dl>
+         <p className="workshop-rate-note">Cenu a případné vícepráce si předem odsouhlasíme.</p>
+       </aside>}
+       <figure className="workshop-photo workshop-detail-photo"><img src="/workshop/brake-service.jpg" width="1536" height="1024" alt="Ilustrace kontroly brzdového kotouče a třmenu" loading="lazy"/></figure>
+     </div>
    </section>
    <section className="workshop-section" aria-labelledby="process-title"><p className="portal-eyebrow">OD PRVNÍHO KONTAKTU K OPRAVĚ</p><h2 id="process-title">Jak to u nás probíhá.</h2><ol className="workshop-steps">{steps.map(([title,text],i)=><li key={title}><span className="workshop-number">0{i+1}</span><h3>{title}</h3><p>{text}</p></li>)}</ol></section>
    <section id="servis-kontakt" className="workshop-contact workshop-section" aria-labelledby="contact-title"><div><p className="portal-eyebrow">DOMLUVME SE</p><h2 id="contact-title">Co potřebuje vaše auto?</h2><p>Termín návštěvy si prosím domluvte předem.</p><a className="workshop-phone" href="tel:+420731990599">+420 731 990 599</a><a className="workshop-email" href="mailto:programenvus@gmail.com?subject=Popt%C3%A1vka%20autoservisu">programenvus@gmail.com</a></div><div className="workshop-hours"><h3>Otevírací doba</h3><dl><div><dt>Pondělí–pátek</dt><dd>7:00–20:00</dd></div><div><dt>Sobota–neděle</dt><dd>9:00–18:30</dd></div></dl><a className="gateway-button" href="/poptavka">Servisní poptávka →</a></div></section>

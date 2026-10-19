@@ -32,3 +32,17 @@
 @media(max-width:600px){.workshop-services .workshop-service-help{flex-direction:column;align-items:flex-start;gap:12px}}
 
 .workshop-tuning-price-link{display:inline-block;color:#e0bc78;font-size:14px;line-height:1.6;margin:0 0 12px}
+
+.workshop-pricing-sidebar{display:grid;gap:24px;min-width:0}
+.workshop-rate-card{padding:28px;border:1px solid #cda85840;border-radius:12px;background:#ffffff03}
+.workshop-hourly-rate{color:#e0bc78;font-size:44px;line-height:1.2;margin:12px 0}
+.workshop-hourly-rate span{font-size:20px}
+.workshop-rate-description{color:#bcbcb2;font-size:13px;line-height:1.8;margin:0 0 30px;padding-bottom:26px;border-bottom:1px solid #c6a26740}
+.workshop-rate-card h3{font-size:20px;margin:0 0 25px}
+.workshop-rate-card dl{margin:0}
+.workshop-rate-card dl div+div{margin-top:22px}
+.workshop-rate-card dt{font-size:14px;color:#e0bc78;margin-bottom:6px}
+.workshop-rate-card dd{font-size:13px;line-height:1.8;color:#bcbcb2;margin:0}
+.workshop-rate-note{font-size:12px;line-height:1.8;color:#bcbcb2;margin:26px 0 0}
+.workshop-pricing-sidebar .workshop-detail-photo{height:auto;aspect-ratio:3 / 2;margin-top:0}
+@media(max-width:600px){.workshop-rate-card{padding:24px}}

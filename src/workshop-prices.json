@@ -625,7 +625,8 @@
       {
         "name": "Zakázková práce – hodinová sazba",
         "price": 700,
-        "onRequest": false
+        "onRequest": false,
+        "unit": "hour"
       }
     ]
   }
