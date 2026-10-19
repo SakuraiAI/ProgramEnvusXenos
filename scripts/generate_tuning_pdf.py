@@ -12,10 +12,12 @@ from reportlab.lib.pagesizes import A4
 
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
-parser.add_argument('--output', type=Path, default=ROOT / 'public/dokumenty/pgex-tuning-cenik.pdf')
+parser.add_argument('--output', type=Path, required=True, help='Private PDF output path outside public/ and dist/.')
 parser.add_argument('--draft', action='store_true')
 args = parser.parse_args()
-OUT = args.output
+OUT = args.output.expanduser().resolve()
+if any(folder == OUT or folder in OUT.parents for folder in ((ROOT / 'public').resolve(), (ROOT / 'dist').resolve())):
+    parser.error('Tuning PDFs are private exports; choose an output outside public/ and dist/.')
 DATA = json.loads((ROOT / 'src/tuning-prices.json').read_text(encoding='utf-8'))
 RATES = json.loads((ROOT / 'src/tuning-rates.json').read_text(encoding='utf-8'))
 POLICY = json.loads((ROOT / 'src/tuning-pricing-policy.json').read_text(encoding='utf-8'))

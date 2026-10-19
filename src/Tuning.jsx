@@ -76,7 +76,6 @@ export default function Tuning() {
         </div>
         <p className="tuning-price-note">{pricingPolicy.scope}</p>
         <p className="tuning-price-note">{pricingPolicy.extras} {pricingPolicy.approval}</p>
-        <a className="tuning-pdf-link" href="/dokumenty/pgex-tuning-cenik.pdf" download>Stáhnout kompletní ceník <span>PDF ↓</span></a>
         <a className="gateway-button" href={inquiryHref}>Poptat tuning <span aria-hidden="true">→</span></a>
       </div>
       <div className="tuning-pricing-sidebar">
