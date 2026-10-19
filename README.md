@@ -43,7 +43,7 @@ Původní HTML adresy zůstávají dostupné. Vercel rewrites směrují nové ad
 Rozcestník, autoservis, technologie, projekty, O nás i kontakt jsou česky. Technologickou část spravuje `src/Technology.jsx`; starší adresa Mariky zůstává jako stránka konceptu.
 Poptávkový formulář odesílá zprávy přes `/api/inquiry` a Resend. Úspěch znamená přijetí poskytovatelem k odeslání, nikoli potvrzenou rezervaci.
 
-Autoservis obsahuje přehled služeb, postup opravy a mobilní kontaktní lištu. Odkazy ze služeb předávají výběr do poptávky a předmětu e-mailu.
+Autoservis obsahuje přehled služeb, postup opravy a mobilní kontaktní lištu. Odkazy ze služeb i položek ceníku předávají výběr do pole Služba v poptávce. Ceník hledá v názvech prací a kategoriích bez ohledu na diakritiku a velikost písmen.
 
 Technologie: PGEX AI je označený jako projekt ve vývoji. Funkce vycházejí z místního projektu PGEX-AI-01. Úvodní obrázek je ilustrace vývojářského pracoviště, nikoliv snímek aplikace. Novinky jsou ručně udržovaný obsah.
 
@@ -51,13 +51,26 @@ Technologie: PGEX AI je označený jako projekt ve vývoji. Funkce vycházejí z
 
 Server potřebuje `RESEND_API_KEY` v prostředí Production na Vercelu. Klíč nesmí mít prefix `VITE_`, být v klientském kódu ani v Gitu. Změna prostředí se projeví novým nasazením. Z důvodu kompatibility lze použít i původní `ProgramEnvusXenos`, pokud obsahuje klíč Resendu; standardní název má přednost.
 
-- Maximálně jedna nová zpráva z jedné veřejné IP v každém pevném 60sekundovém UTC okně. Stejný obsah v témže okně vrací původní úspěch bez dalšího e-mailu.
+- Maximálně jedna nová poptávka pro servis z jedné veřejné IP v každém pevném 60sekundovém UTC okně. Stejný obsah v témže okně vrací původní úspěch bez dalšího e-mailu.
 - Vercel nastavuje `x-vercel-forwarded-for`; ostatní klientské hlavičky ani telefon limit neovlivňují. Lokálně se použije adresa socketu. Chybějící důvěryhodná adresa na Vercelu zastaví odeslání.
 - Klíč pro Resend je HMAC adresy a časového okna. IP není v e-mailu ani ve veřejném klíči v čitelné podobě. Resend atomicky uchovává první obsah pod tímto klíčem napříč souběžnými funkcemi. Jiný obsah se stejným klíčem odmítne jako `invalid_idempotent_request`; API vrátí 429 a `Retry-After`.
 - Formulář zachová údaje a ukáže odpočet. Současné zpracování vyvolá krátké čekání; tlačítko neposílá více požadavků zároveň. Honeypot a validace zůstávají aktivní.
 
-Toto je limit odeslaných e-mailů, nikoliv firewallový limit HTTP požadavků: každý platný pokus stále kontaktuje Resend. Pevné okno dovoluje dva e-maily těsně kolem hranice minuty; po změně okna může vzniknout další e-mail i se stejným obsahem (také při opakování po nejasném výsledku). Sdílená veřejná IP sdílí limit, změna IP nebo rotace klíče vytváří nový limit. Nejde o ochranu proti distribuovanému spamu. Při větším provozu doplnit skutečné počítání požadavků ve Vercel WAF nebo sdíleném úložišti.
+Toto je limit poptávek pro servis (každá může mít ještě jeden potvrzovací e-mail), nikoliv firewallový limit HTTP požadavků: každý platný pokus stále kontaktuje Resend. Pevné okno dovoluje dva e-maily těsně kolem hranice minuty; po změně okna může vzniknout další e-mail i se stejným obsahem (také při opakování po nejasném výsledku). Sdílená veřejná IP sdílí limit, změna IP nebo rotace klíče vytváří nový limit. Nejde o ochranu proti distribuovanému spamu. Při větším provozu doplnit skutečné počítání požadavků ve Vercel WAF nebo sdíleném úložišti.
 
-Ověření bez skutečných e-mailů: `node test-inquiry.mjs` a `npm run build`. Testy simulují zdokumentované odpovědi Resendu, včetně opakování, souběhu a jiné instance. Samotný Vite dev server `/api/inquiry` nespouští.
+Ověření bez skutečných e-mailů: `npm run test:inquiry` a `npm run build`. Testy simulují zdokumentované odpovědi Resendu, včetně opakování, souběhu a jiné instance. Samotný Vite dev server `/api/inquiry` nespouští.
 
 Dokumentace: [Resend idempotency keys](https://resend.com/docs/dashboard/emails/idempotency-keys), [Vercel request headers](https://vercel.com/docs/headers/request-headers).
+
+## Fotky a potvrzení přijetí
+
+- E-mail je nepovinný. Zůstává povinný telefon pro domluvu termínu. U zprávy pro servis je `reply_to` zákazníkův ověřený formát adresy (jinak servisní schránka).
+- Po přijetí zprávy pro servis Resendem se na zadanou adresu odešle samostatný přehled požadavku. Potvrzení výslovně není rezervací. API rozlišuje `confirmation: accepted / unavailable / not_requested`; chyba potvrzení nezneplatní již přijatou poptávku.
+- Při e-mailu se čerpají **dvě odeslané zprávy** z limitu Resendu, bez něj jedna. Přijetí API není zárukou doručení do schránky. Zprávy se odesílají postupně; není použit batch, který nepodporuje přílohy.
+- Potvrzení má vlastní idempotency key odvozený z ID zprávy pro servis. Ochrana proti duplicitní hlavní zprávě je stále omezená na výše popsané časové okno. Bez databáze nebo fronty nemáme trvalou záruku ani automatické doručení potvrzení po výpadku.
+- Až 3 fotky JPG/PNG/WebP po 15 MB. V prohlížeči se postupně dekódují, převedou na JPG s delší stranou nejvýše 1600 px a zmenší na nejvýše 700 000 B každá. HEIC je potřeba převést na JPG. Zmenšené fotky se po chybě zachovají do obnovení/opuštění stránky.
+- Celý JSON požadavek má nejvýše 3 000 000 B (včetně base64), pod limitem 4,5 MB Vercelu. Server znovu kontroluje počet, base64, velikost, formát i rozměry, obrázky dekóduje pomocí sharp a znovu kóduje bez původních metadat. Nepřebírá uživatelské názvy, URL ani MIME příloh.
+- Fotky jsou pouze v přílohách e-mailu pro servis. Neukládají se do veřejného úložiště ani do Git repozitáře; zpracovává je již používaný Resend a schránka servisu. Zákazníkova kopie uvádí pouze jejich počet.
+- Testy mockují pouze externí Resend; skutečný handler ověřuje validaci, poškozené obrázky, rozměry, metadata, příjemce, opakování a částečné selhání. Testy neposílají žádné skutečné e-maily.
+
+Dokumentace příloh: [Resend attachments](https://resend.com/docs/dashboard/emails/attachments), [Vercel Function limits](https://vercel.com/docs/functions/limitations).

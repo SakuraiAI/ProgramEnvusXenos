@@ -1,6 +1,5 @@
 import "./workshop.css";
-import priceGroups from "./workshop-prices.json";
-const formatPrice = new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 2 });
+import WorkshopPrices from "./WorkshopPrices";
 
 const services = [
   ["01", "Diagnostika", "Svítí kontrolka nebo se auto chová jinak než obvykle? Začneme zjištěním příčiny a domluvíme další postup."],
@@ -44,7 +43,7 @@ export default function Workshop() {
    <section id="sluzby" className="workshop-section" aria-labelledby="services-title"><p className="portal-eyebrow">S ČÍM POMŮŽEME</p><h2 id="services-title">Servis podle potřeb vašeho vozu.</h2><div className="workshop-services">{services.map(([number,title,text]) => <article key={number}><span className="workshop-number">{number}</span><h3>{title}</h3><p>{text}</p><a href={`/poptavka?sluzba=${encodeURIComponent(title)}`}>Poptat službu <span aria-hidden="true">↗</span><span className="workshop-sr-only">: {title}</span></a></article>)}<article className="workshop-service-help"><span className="workshop-number">?</span><h3>Nevíte, čím začít?</h3><p>Nemusíte znát přesný název závady. Popište, co slyšíte, vidíte nebo cítíte při jízdě.</p><a href="tel:+420731990599">Probrat problém po telefonu ↗</a></article></div></section>
    <section id="cenik" className="workshop-section workshop-pricing" aria-labelledby="pricing-title">
      <div><p className="portal-eyebrow">PŘEHLED CEN PRÁCE</p><h2 id="pricing-title">Ceník servisu.</h2><p className="workshop-price-intro">Orientační ceny práce od uvedené částky. Materiál a díly se účtují zvlášť; výsledná cena závisí na typu vozu a rozsahu opravy.</p>
-       <div className="workshop-price-groups">{priceGroups.map((group, index) => <details key={group.category} open={index === 0}><summary>{group.category}<span>{group.items.length} položek</span></summary><dl className="workshop-price-list">{group.items.map(item => <div key={item.name}><dt>{item.name}</dt><dd>{item.onRequest ? "Cena na dotaz" : `od ${formatPrice.format(item.price)} Kč`}</dd></div>)}</dl></details>)}</div>
+       <WorkshopPrices/>
        <p className="workshop-price-note">Diagnostiku navíc a případné komplikace naceníme samostatně. Odhad ceny a případné navýšení si s vámi předem odsouhlasíme.</p><a className="gateway-button" href="/poptavka">Servisní poptávka →</a></div>
      <figure className="workshop-photo workshop-detail-photo"><img src="/workshop/brake-service.jpg" width="1536" height="1024" alt="Ilustrace kontroly brzdového kotouče a třmenu" loading="lazy"/></figure>
    </section>
