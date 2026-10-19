@@ -31,7 +31,7 @@ export default function Tuning() {
           <a className="gateway-button outline" href="#cenik">Ceník tuningu ↓</a>
         </div>
       </div>
-      <figure className="workshop-photo tuning-hero-photo"><img src="/workshop/workshop-hero.jpg" width="1536" height="1024" alt="Ilustrace práce na vozidle v dílně" fetchPriority="high"/></figure>
+      <figure className="workshop-photo tuning-hero-photo"><img src="/workshop/tuning-coupe.webp" width="1536" height="1024" alt="Ilustrace upraveného černého sportovního kupé s bronzovými koly v tuningové dílně" fetchPriority="high"/></figure>
     </section>
     <nav className="tuning-section-nav" aria-label="Obsah stránky tuningu">
       <a href="#upravy">Individuální úpravy</a><a href="#cenik">Ceník</a><a href="#postup">Postup domluvy</a><a href="#dotazy">Časté dotazy</a>

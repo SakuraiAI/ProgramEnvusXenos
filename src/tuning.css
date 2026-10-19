@@ -1,8 +1,8 @@
 .tuning-page{padding-bottom:20px}
 .tuning-back{display:inline-block;color:#cbb98e;font-size:13px;line-height:1.6;margin:27px 0 0;padding:8px 0}
 .tuning-hero{padding-top:30px;padding-bottom:42px}
-.tuning-hero-photo{height:440px}
-.tuning-hero-photo img{object-position:48% center}
+.tuning-hero-photo{height:auto;aspect-ratio:3 / 2}
+.tuning-hero-photo img{height:auto;object-position:center}
 .tuning-section-nav{display:flex;flex-wrap:wrap;gap:10px 30px;border-top:1px solid #c6a2672b;padding:20px 0}
 .tuning-section-nav a{color:#e0bc78;font-size:13px;padding:8px 0;line-height:1.6}
 .tuning-page .workshop-section{scroll-margin-top:20px}
@@ -35,6 +35,6 @@
 .tuning-contact p{max-width:580px}
 .tuning-contact-link{display:inline-block;font-size:13px;color:#e0bc78;margin-top:20px;line-height:1.7}
 .tuning-contact-actions{display:flex;flex-direction:column;gap:12px}
-@media(max-width:900px){.tuning-pricing{gap:28px}.tuning-overview-grid{gap:20px}.tuning-hero-photo{height:370px}}
+@media(max-width:900px){.tuning-pricing{gap:28px}.tuning-overview-grid{gap:20px}.tuning-hero{grid-template-columns:1fr}}
 @media(max-width:700px){.tuning-pricing,.tuning-overview-grid,.tuning-contact{grid-template-columns:1fr}.tuning-overview-grid{gap:25px}.tuning-lead{font-size:15px}.tuning-contact-actions{align-items:flex-start}.tuning-price-factors{padding:24px}}
-@media(max-width:600px){.tuning-back{margin-top:17px}.tuning-hero{padding-top:18px;padding-bottom:30px}.tuning-hero h1{font-size:42px}.tuning-hero-photo{height:290px}.tuning-section-nav{gap:4px 22px;padding:15px 0}.tuning-section-nav a{font-size:12px}.tuning-price-table tbody th,.tuning-price-table td{font-size:14px}}
+@media(max-width:600px){.tuning-back{margin-top:17px}.tuning-hero{padding-top:18px;padding-bottom:30px}.tuning-hero h1{font-size:42px}.tuning-section-nav{gap:4px 22px;padding:15px 0}.tuning-section-nav a{font-size:12px}.tuning-price-table tbody th,.tuning-price-table td{font-size:14px}}
