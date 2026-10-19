@@ -1,6 +1,9 @@
 import "./workshop.css";
 import "./tuning.css";
 import prices from "./tuning-prices.json";
+import rates from "./tuning-rates.json";
+
+const [mechanicalRate, ...specialistRates] = rates;
 
 const inquiryHref = `/poptavka?sluzba=${encodeURIComponent("Tuning a individuální úpravy")}`;
 const formatPrice = new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 2 });
@@ -56,14 +59,14 @@ export default function Tuning() {
       <div>
         <p className="portal-eyebrow">SAMOSTATNÝ CENÍK</p>
         <h2 id="tuning-pricing-title">Ceník tuningu.</h2>
-        <p className="tuning-copy">Rozbalte oblast, která vás zajímá. U každé položky najdete cenu práce a přesný rozsah montáže. Díly a další náklady uvedeme v nabídce zvlášť.</p>
+        <p className="tuning-copy">Rozbalte oblast, která vás zajímá. U každé položky najdete cenu a přesný rozsah služby. Díly a další náklady uvedeme v nabídce zvlášť, pokud už nejsou zahrnuté v položce.</p>
         <div className="tuning-price-groups">
           {prices.map(group => <details key={group.category}>
             <summary><span>{group.category}</span><span className="tuning-category-count" aria-hidden="true">{group.items.length} položek</span></summary>
             <p className="tuning-category-description">{group.description}</p>
             <table className="tuning-price-table">
-              <caption className="workshop-sr-only">{group.category} — ceny práce a rozsah</caption>
-              <thead><tr><th scope="col">Služba a rozsah</th><th scope="col">Cena práce</th></tr></thead>
+              <caption className="workshop-sr-only">{group.category} — ceny služeb a rozsah</caption>
+              <thead><tr><th scope="col">Služba a rozsah</th><th scope="col">Cena</th></tr></thead>
               <tbody>{group.items.map(item => <tr key={item.id} data-price-id={item.id}>
                 <th scope="row">{item.name}<span className="tuning-item-scope">{item.scope}</span></th>
                 <td>{priceLabel(item)}</td>
@@ -78,7 +81,14 @@ export default function Tuning() {
       </div>
       <div className="tuning-pricing-sidebar">
         <aside className="tuning-price-factors" aria-labelledby="tuning-factors-title">
-          <p className="portal-eyebrow">MECHANICKÁ PRÁCE</p><p className="tuning-hourly-rate">990 <span>Kč/h</span></p><p className="tuning-rate-description">Hodinová sazba pro práce podle dohodnutého času. Specializované úpravy a stavby mají vlastní kalkulaci.</p><h3 id="tuning-factors-title">Co ovlivňuje cenu?</h3>
+          <p className="portal-eyebrow">MECHANICKÁ PRÁCE</p>
+          <p className="tuning-hourly-rate">{formatPrice.format(mechanicalRate.price)} <span>Kč/h</span></p>
+          <p className="tuning-rate-description">{mechanicalRate.description}</p>
+          <dl className="tuning-specialist-rates" aria-label="Odborné hodinové sazby">
+            {specialistRates.map(rate => <div key={rate.id} data-rate-id={rate.id}><dt>{rate.name}</dt><dd>{formatPrice.format(rate.price)} Kč/h</dd></div>)}
+          </dl>
+          <p className="tuning-rate-note">Odbornou práci účtujeme podle předem dohodnutého rozsahu a času. Kompletní stavby mají individuální rozpočet.</p>
+          <h3 id="tuning-factors-title">Co ovlivňuje cenu?</h3>
           <dl><div><dt>Konkrétní vozidlo</dt><dd>Model, motorizace, technický stav a přístup k upravovaným částem.</dd></div><div><dt>Rozsah práce</dt><dd>Domluvené úpravy, jejich návaznost a čas potřebný k provedení.</dd></div><div><dt>Díly a materiál</dt><dd>Zvolená varianta, dostupnost a vhodnost pro vaše vozidlo.</dd></div></dl>
           <a href="/autoservis#cenik">Hledáte ceník běžného servisu? →</a>
         </aside>

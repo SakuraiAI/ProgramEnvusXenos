@@ -3,6 +3,7 @@
     "category": "Diagnostika a příprava",
     "description": "Nejdřív stav vozidla, účel a rozpočet. Teprve potom konkrétní úprava.",
     "sourcePage": 4,
+    "note": "Základní diagnostika nezahrnuje hledání příčiny závady ani měření výkonu. Rozšířená diagnostika se účtuje podle dohodnutého času.",
     "items": [
       {
         "id": "01.02",
@@ -24,7 +25,7 @@
         "id": "01.04",
         "name": "Rozšířená diagnostika",
         "scope": "Provozní data, měření a hledání příčiny podle zadání.",
-        "price": 990,
+        "price": 1290,
         "priceType": "hourly",
         "realization": "D"
       },
@@ -68,13 +69,13 @@
         "priceType": "individual",
         "realization": "S"
       }
-    ],
-    "note": "Základní diagnostika nezahrnuje hledání příčiny závady ani měření výkonu. Rozšířená diagnostika se účtuje podle dohodnutého času."
+    ]
   },
   {
     "category": "Motor, sání a chlazení",
     "description": "Úpravy souvisejících systémů benzínových a naftových motorů podle konkrétního technického řešení.",
     "sourcePage": 5,
+    "note": "Měření, kalibrace, kapaliny a navazující díly se kalkulují zvlášť. Samotná montáž filtru či chladiče nemá stanovený univerzální přírůstek výkonu.",
     "items": [
       {
         "id": "02.01",
@@ -156,13 +157,13 @@
         "priceType": "hourly",
         "realization": "D"
       }
-    ],
-    "note": "Měření, kalibrace, kapaliny a navazující díly se kalkulují zvlášť. Samotná montáž filtru či chladiče nemá stanovený univerzální přírůstek výkonu."
+    ]
   },
   {
     "category": "Turbo a výfuk",
     "description": "Přeplňování, svody a výfuk jako propojený celek. Nejen výměna jednoho komponentu.",
     "sourcePage": 6,
+    "note": "Kalibraci a ověření výsledku kalkulujeme zvlášť. Nabídka pro silniční vozidla nezahrnuje odstraňování ani vypínání emisních systémů.",
     "items": [
       {
         "id": "03.01",
@@ -236,13 +237,13 @@
         "priceType": "individual",
         "realization": "P"
       }
-    ],
-    "note": "Kalibraci a ověření výsledku kalkulujeme zvlášť. Nabídka pro silniční vozidla nezahrnuje odstraňování ani vypínání emisních systémů."
+    ]
   },
   {
     "category": "Stavby motorů a swapy",
     "description": "Vnitřní úpravy motoru, přesné měření a stavby na zakázku. Bez univerzální ceny za neznámý motor.",
     "sourcePage": 7,
+    "note": "Rozsah stavby určíme po posouzení motoru. Obrábění, součástky, montáž, kalibrace a zkoušky se rozepisují v konkrétní nabídce.",
     "items": [
       {
         "id": "04.01",
@@ -315,29 +316,36 @@
         "price": null,
         "priceType": "individual",
         "realization": "S"
+      },
+      {
+        "id": "04.10",
+        "name": "Hmotnostní párování - 4 válce",
+        "scope": "Statické párování demontované sady pístů a ojnic; bez demontáže motoru, sestavení a dynamického vyvážení.",
+        "price": 3790,
+        "priceType": "from"
       }
-    ],
-    "note": "Rozsah stavby určíme po posouzení motoru. Obrábění, součástky, montáž, kalibrace a zkoušky se rozepisují v konkrétní nabídce."
+    ]
   },
   {
     "category": "ECU, TCU a měření",
     "description": "Software a kalibrace nejsou součástí běžné mechanické sazby, pokud to nabídka výslovně neuvádí.",
     "sourcePage": 8,
+    "note": "Rozsah a dostupnost úpravy potvrdíme podle konkrétní ECU nebo TCU. Měření a licence zahrnuté v balíčku znovu neúčtujeme samostatně. Výsledné parametry závisí na stavu a konfiguraci vozu.",
     "items": [
       {
         "id": "05.01",
         "name": "Identifikace ECU / TCU",
         "scope": "Zjištění typu, verze a možností legální práce s jednotkou.",
-        "price": 990,
+        "price": 1290,
         "priceType": "hourly",
         "realization": "S"
       },
       {
         "id": "05.02",
         "name": "Kalibrace sériového motoru",
-        "scope": "Někdy označována Stage 1; cíl a měření pro konkrétní vůz.",
-        "price": null,
-        "priceType": "individual",
+        "scope": "Podporovaný sériový motor: diagnostika, záloha, licence, software a válcové měření před/po. Nové či zamčené ECU individuálně.",
+        "price": 7900,
+        "priceType": "from",
         "realization": "S"
       },
       {
@@ -351,9 +359,9 @@
       {
         "id": "05.04",
         "name": "Kalibrace převodovky",
-        "scope": "Podle typu TCU a doložených limitů sestavy.",
-        "price": null,
-        "priceType": "individual",
+        "scope": "Samostatná úprava podporované DSG včetně potřebné licence a kontroly funkce; ostatní převodovky podle nabídky.",
+        "price": 4490,
+        "priceType": "from",
         "realization": "S"
       },
       {
@@ -376,7 +384,7 @@
         "id": "05.07",
         "name": "Záznam a rozbor dat",
         "scope": "Předem dohodnuté kanály a podmínky; zařízení zvlášť.",
-        "price": 990,
+        "price": 1290,
         "priceType": "hourly",
         "realization": "S"
       },
@@ -396,13 +404,13 @@
         "priceType": "individual",
         "realization": "S"
       }
-    ],
-    "note": "Výsledné parametry závisí na stavu a konfiguraci vozu. Rozsah kalibrace, měření a následné kontroly si domluvíme předem."
+    ]
   },
   {
     "category": "Přenos výkonu",
     "description": "Spojka, převodovka, diferenciál a uložení. Úpravy podle konfigurace celé pohonné soustavy.",
     "sourcePage": 9,
+    "note": "Cenu ovlivní přístup k dílům a konstrukce pohonu. Kapaliny, kalibrace a navazující práce uvedeme v nabídce samostatně.",
     "items": [
       {
         "id": "06.01",
@@ -476,13 +484,13 @@
         "priceType": "individual",
         "realization": "S"
       }
-    ],
-    "note": "Cenu ovlivní přístup k dílům a konstrukce pohonu. Kapaliny, kalibrace a navazující práce uvedeme v nabídce samostatně."
+    ]
   },
   {
     "category": "Podvozek a geometrie",
     "description": "Pružiny, tlumiče, stabilizátory a nastavení. Geometrie je samostatně uvedená služba.",
     "sourcePage": 10,
+    "note": "Geometrie není v ceně montáže pružin, tlumičů ani stavitelného podvozku. Rohové vážení s analýzou je součástí balíčku s nastavením a nepřičítá se podruhé. Provedení domluvíme podle vozidla a pracoviště.",
     "items": [
       {
         "id": "07.01",
@@ -496,7 +504,7 @@
         "id": "07.02",
         "name": "Sportovní tlumiče",
         "scope": "Pár na jedné nápravě; bez geometrie a dílů uložení.",
-        "price": 2490,
+        "price": 2990,
         "priceType": "from",
         "realization": "D"
       },
@@ -534,18 +542,18 @@
       },
       {
         "id": "07.07",
-        "name": "Geometrie náprav",
-        "scope": "Měření a seřízení s protokolem; pouze zajištěné pracoviště.",
-        "price": null,
-        "priceType": "individual",
+        "name": "Běžná geometrie obou náprav",
+        "scope": "Měření, seřízení běžného podvozku a protokol; bez oprav a uvolňování zatuhlých spojů.",
+        "price": 2290,
+        "priceType": "from",
         "realization": "S"
       },
       {
         "id": "07.08",
         "name": "Rohové vážení a nastavení",
-        "scope": "Práce s výškou a zatížením podle účelu; vhodné váhy.",
-        "price": null,
-        "priceType": "individual",
+        "scope": "Měření, analýza a nastavení zatížení kol u funkčního stavitelného podvozku; geometrie zvlášť.",
+        "price": 5490,
+        "priceType": "from",
         "realization": "S"
       },
       {
@@ -555,20 +563,34 @@
         "price": null,
         "priceType": "individual",
         "realization": "P"
+      },
+      {
+        "id": "07.10",
+        "name": "Sportovní geometrie obou náprav",
+        "scope": "Měření, individuální seřízení sportovního podvozku a protokol; opravy a zatuhlé spoje zvlášť.",
+        "price": 3290,
+        "priceType": "from"
+      },
+      {
+        "id": "07.11",
+        "name": "Rohové vážení a analýza",
+        "scope": "Zatížení jednotlivých kol, vyhodnocení a protokol; bez nastavování výšky a geometrie.",
+        "price": 2290,
+        "priceType": "from"
       }
-    ],
-    "note": "Geometrie není zahrnuta v ceně montáže pružin, tlumičů nebo stavitelného podvozku. Potřebné nastavení domluvíme podle vozidla."
+    ]
   },
   {
     "category": "Brzdy",
     "description": "Od výměny destiček po modelové brzdové sady. U každé položky najdete rozsah montáže a související práce.",
     "sourcePage": 11,
+    "note": "Ceny uvedené za jednu nápravu platí pro přední nebo zadní nápravu. Brzdovou kapalinu, odvzdušnění a další práce účtujeme podle popsaného rozsahu.",
     "items": [
       {
         "id": "08.01",
         "name": "Sportovní destičky",
         "scope": "Jedna náprava, odpovídající původnímu uchycení.",
-        "price": 990,
+        "price": 1290,
         "priceType": "from",
         "realization": "D"
       },
@@ -636,13 +658,13 @@
         "priceType": "individual",
         "realization": "P"
       }
-    ],
-    "note": "Ceny uvedené za jednu nápravu platí pro přední nebo zadní nápravu. Brzdovou kapalinu, odvzdušnění a další práce účtujeme podle popsaného rozsahu."
+    ]
   },
   {
     "category": "Kola, pneumatiky a fitment",
     "description": "Ráfky, obutí a usazení kol. Fitment zde znamená ověření rozměrů a vůlí, ne pouze vzhledu.",
     "sourcePage": 12,
+    "note": "Kompletní přezutí běžných kol zahrnuje běžný montážní materiál; TPMS a zvláštní konstrukce nikoli. K přezutí nepřičítáme znovu montáž kompletních kol. Ostatní materiál a likvidaci pneumatik naceníme zvlášť.",
     "items": [
       {
         "id": "09.01",
@@ -654,23 +676,44 @@
       },
       {
         "id": "09.02",
-        "name": "Přezutí a vyvážení do 17″",
-        "scope": "Čtyři běžná kola; včetně sejmutí a nasazení na vůz.",
-        "price": 1290,
+        "name": "Přezutí a vyvážení do 16″",
+        "scope": "Čtyři běžná kola: sejmutí, přezutí, vyvážení, nasazení a běžný materiál; bez TPMS a zvláštních konstrukcí.",
+        "price": 1190,
         "priceType": "from",
         "realization": "D"
       },
       {
+        "id": "09.10",
+        "name": "Přezutí a vyvážení 17″",
+        "scope": "Čtyři běžná kola, sejmutí a nasazení, přezutí, vyvážení a běžný materiál; bez TPMS a run-flat.",
+        "price": 1390,
+        "priceType": "from"
+      },
+      {
         "id": "09.03",
-        "name": "Přezutí a vyvážení 18–19″",
-        "scope": "Čtyři běžná kola; zvláštní konstrukce individuálně.",
+        "name": "Přezutí a vyvážení 18″",
+        "scope": "Čtyři běžná kola: sejmutí, přezutí, vyvážení, nasazení a běžný materiál; bez TPMS a run-flat.",
         "price": 1690,
         "priceType": "from",
         "realization": "D"
       },
       {
+        "id": "09.11",
+        "name": "Přezutí a vyvážení 19″",
+        "scope": "Čtyři běžná kola, sejmutí a nasazení, přezutí, vyvážení a běžný materiál; bez TPMS a run-flat.",
+        "price": 1890,
+        "priceType": "from"
+      },
+      {
+        "id": "09.12",
+        "name": "Přezutí a vyvážení 20″",
+        "scope": "Čtyři běžná kola, sejmutí a nasazení, přezutí, vyvážení a běžný materiál; bez TPMS a run-flat.",
+        "price": 2290,
+        "priceType": "from"
+      },
+      {
         "id": "09.04",
-        "name": "20″+, run-flat nebo speciál",
+        "name": "21″+, run-flat nebo speciál",
         "scope": "Pouze při vhodném stroji a postupu pro konkrétní kolo.",
         "price": null,
         "priceType": "individual",
@@ -716,13 +759,13 @@
         "priceType": "individual",
         "realization": "S"
       }
-    ],
-    "note": "Ventily, snímače, závaží a likvidaci pneumatik kalkulujeme zvlášť, pokud nejsou výslovně zahrnuté. K úplnému přezutí nepřičítáme znovu montáž kompletních kol."
+    ]
   },
   {
     "category": "Karoserie, vzhled a světla",
     "description": "Vnější doplňky, povrchy a osvětlení. Každá položka platí pro popsaný rozsah, ne pro kompletní přestavbu.",
     "sourcePage": 13,
+    "note": "U bodykitu domluvíme dopasování, přípravu, lakování a montáž jako jednotlivé části zakázky. Vhodnost světel, fólií a doplňků ověříme pro konkrétní vůz.",
     "items": [
       {
         "id": "10.01",
@@ -804,13 +847,13 @@
         "priceType": "individual",
         "realization": "S"
       }
-    ],
-    "note": "U bodykitu domluvíme dopasování, přípravu, lakování a montáž jako jednotlivé části zakázky. Vhodnost světel, fólií a doplňků ověříme pro konkrétní vůz."
+    ]
   },
   {
     "category": "Interiér a elektronika",
     "description": "Ergonomie, multimédia, přístroje a 12V instalace. Bez skrytého zásahu do bezpečnostních systémů.",
     "sourcePage": 14,
+    "note": "Nabídka nezahrnuje vypínání airbagů, ABS ani ESC. Běžná montáž 12V příslušenství nezahrnuje zásahy do vysokonapěťové části hybridů a elektromobilů.",
     "items": [
       {
         "id": "11.01",
@@ -887,18 +930,18 @@
       {
         "id": "11.10",
         "name": "Zakázková 12V elektroinstalace",
-        "scope": "Jištění, vedení, dokumentace a ověření podle projektu.",
-        "price": null,
-        "priceType": "individual",
+        "scope": "Práce podle odsouhlaseného rozpočtu hodin; díly a materiál zvlášť. Cena za hodinu, nikoli za celou zakázku.",
+        "price": 1490,
+        "priceType": "hourly",
         "realization": "P"
       }
-    ],
-    "note": "Nabídka nezahrnuje vypínání airbagů, ABS ani ESC. Běžná montáž 12V příslušenství nezahrnuje zásahy do vysokonapěťové části hybridů a elektromobilů."
+    ]
   },
   {
     "category": "Kompletní stavby a motorsport",
     "description": "Náročnější programy až po potvrzení konstrukce, vybavení, zkušebního plánu a dodavatelů.",
     "sourcePage": 15,
+    "note": "Předem domluvíme účel vozidla, technické zadání a plán ověření. Sportovní projekt posuzujeme odděleně od úprav pro silniční provoz.",
     "items": [
       {
         "id": "12.01",
@@ -964,7 +1007,6 @@
         "priceType": "individual",
         "realization": "S"
       }
-    ],
-    "note": "Předem domluvíme účel vozidla, technické zadání a plán ověření. Sportovní projekt posuzujeme odděleně od úprav pro silniční provoz."
+    ]
   }
 ]
