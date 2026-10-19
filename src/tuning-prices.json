@@ -5,14 +5,6 @@
     "sourcePage": 4,
     "items": [
       {
-        "id": "01.01",
-        "name": "Úvodní telefonická domluva",
-        "scope": "Do 10 minut; auto, představa a další postup.",
-        "price": 0,
-        "priceType": "free",
-        "realization": "D"
-      },
-      {
         "id": "01.02",
         "name": "Vstupní prohlídka",
         "scope": "Domluvené části vozidla, nejvýše 60 minut.",
