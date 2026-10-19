@@ -31,7 +31,7 @@ export function WorkshopLocation() {
 export function WorkshopDocuments() {
  return <section id="reklamace" className="workshop-section workshop-documents" aria-labelledby="documents-title">
    <p className="portal-eyebrow">DOKUMENTY KE STAŽENÍ</p><h2 id="documents-title">Podmínky a reklamace.</h2>
-   <div id="obchodni-podminky" className="workshop-document"><h3>Obchodní podmínky autoservisu</h3><p>Kompletní dokument včetně pravidel zakázek, cen, reklamací a bonusové péče o vozidlo.</p><p className="workshop-document-note">Pracovní návrh k doplnění: údaje provozovatele, IČO, datum účinnosti a informace o zpracování osobních údajů.</p><a className="gateway-button outline" href="/dokumenty/obchodni-podminky-autoservis.docx" download>Stáhnout obchodní podmínky — návrh <span>DOCX ↓</span></a></div>
+   <div id="obchodni-podminky" className="workshop-document"><h3>Obchodní podmínky autoservisu</h3><p>Kompletní dokument včetně pravidel zakázek, cen, reklamací a bonusové péče o vozidlo.</p><p className="workshop-document-note">Aktualizovaný pracovní návrh s údaji provozovatele. Zbývá doplnit datum účinnosti, informace o zpracování osobních údajů a dokončit právní kontrolu.</p><a className="gateway-button outline" href="/dokumenty/obchodni-podminky-autoservis.docx" download>Stáhnout obchodní podmínky — návrh <span>DOCX ↓</span></a></div>
    <div className="workshop-document"><h3>Protokol o přijetí reklamace</h3><p>Formulář pro zaznamenání reklamované vady, údajů o vozidle a požadovaného způsobu vyřízení.</p><a className="gateway-button outline" href="/dokumenty/protokol-prijeti-reklamace.docx" download>Stáhnout reklamační protokol <span>DOCX ↓</span></a></div>
  </section>;
 }

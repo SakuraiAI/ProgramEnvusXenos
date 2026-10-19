@@ -1,7 +1,978 @@
 [
   {
-    "name": "Tuning a individuální úpravy",
-    "price": null,
-    "onRequest": true
+    "category": "Diagnostika a příprava",
+    "description": "Nejdřív stav vozidla, účel a rozpočet. Teprve potom konkrétní úprava.",
+    "sourcePage": 4,
+    "items": [
+      {
+        "id": "01.01",
+        "name": "Úvodní telefonická domluva",
+        "scope": "Do 10 minut; auto, představa a další postup.",
+        "price": 0,
+        "priceType": "free",
+        "realization": "D"
+      },
+      {
+        "id": "01.02",
+        "name": "Vstupní prohlídka",
+        "scope": "Domluvené části vozidla, nejvýše 60 minut.",
+        "price": 990,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "01.03",
+        "name": "Základní diagnostika",
+        "scope": "Načtení závad a stručný přehled; bez hledání příčiny.",
+        "price": 590,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "01.04",
+        "name": "Rozšířená diagnostika",
+        "scope": "Provozní data, měření a hledání příčiny podle zadání.",
+        "price": 990,
+        "priceType": "hourly",
+        "realization": "D"
+      },
+      {
+        "id": "01.05",
+        "name": "Měření komprese",
+        "scope": "Podle motoru, přístupu ke válcům a měřicího postupu.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "01.06",
+        "name": "Zkouška těsnosti válců",
+        "scope": "Samostatné měření; příprava motoru podle typu.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "01.07",
+        "name": "Kontrola těsnosti sání",
+        "scope": "Jeden okruh; vhodné zkušební vybavení, bez oprav.",
+        "price": 990,
+        "priceType": "from",
+        "realization": "S"
+      },
+      {
+        "id": "01.08",
+        "name": "Technický návrh úpravy",
+        "scope": "Seznam dílů, návazností a omezení pro konkrétní vůz.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "01.09",
+        "name": "Výchozí měření výkonu",
+        "scope": "Podmínky měření a protokol; válcová zkušebna zvlášť.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      }
+    ],
+    "note": "Základní diagnostika nezahrnuje hledání příčiny závady ani měření výkonu. Rozšířená diagnostika se účtuje podle dohodnutého času."
+  },
+  {
+    "category": "Motor, sání a chlazení",
+    "description": "Úpravy souvisejících systémů benzínových a naftových motorů podle konkrétního technického řešení.",
+    "sourcePage": 5,
+    "items": [
+      {
+        "id": "02.01",
+        "name": "Sportovní vložka filtru",
+        "scope": "Vložka do původního airboxu; 1 snadno přístupný filtr.",
+        "price": 390,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "02.02",
+        "name": "Sportovní sání",
+        "scope": "Modelová sada; montáž a kontrola upevnění, bez ECU.",
+        "price": 1490,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "02.03",
+        "name": "Tlakové potrubí sání",
+        "scope": "Hotová sada, bez výroby vedení a svařování.",
+        "price": 1490,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "02.04",
+        "name": "Intercooler",
+        "scope": "Modelová sada, běžná demontáž nárazníku; bez výroby.",
+        "price": 2490,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "02.05",
+        "name": "Výkonnější chladič vody",
+        "scope": "Vhodný přímý náhradní díl; kapalina zvlášť.",
+        "price": 2490,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "02.06",
+        "name": "Olejový chladič",
+        "scope": "Modelová sada s termostatem a vedením; olej zvlášť.",
+        "price": 2990,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "02.07",
+        "name": "Palivové čerpadlo",
+        "scope": "Konkrétní díl a příslušenství; kontrola kompatibility.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "02.08",
+        "name": "Vstřikovače / palivová lišta",
+        "scope": "Montáž vybrané sestavy; kódování a ladění zvlášť.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "02.09",
+        "name": "Odvětrání klikové skříně",
+        "scope": "Uzavřený systém navržený pro daný motor.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "02.10",
+        "name": "Zapalování a snímače",
+        "scope": "Kompatibilní svíčky, cívky nebo senzory podle návrhu.",
+        "price": 990,
+        "priceType": "hourly",
+        "realization": "D"
+      }
+    ],
+    "note": "Měření, kalibrace, kapaliny a navazující díly se kalkulují zvlášť. Samotná montáž filtru či chladiče nemá stanovený univerzální přírůstek výkonu."
+  },
+  {
+    "category": "Turbo a výfuk",
+    "description": "Přeplňování, svody a výfuk jako propojený celek. Nejen výměna jednoho komponentu.",
+    "sourcePage": 6,
+    "items": [
+      {
+        "id": "03.01",
+        "name": "Výkonnější / hybridní turbo",
+        "scope": "Mechanická instalace; olejové a vodní vedení dle stavu.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "03.02",
+        "name": "Kompresorová sada",
+        "scope": "Modelová zástavba včetně souvisejícího příslušenství.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "03.03",
+        "name": "Přestavba na přeplňování",
+        "scope": "Návrh, zástavba, palivo, chlazení a kalibrace.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "03.04",
+        "name": "Změna konfigurace turba",
+        "scope": "Single / twin řešení, svody a vedení podle projektu.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "03.05",
+        "name": "Řízení plnicího tlaku",
+        "scope": "Kompatibilní ventil, wastegate nebo řízení; s ověřením.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "03.06",
+        "name": "Zadní díl výfuku",
+        "scope": "Hotový šroubovaný díl; bez řezání a svařování.",
+        "price": 1490,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "03.07",
+        "name": "Výfuk od katalyzátoru",
+        "scope": "Hotová cat-back sada, bez výroby a změny emisních prvků.",
+        "price": 2490,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "03.08",
+        "name": "Svody / přední díl výfuku",
+        "scope": "Modelová sestava při zachování požadovaných emisních funkcí.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "03.09",
+        "name": "Zakázkový výfuk / klapky",
+        "scope": "Návrh, materiál, výroba a ověření použití pro konkrétní vůz.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      }
+    ],
+    "note": "Kalibraci a ověření výsledku kalkulujeme zvlášť. Nabídka pro silniční vozidla nezahrnuje odstraňování ani vypínání emisních systémů."
+  },
+  {
+    "category": "Stavby motorů a swapy",
+    "description": "Vnitřní úpravy motoru, přesné měření a stavby na zakázku. Bez univerzální ceny za neznámý motor.",
+    "sourcePage": 7,
+    "items": [
+      {
+        "id": "04.01",
+        "name": "Vačky a ventilový rozvod",
+        "scope": "Kompatibilní sestava, časování a kontrola návazností.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "04.02",
+        "name": "Úpravy hlavy válců",
+        "scope": "Kanály, sedla a ventily podle dokumentovaného zadání.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "04.03",
+        "name": "Kované písty a ojnice",
+        "scope": "Rozebrání, proměření, obrábění podle potřeby a sestavení.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "04.04",
+        "name": "Klikový mechanismus",
+        "scope": "Kontrola sestavy a specializované vyvážení.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "04.05",
+        "name": "Změna zdvihu / objemu",
+        "scope": "Posouzení bloku, geometrie motoru a vhodnosti dílů.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "04.06",
+        "name": "Mazání pro vyšší zatížení",
+        "scope": "Vana, přepážky nebo jiné navržené řešení; zkoušky zvlášť.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "04.07",
+        "name": "Kompletní výkonový motor",
+        "scope": "Specifikace, rozpočet, stavba, měření a plán záběhu.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "04.08",
+        "name": "Engine swap",
+        "scope": "Motor, převodovka, uložení, elektroinstalace a chlazení.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "04.09",
+        "name": "Repase před tuningem",
+        "scope": "Oprava závad jako samostatná zakázka, ne výkonový příplatek.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      }
+    ],
+    "note": "Rozsah stavby určíme po posouzení motoru. Obrábění, součástky, montáž, kalibrace a zkoušky se rozepisují v konkrétní nabídce."
+  },
+  {
+    "category": "ECU, TCU a měření",
+    "description": "Software a kalibrace nejsou součástí běžné mechanické sazby, pokud to nabídka výslovně neuvádí.",
+    "sourcePage": 8,
+    "items": [
+      {
+        "id": "05.01",
+        "name": "Identifikace ECU / TCU",
+        "scope": "Zjištění typu, verze a možností legální práce s jednotkou.",
+        "price": 990,
+        "priceType": "hourly",
+        "realization": "S"
+      },
+      {
+        "id": "05.02",
+        "name": "Kalibrace sériového motoru",
+        "scope": "Někdy označována Stage 1; cíl a měření pro konkrétní vůz.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "05.03",
+        "name": "Kalibrace upravené sestavy",
+        "scope": "Sání, turbo, palivo a další skutečně osazené díly.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "05.04",
+        "name": "Kalibrace převodovky",
+        "scope": "Podle typu TCU a doložených limitů sestavy.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "05.05",
+        "name": "Samostatná ECU",
+        "scope": "Řídicí jednotka, svazek, senzory a integrace do vozu.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "05.06",
+        "name": "Záloha / obnova konfigurace",
+        "scope": "V rámci technicky podporovaného a oprávněného postupu.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "05.07",
+        "name": "Záznam a rozbor dat",
+        "scope": "Předem dohodnuté kanály a podmínky; zařízení zvlášť.",
+        "price": 990,
+        "priceType": "hourly",
+        "realization": "S"
+      },
+      {
+        "id": "05.08",
+        "name": "Měření před a po úpravě",
+        "scope": "Srovnatelné podmínky a výstupní protokol.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "05.09",
+        "name": "Následné ověření kalibrace",
+        "scope": "Při domluvené konfiguraci a palivu, podle zkušebního plánu.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      }
+    ],
+    "note": "Výsledné parametry závisí na stavu a konfiguraci vozu. Rozsah kalibrace, měření a následné kontroly si domluvíme předem."
+  },
+  {
+    "category": "Přenos výkonu",
+    "description": "Spojka, převodovka, diferenciál a uložení. Úpravy podle konfigurace celé pohonné soustavy.",
+    "sourcePage": 9,
+    "items": [
+      {
+        "id": "06.01",
+        "name": "Zesílená spojka",
+        "scope": "Montáž kompatibilní sady; cena podle přístupu a převodovky.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "D"
+      },
+      {
+        "id": "06.02",
+        "name": "Spojka se setrvačníkem",
+        "scope": "Kompletní vhodná sestava, kontrola příslušenství.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "D"
+      },
+      {
+        "id": "06.03",
+        "name": "Zkrácené řazení",
+        "scope": "Modelově určený short-shifter kit, bez úprav karoserie.",
+        "price": 1490,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "06.04",
+        "name": "Uložení motoru / převodovky",
+        "scope": "Kompatibilní díl nebo sada; zohlednit účel a komfort.",
+        "price": 990,
+        "priceType": "hourly",
+        "realization": "D"
+      },
+      {
+        "id": "06.05",
+        "name": "Samosvorný diferenciál",
+        "scope": "Montáž a potřebné měření nebo nastavení sestavy.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "06.06",
+        "name": "Změna převodů / finálu",
+        "scope": "Převody, ložiska a návaznosti podle projektu.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "06.07",
+        "name": "Úprava převodovky",
+        "scope": "Díly a opracování pro konkrétní technické zadání.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "06.08",
+        "name": "Poloosy / kardan",
+        "scope": "Kompatibilní díly; zakázková výroba a vyvážení zvlášť.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "06.09",
+        "name": "Chlazení převodovky",
+        "scope": "Navržená sada, vedení, teplotní kontrola a olej zvlášť.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      }
+    ],
+    "note": "Cenu ovlivní přístup k dílům a konstrukce pohonu. Kapaliny, kalibrace a navazující práce uvedeme v nabídce samostatně."
+  },
+  {
+    "category": "Podvozek a geometrie",
+    "description": "Pružiny, tlumiče, stabilizátory a nastavení. Geometrie je samostatně uvedená služba.",
+    "sourcePage": 10,
+    "items": [
+      {
+        "id": "07.01",
+        "name": "Sportovní pružiny",
+        "scope": "Sada na celé vozidlo; bez geometrie a opravy uložení.",
+        "price": 3990,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "07.02",
+        "name": "Sportovní tlumiče",
+        "scope": "Pár na jedné nápravě; bez geometrie a dílů uložení.",
+        "price": 2490,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "07.03",
+        "name": "Stavitelný podvozek",
+        "scope": "Celá sada, základní nastavení výšky; geometrie zvlášť.",
+        "price": 4990,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "07.04",
+        "name": "Úprava výšky / tlumení",
+        "scope": "Již instalovaný funkční podvozek, podle zadání.",
+        "price": 990,
+        "priceType": "hourly",
+        "realization": "D"
+      },
+      {
+        "id": "07.05",
+        "name": "Stabilizátory a vzpěry",
+        "scope": "Modelová sada; standardní montáž bez výroby.",
+        "price": 1490,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "07.06",
+        "name": "Silentbloky / nastavitelná ramena",
+        "scope": "Podle lisování, přístupu a počtu prvků; geometrie zvlášť.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "07.07",
+        "name": "Geometrie náprav",
+        "scope": "Měření a seřízení s protokolem; pouze zajištěné pracoviště.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "07.08",
+        "name": "Rohové vážení a nastavení",
+        "scope": "Práce s výškou a zatížením podle účelu; vhodné váhy.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "07.09",
+        "name": "Vzduchový podvozek",
+        "scope": "Kompletní zástavba, vedení a řízení jako projekt.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      }
+    ],
+    "note": "Geometrie není zahrnuta v ceně montáže pružin, tlumičů nebo stavitelného podvozku. Potřebné nastavení domluvíme podle vozidla."
+  },
+  {
+    "category": "Brzdy",
+    "description": "Od výměny destiček po modelové brzdové sady. U každé položky najdete rozsah montáže a související práce.",
+    "sourcePage": 11,
+    "items": [
+      {
+        "id": "08.01",
+        "name": "Sportovní destičky",
+        "scope": "Jedna náprava, odpovídající původnímu uchycení.",
+        "price": 990,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "08.02",
+        "name": "Kotouče a destičky",
+        "scope": "Jedna náprava; původní rozměr a uchycení.",
+        "price": 1500,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "08.03",
+        "name": "Vhodná brzdová kapalina",
+        "scope": "Výměna a odvzdušnění; kapalina a zvláštní úkony mimo cenu.",
+        "price": 990,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "08.04",
+        "name": "Opletené brzdové hadice",
+        "scope": "Modelová sada; kapalina a odvzdušnění zvlášť.",
+        "price": 1490,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "08.05",
+        "name": "Velká brzdová sada",
+        "scope": "Modelový big-brake kit na jednu nápravu, kontrola kol.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "08.06",
+        "name": "Chlazení brzd",
+        "scope": "Modelová sada vzduchových přívodů, bez zakázkové výroby.",
+        "price": 1990,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "08.07",
+        "name": "Repase třmenů",
+        "scope": "Rozsah podle stavu; měření a díly samostatně.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "08.08",
+        "name": "Vzhledová úprava třmenů",
+        "scope": "Odborné povrchové zpracování; nerozšiřuje jejich výkon.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "08.09",
+        "name": "Kompletní brzdový projekt",
+        "scope": "Kompatibilita, vyváženost systému a plán zkoušek.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      }
+    ],
+    "note": "Ceny uvedené za jednu nápravu platí pro přední nebo zadní nápravu. Brzdovou kapalinu, odvzdušnění a další práce účtujeme podle popsaného rozsahu."
+  },
+  {
+    "category": "Kola, pneumatiky a fitment",
+    "description": "Ráfky, obutí a usazení kol. Fitment zde znamená ověření rozměrů a vůlí, ne pouze vzhledu.",
+    "sourcePage": 12,
+    "items": [
+      {
+        "id": "09.01",
+        "name": "Montáž kompletních kol",
+        "scope": "Čtyři již obutá kola; bez přezutí a vyvážení.",
+        "price": 590,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "09.02",
+        "name": "Přezutí a vyvážení do 17″",
+        "scope": "Čtyři běžná kola; včetně sejmutí a nasazení na vůz.",
+        "price": 1290,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "09.03",
+        "name": "Přezutí a vyvážení 18–19″",
+        "scope": "Čtyři běžná kola; zvláštní konstrukce individuálně.",
+        "price": 1690,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "09.04",
+        "name": "20″+, run-flat nebo speciál",
+        "scope": "Pouze při vhodném stroji a postupu pro konkrétní kolo.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "09.05",
+        "name": "Vyvážení samostatného kola",
+        "scope": "Jedno sejmuté kolo; závaží podle spotřeby zvlášť.",
+        "price": 190,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "09.06",
+        "name": "TPMS snímač",
+        "scope": "Jeden kus; programování a práce s pneumatikou zvlášť.",
+        "price": 390,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "09.07",
+        "name": "Podložky / upevňovací sada",
+        "scope": "Kompatibilní sada na jednu nápravu; doklady zvlášť.",
+        "price": 590,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "09.08",
+        "name": "Kontrola fitmentu",
+        "scope": "Rozměry, ET, uchycení a prostor pro konkrétní kombinaci.",
+        "price": 990,
+        "priceType": "hourly",
+        "realization": "D"
+      },
+      {
+        "id": "09.09",
+        "name": "Renovace povrchu ráfků",
+        "scope": "Kontrola stavu a povrchová úprava; bez slibu opravy prasklin.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      }
+    ],
+    "note": "Ventily, snímače, závaží a likvidaci pneumatik kalkulujeme zvlášť, pokud nejsou výslovně zahrnuté. K úplnému přezutí nepřičítáme znovu montáž kompletních kol."
+  },
+  {
+    "category": "Karoserie, vzhled a světla",
+    "description": "Vnější doplňky, povrchy a osvětlení. Každá položka platí pro popsaný rozsah, ne pro kompletní přestavbu.",
+    "sourcePage": 13,
+    "items": [
+      {
+        "id": "10.01",
+        "name": "Spoiler / přední lízátko",
+        "scope": "Jeden modelový díl; bez lakování a úprav karoserie.",
+        "price": 1490,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "10.02",
+        "name": "Difuzor / boční nástavce",
+        "scope": "Modelově určený díl nebo pár; bez výroby a lakování.",
+        "price": 1990,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "10.03",
+        "name": "Kompletní bodykit",
+        "scope": "Zkouška usazení a montáž; příprava povrchu zvlášť.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "10.04",
+        "name": "Rozšíření karoserie",
+        "scope": "Widebody, lemy a návaznosti kol jako celek.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "10.05",
+        "name": "Lakování / oprava povrchu",
+        "scope": "Podle rozsahu, materiálu, stavu a demontáže.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "10.06",
+        "name": "Barevný polep / grafika",
+        "scope": "Materiál, příprava a přesný rozsah ploch v nabídce.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "10.07",
+        "name": "Ochranná fólie PPF",
+        "scope": "Vymezené plochy, materiál a příprava zvlášť.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "10.08",
+        "name": "Fólie na skla",
+        "scope": "Předem ověřit přípustné provedení a dokumentaci.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "10.09",
+        "name": "Světla / modelové doplňky",
+        "scope": "Kompatibilní a pro dané použití přípustná sestava.",
+        "price": 990,
+        "priceType": "hourly",
+        "realization": "D"
+      },
+      {
+        "id": "10.10",
+        "name": "Ochrana a dokončení povrchu",
+        "scope": "Leštění nebo keramická ochrana podle stavu a plochy.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      }
+    ],
+    "note": "U bodykitu domluvíme dopasování, přípravu, lakování a montáž jako jednotlivé části zakázky. Vhodnost světel, fólií a doplňků ověříme pro konkrétní vůz."
+  },
+  {
+    "category": "Interiér a elektronika",
+    "description": "Ergonomie, multimédia, přístroje a 12V instalace. Bez skrytého zásahu do bezpečnostních systémů.",
+    "sourcePage": 14,
+    "items": [
+      {
+        "id": "11.01",
+        "name": "Hlavice řazení / drobné doplňky",
+        "scope": "Jeden přímo kompatibilní díl, bez zakázkové úpravy.",
+        "price": 390,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "11.02",
+        "name": "Volant / přečalounění",
+        "scope": "Vhodné provedení se zachováním požadovaných funkcí.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "11.03",
+        "name": "Sedadla a konzoly",
+        "scope": "Posouzení uchycení, pásů, senzorů a návazných systémů.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "11.04",
+        "name": "Čalounění a obložení",
+        "scope": "Materiály a rozsah dílů podle návrhu interiéru.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "11.05",
+        "name": "Multimediální jednotka",
+        "scope": "Modelová jednotka; rámeček, adaptéry a kódování zvlášť.",
+        "price": 1990,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "11.06",
+        "name": "Reproduktory / zesilovač",
+        "scope": "Kabeláž, napájení a akustické zadání pro konkrétní vůz.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "11.07",
+        "name": "Palubní kamera",
+        "scope": "Jedna přední kamera, standardní skryté 12V napájení.",
+        "price": 1490,
+        "priceType": "from",
+        "realization": "D"
+      },
+      {
+        "id": "11.08",
+        "name": "Ambientní osvětlení interiéru",
+        "scope": "Podle počtu zón, materiálu a potřebné demontáže.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "D"
+      },
+      {
+        "id": "11.09",
+        "name": "Budíky a datový displej",
+        "scope": "Kompatibilní snímače / CAN, kalibrace a kabeláž zvlášť.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "11.10",
+        "name": "Zakázková 12V elektroinstalace",
+        "scope": "Jištění, vedení, dokumentace a ověření podle projektu.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      }
+    ],
+    "note": "Nabídka nezahrnuje vypínání airbagů, ABS ani ESC. Běžná montáž 12V příslušenství nezahrnuje zásahy do vysokonapěťové části hybridů a elektromobilů."
+  },
+  {
+    "category": "Kompletní stavby a motorsport",
+    "description": "Náročnější programy až po potvrzení konstrukce, vybavení, zkušebního plánu a dodavatelů.",
+    "sourcePage": 15,
+    "items": [
+      {
+        "id": "12.01",
+        "name": "Silniční performance stavba",
+        "scope": "Motor, pohon, podvozek, brzdy a vzhled v jednom zadání.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "12.02",
+        "name": "Okruhová příprava",
+        "scope": "Teploty, brzdy, podvozek a údržba podle zamýšlených jízd.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "12.03",
+        "name": "Příprava pro disciplínu",
+        "scope": "Drag, drift nebo jiný sport; jen uzavřený areál / soutěž.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "12.04",
+        "name": "Ochranný rám / sportovní pásy",
+        "scope": "Projekt podle pravidel akce a celého bezpečnostního řešení.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "12.05",
+        "name": "Hašení a sportovní výbava",
+        "scope": "Výběr, instalace a dokumentace určené konkrétnímu použití.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      },
+      {
+        "id": "12.06",
+        "name": "Restomod / individuální přestavba",
+        "scope": "Kombinace renovace a nového technického řešení.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "12.07",
+        "name": "Zakázkový díl PGEX",
+        "scope": "Vlastní návrh, dokumentace, prototyp, zkoušky a výroba.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "P"
+      },
+      {
+        "id": "12.08",
+        "name": "Zkušební den / ověření",
+        "scope": "Místo, doprava, měření a vyhodnocení jako samostatný blok.",
+        "price": null,
+        "priceType": "individual",
+        "realization": "S"
+      }
+    ],
+    "note": "Předem domluvíme účel vozidla, technické zadání a plán ověření. Sportovní projekt posuzujeme odděleně od úprav pro silniční provoz."
   }
 ]
