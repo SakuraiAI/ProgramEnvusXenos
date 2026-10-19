@@ -628,5 +628,15 @@
         "onRequest": false
       }
     ]
+  },
+  {
+    "category": "Tuning",
+    "items": [
+      {
+        "name": "Tuning a individuální úpravy",
+        "price": null,
+        "onRequest": true
+      }
+    ]
   }
 ]

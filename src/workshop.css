@@ -27,3 +27,6 @@
 .workshop-price-groups .workshop-price-list dt{min-width:0;overflow-wrap:anywhere;flex:1}
 .workshop-price-groups .workshop-price-list dd{flex-shrink:0}
 @media(max-width:600px){.workshop-price-groups .workshop-price-list>div{flex-wrap:nowrap;gap:12px}.workshop-price-groups .workshop-price-list dt{font-size:14px}}
+
+.workshop-services .workshop-service-help{grid-column:1 / -1;flex-direction:row;align-items:center;gap:24px}.workshop-service-help h3{margin:0 0 8px}.workshop-service-help p{margin:0}.workshop-service-help a{flex-shrink:0;margin:0;padding:10px 0}
+@media(max-width:600px){.workshop-services .workshop-service-help{flex-direction:column;align-items:flex-start;gap:12px}}
