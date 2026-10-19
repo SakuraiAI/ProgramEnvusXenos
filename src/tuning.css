@@ -69,3 +69,6 @@
 .tuning-price-factors .tuning-specialist-rates dt{min-width:0;margin:0;font-size:13px;line-height:1.6}
 .tuning-price-factors .tuning-specialist-rates dd{flex-shrink:0;white-space:nowrap;color:#e0bc78;font-size:13px}
 .tuning-rate-note{font-size:12px;line-height:1.8;color:#bcbcb2;margin:0 0 30px}
+
+.tuning-price-amount{white-space:nowrap}
+.tuning-price-unit{display:block;margin-top:5px;color:#bcbcb2;font-size:11px;line-height:1.6}

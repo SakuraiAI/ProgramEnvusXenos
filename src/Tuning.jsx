@@ -2,16 +2,14 @@ import "./workshop.css";
 import "./tuning.css";
 import prices from "./tuning-prices.json";
 import rates from "./tuning-rates.json";
+import pricingPolicy from "./tuning-pricing-policy.json";
 
 const [mechanicalRate, ...specialistRates] = rates;
 
 const inquiryHref = `/poptavka?sluzba=${encodeURIComponent("Tuning a individuální úpravy")}`;
 const formatPrice = new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 2 });
 function priceLabel(item) {
-  if (item.priceType === "free") return "Zdarma";
-  if (item.priceType === "individual") return "Individuálně";
-  const amount = `${formatPrice.format(item.price)} Kč`;
-  return item.priceType === "hourly" ? `${amount}/h` : `od ${amount}`;
+  return `${formatPrice.format(item.price)} Kč`;
 }
 const steps = [
   ["Představa a auto", "Napište, jaké auto máte a co na něm chcete změnit. Pomůže také motorizace, rok výroby a představa o rozpočtu."],
@@ -23,7 +21,8 @@ const questions = [
   ["Co mám napsat do poptávky?", "Uveďte značku, model, rok výroby a motorizaci. Popište požadovanou změnu a výsledek, kterého chcete dosáhnout. Pokud už máte vybrané díly, přidejte jejich název nebo označení."],
   ["Můžu se ozvat, i když ještě nemám vybrané díly?", "Ano. Začněte popisem svého záměru. Konkrétní díly a další postup probereme podle vašeho auta a požadovaného rozsahu úpravy."],
   ["Můžu přivézt vlastní díly?", "Domluvte se s námi předem a pošlete označení dílů. Možnost jejich použití a montáže potvrdíme až podle konkrétního vozidla a domluvené práce."],
-  ["Co znamená cena „od“ a individuální kalkulace?", "Cena „od“ platí pro popsaný rozsah na kompatibilním voze při běžném přístupu a funkčních spojích. U složitějších úprav sestavíme individuální nabídku. Díly, materiál, kalibrace a další nezahrnuté práce rozepíšeme zvlášť; konečnou cenu si odsouhlasíme předem."],
+  ["Co zahrnuje pevná cena?", `${pricingPolicy.scope} ${pricingPolicy.extras}`],
+  ["Co znamená cena za pracovní blok?", "Je to pevná částka za uvedený počet hodin práce na dohodnuté etapě. U swapu nebo restomodu tedy nejde o cenu celé dokončené přestavby. Před objednáním si vymezíme konkrétní práci; další blok navazuje jen s vaším souhlasem."],
 ];
 
 export default function Tuning() {
@@ -58,24 +57,25 @@ export default function Tuning() {
     <section id="cenik" className="workshop-section tuning-pricing" aria-labelledby="tuning-pricing-title">
       <div>
         <p className="portal-eyebrow">SAMOSTATNÝ CENÍK</p>
-        <h2 id="tuning-pricing-title">Ceník tuningu.</h2>
-        <p className="tuning-copy">Výkonové a vzhledové úpravy, sportovní podvozky a zakázkové stavby. Rozbalte oblast, která vás zajímá, a prohlédněte si cenu i přesný rozsah úpravy. Díly a další náklady uvedeme v nabídce zvlášť, pokud už nejsou zahrnuté v položce.</p>
+        <h2 id="tuning-pricing-title">Pevné ceny práce.</h2>
+        <p className="tuning-copy">{pricingPolicy.lead}</p>
         <div className="tuning-price-groups">
           {prices.map(group => <details key={group.category}>
             <summary><span>{group.category}</span><span className="tuning-category-count" aria-hidden="true">{group.items.length} {group.items.length === 1 ? "položka" : group.items.length < 5 ? "položky" : "položek"}</span></summary>
             <p className="tuning-category-description">{group.description}</p>
             <table className="tuning-price-table">
               <caption className="workshop-sr-only">{group.category} — ceny služeb a rozsah</caption>
-              <thead><tr><th scope="col">Služba a rozsah</th><th scope="col">Cena</th></tr></thead>
-              <tbody>{group.items.map(item => <tr key={item.id} data-price-id={item.id}>
+              <thead><tr><th scope="col">Služba a rozsah</th><th scope="col">Cena práce</th></tr></thead>
+              <tbody>{group.items.map(item => <tr key={item.id} data-price-id={item.id} data-price-kind={item.pricingKind}>
                 <th scope="row">{item.name}<span className="tuning-item-scope">{item.scope}</span></th>
-                <td>{priceLabel(item)}</td>
+                <td><span className="tuning-price-amount">{priceLabel(item)}</span><span className="tuning-price-unit">{item.workHours ? `za blok ${item.workHours} h` : "za uvedený úkon"}</span></td>
               </tr>)}</tbody>
             </table>
             <p className="tuning-category-note">{group.note}</p>
           </details>)}
         </div>
-        <p className="tuning-price-note">Ceny „od“ platí pro popsaný rozsah při běžném přístupu a funkčních spojích. Díly, kapaliny, materiál, licence, externí měření a schvalovací úkony nejsou zahrnuté, pokud položka neuvádí jinak. Pevnou položku a hodinovou sazbu za stejnou práci nesčítáme. Případné vícepráce nejprve odsouhlasíme.</p>
+        <p className="tuning-price-note">{pricingPolicy.scope}</p>
+        <p className="tuning-price-note">{pricingPolicy.extras} {pricingPolicy.approval}</p>
         <a className="tuning-pdf-link" href="/dokumenty/pgex-tuning-cenik.pdf" download>Stáhnout kompletní ceník <span>PDF ↓</span></a>
         <a className="gateway-button" href={inquiryHref}>Poptat tuning <span aria-hidden="true">→</span></a>
       </div>
@@ -87,9 +87,9 @@ export default function Tuning() {
           <dl className="tuning-specialist-rates" aria-label="Odborné hodinové sazby">
             {specialistRates.map(rate => <div key={rate.id} data-rate-id={rate.id}><dt>{rate.name}</dt><dd>{formatPrice.format(rate.price)} Kč/h</dd></div>)}
           </dl>
-          <p className="tuning-rate-note">Odbornou práci účtujeme podle předem dohodnutého rozsahu a času. Kompletní stavby mají individuální rozpočet.</p>
-          <h3 id="tuning-factors-title">Co ovlivňuje cenu?</h3>
-          <dl><div><dt>Konkrétní vozidlo</dt><dd>Model, motorizace, technický stav a přístup k upravovaným částem.</dd></div><div><dt>Rozsah práce</dt><dd>Domluvené úpravy, jejich návaznost a čas potřebný k provedení.</dd></div><div><dt>Díly a materiál</dt><dd>Zvolená varianta, dostupnost a vhodnost pro vaše vozidlo.</dd></div></dl>
+          <p className="tuning-rate-note">Tyto sazby platí pro další předem objednanou práci. K ceně stejné práce zahrnuté v pevné montáži nebo bloku se nepřičítají.</p>
+          <h3 id="tuning-factors-title">Jak ceny fungují?</h3>
+          <dl><div><dt>Pevná montáž</dt><dd>Jedna částka za přesně popsaný úkon na kompatibilním voze.</dd></div><div><dt>Pracovní blok</dt><dd>Pevná částka za uvedený počet hodin na dohodnuté etapě úpravy.</dd></div><div><dt>Díly a další náklady</dt><dd>Materiál, licence a externí služby dostanete v nabídce samostatně předem.</dd></div></dl>
           <a href="/autoservis#cenik">Hledáte ceník běžného servisu? →</a>
         </aside>
         <figure className="workshop-photo tuning-detail-photo"><img src="/workshop/tuning-suspension.webp" width="1536" height="1024" alt="Ilustrace nastavení sportovního podvozku v tuningové dílně" loading="lazy" decoding="async"/></figure>

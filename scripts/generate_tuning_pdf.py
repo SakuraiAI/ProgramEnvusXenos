@@ -1,6 +1,7 @@
 from pathlib import Path
 from xml.sax.saxutils import escape
 import json
+import argparse
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib import colors
@@ -10,9 +11,14 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.pagesizes import A4
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'public/dokumenty/pgex-tuning-cenik.pdf'
+parser = argparse.ArgumentParser()
+parser.add_argument('--output', type=Path, default=ROOT / 'public/dokumenty/pgex-tuning-cenik.pdf')
+parser.add_argument('--draft', action='store_true')
+args = parser.parse_args()
+OUT = args.output
 DATA = json.loads((ROOT / 'src/tuning-prices.json').read_text(encoding='utf-8'))
 RATES = json.loads((ROOT / 'src/tuning-rates.json').read_text(encoding='utf-8'))
+POLICY = json.loads((ROOT / 'src/tuning-pricing-policy.json').read_text(encoding='utf-8'))
 INTRO_PAGES = 2
 pdfmetrics.registerFont(TTFont('Segoe', r'C:\Windows\Fonts\segoeui.ttf'))
 pdfmetrics.registerFont(TTFont('SegoeBold', r'C:\Windows\Fonts\segoeuib.ttf'))
@@ -34,12 +40,10 @@ def p(text, style='body'):
     return Paragraph(escape(text.replace('–', '-').replace('—', '-').replace('‑', '-')), styles[style])
 
 def price(item):
-    if item['priceType'] == 'free':
-        return 'Zdarma'
-    if item['priceType'] == 'individual':
-        return 'Individuálně'
+    if item['priceType'] not in ('fixed', 'hourly'):
+        raise ValueError(f"Unsupported price type: {item['priceType']}")
     amount = f"{item['price']:,}".replace(',', '\u00a0') + '\u00a0Kč'
-    return amount + '/h' if item['priceType'] == 'hourly' else 'od ' + amount
+    return amount + '/h' if item['priceType'] == 'hourly' else amount
 
 def styled_table(rows, widths, padding=7):
     table = Table(rows, colWidths=widths, repeatRows=1, hAlign='LEFT')
@@ -72,14 +76,14 @@ def frame(canvas, doc):
     canvas.line(42, 44, w - 42, 44)
     canvas.setFillColor(muted)
     canvas.setFont('Segoe', 8)
-    canvas.drawString(42, 29, 'programenvusxenos.com/tuning  |  19. 10. 2026')
+    canvas.drawString(42, 29, ('NAVRH K ODSOUHLASENI | ' if args.draft else '') + 'programenvusxenos.com/tuning | 19. 10. 2026')
     canvas.drawRightString(w - 42, 29, f'{doc.page} / {len(DATA) + INTRO_PAGES}')
     canvas.restoreState()
 
 story = [
-    p('Ceník tuningu', 'title'),
-    p('PGEX Custom & Performance nabízí úpravy motoru, podvozku, brzd, karoserie i interiéru. U každé služby uvádíme cenu a konkrétní rozsah. Provedení a konečnou nabídku domluvíme podle vozidla.'),
-    p('Hodinové sazby', 'h2'),
+    p('Pevné ceny práce - návrh' if args.draft else 'Pevné ceny práce', 'title'),
+    p(POLICY['lead']),
+    p('Sazby pro další dohodnutou práci', 'h2'),
 ]
 rate_rows = [[p('PRÁCE', 'thead'), p('SAZBA', 'thead'), p('ROZSAH', 'thead')]]
 for rate in RATES:
@@ -88,9 +92,9 @@ story.extend([
     styled_table(rate_rows, [154, 94, 263], padding=10),
     Spacer(1, 10),
     p('Jak číst ceny', 'h2'),
-    p('Ceny „od“ platí pro popsaný rozsah na kompatibilním voze při běžném přístupu a funkčních spojích. Zakázkové úpravy a kompletní stavby oceňujeme individuálně.'),
-    p('Díly, kapaliny, materiál, licence, externí měření a schvalovací úkony nejsou zahrnuté, pokud položka výslovně neuvádí jinak. Pevná položka a hodinová sazba jsou alternativní způsoby účtování stejné práce; automaticky se nesčítají.'),
-    p('Rozsah, dostupnost a konečnou cenu konkrétní úpravy potvrdíme v nabídce. Vícepráce i změny ceny nejprve odsouhlasíme.'),
+    p(POLICY['scope']),
+    p(POLICY['extras']),
+    p(POLICY['approval']),
     PageBreak(),
     p('Přehled služeb', 'title'),
     p(f'{sum(len(group["items"]) for group in DATA)} položek ve {len(DATA)} kategoriích. Vyberte oblast podle zamýšlené úpravy.', 'small'),
@@ -111,9 +115,11 @@ story.extend([
 for index, group in enumerate(DATA):
     title = p(group['category'], 'title')
     description = p(group['description'], 'small')
-    rows = [[p('SLUŽBA', 'thead'), p('ROZSAH', 'thead'), p('CENA', 'thead')]]
+    rows = [[p('SLUŽBA', 'thead'), p('ROZSAH', 'thead'), p('CENA PRÁCE', 'thead')]]
     for item in group['items']:
-        rows.append([p(item['name'], 'name'), p(item['scope'], 'cell'), p(price(item), 'price')])
+        unit = f"za blok {item['workHours']} h" if item.get('workHours') else 'za uvedený úkon'
+        price_cell = Paragraph(escape(price(item)) + '<br/><font size=8>' + escape(unit) + '</font>', styles['price'])
+        rows.append([p(item['name'], 'name'), p(item['scope'], 'cell'), price_cell])
     ending = [Spacer(1, 15), p(group['note'], 'small')]
     if index == len(DATA) - 1:
         ending.append(p('Montáž sama o sobě nepotvrzuje schválení vozidla pro silniční provoz. Potřebnou dokumentaci a podmínky použití domluvíme pro konkrétní projekt.', 'small'))

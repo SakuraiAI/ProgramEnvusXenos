@@ -3,24 +3,24 @@
     "id": "mechanical",
     "name": "Mechanická práce - tuning",
     "price": 990,
-    "description": "Montáž tuningových dílů a úprav podle dohodnutého času. Stejnou práci naceněnou položkou neúčtujeme znovu hodinově."
+    "description": "Hodinová sazba pro další předem objednanou mechanickou práci. K pevné ceně stejné práce se nepřičítá."
   },
   {
     "id": "diagnostics",
     "name": "Měření a rozbor dat",
     "price": 1290,
-    "description": "Vyhodnocení provozních dat a možností ECU/TCU pro tuning."
+    "description": "Další předem objednané měření a rozbor dat; licence a zkušebna zvlášť."
   },
   {
     "id": "engine",
     "name": "Stavba a úpravy motoru",
     "price": 1490,
-    "description": "Samostatně odsouhlasené hodiny úprav motoru. Kompletní stavby mají individuální rozpočet."
+    "description": "Další předem objednaná motorářská práce mimo zvolený pevný blok."
   },
   {
     "id": "electrical",
     "name": "Elektroinstalace pro tuning",
     "price": 1490,
-    "description": "Montáž a zapojení tuningových doplňků podle rozpočtu hodin; díly a materiál zvlášť."
+    "description": "Další předem objednané zapojování tuningových doplňků; díly a materiál zvlášť."
   }
 ]
