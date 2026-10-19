@@ -1,11 +1,9 @@
 import assert from "node:assert/strict";
-import sharp from "sharp";
 import handler from "./api/inquiry.js";
-import { MAX_PHOTO_BYTES, MAX_REQUEST_BYTES, validEmail } from "./shared/inquiry.js";
+import { MAX_REQUEST_BYTES, validEmail } from "./shared/inquiry.js";
 
 const saved = { fetch: globalThis.fetch, now: Date.now, key: process.env.RESEND_API_KEY, vercel: process.env.VERCEL };
-const payload = { name: "Testovací zákazník", phone: "+420777123456", vehicle: "Škoda Octavia", description: "Kontrolka motoru", date: "2026-11-05", email: "customer+test@example.com", photos: [] };
-const photo = await sharp({ create: { width: 100, height: 70, channels: 3, background: "#cda858" } }).jpeg().withExif({ IFD0: { Artist: "Private metadata" } }).toBuffer();
+const payload = { name: "Testovací zákazník", phone: "+420777123456", vehicle: "Škoda Octavia", description: "Kontrolka motoru", date: "2026-11-05", email: "customer+test@example.com" };
 let requests, records, delivered, receiptMode, workshopMode;
 function reset() {
  requests = []; records = new Map(); delivered = 0; receiptMode = "ok"; workshopMode = "ok";
@@ -46,18 +44,14 @@ try {
  assert.equal((await call({ ...payload, email: ["a@example.com"] })).code, 400);
  assert.equal((await call({ ...payload, date: "2026-02-30" })).code, 400);
  assert.equal((await call({ ...payload, photos: {} })).code, 400);
- assert.equal((await call({ ...payload, photos: Array(4).fill({ content: photo.toString("base64") }) })).code, 400);
- for (const content of ["not base64!", Buffer.from("<svg></svg>").toString("base64"), Buffer.from([255,216,255,0,1,2,3]).toString("base64"), Buffer.alloc(MAX_PHOTO_BYTES + 1).toString("base64")]) {
-  assert.equal((await call({ ...payload, photos: [{ content }] })).code, 400);
- }
- const hugeDimensions = await sharp({ create: { width: 2500, height: 10, channels: 3, background: "white" } }).jpeg().toBuffer();
- assert.equal((await call({ ...payload, photos: [{ content: hugeDimensions.toString("base64") }] })).code, 400);
+ const oldForm = await call({ ...payload, photos: [{ content: "legacy-photo" }] });
+ assert.equal(oldForm.code, 400);
+ assert.ok(oldForm.data.error.includes("samostatným e-mailem"));
  assert.equal((await call(payload, { "content-length": String(MAX_REQUEST_BYTES + 1) })).code, 413);
  assert.equal((await call(" ".repeat(MAX_REQUEST_BYTES + 1))).code, 413);
- assert.equal((await call({ ...payload, extra: "ž".repeat(1_500_000) })).code, 413);
+ assert.equal((await call({ ...payload, extra: "ž".repeat(MAX_REQUEST_BYTES / 2) })).code, 413);
  assert.equal(requests.length, 0, "invalid input must never reach provider");
- const withPhotos = { ...payload, photos: [{ content: photo.toString("base64"), filename: "../../private.exe", path: "https://example.invalid/private" }] };
- const success = await call(withPhotos);
+ const success = await call(payload);
  assert.equal(success.code, 200);
  assert.equal(success.data.confirmation, "accepted");
  assert.equal(requests.length, 2);
@@ -65,21 +59,17 @@ try {
  const receipt = requests[1].body;
  assert.deepEqual(business.to, ["programenvus@gmail.com"]);
  assert.equal(business.reply_to, payload.email);
- assert.equal(business.attachments[0].filename, "fotka-1.jpg");
- assert.equal(business.attachments[0].path, undefined);
- const metadata = await sharp(Buffer.from(business.attachments[0].content,"base64")).metadata();
- assert.equal(metadata.format,"jpeg");
- assert.equal(metadata.exif,undefined,"remove photo metadata");
+ assert.equal(business.attachments,undefined);
  assert.deepEqual(receipt.to,[payload.email]);
  assert.equal(receipt.reply_to,"programenvus@gmail.com");
- assert.equal(receipt.attachments,undefined,"photos only go to workshop");
+ assert.equal(receipt.attachments,undefined);
  assert.ok(receipt.text.includes("TOTO NENÍ POTVRZENÍ REZERVACE"));
  assert.ok(receipt.text.includes("Škoda Octavia"));
  assert.ok(receipt.text.includes("05. 11. 2026"));
  assert.ok(receipt.text.includes("Kontrolka motoru"));
- assert.equal((await call(withPhotos)).code,200);
+ assert.equal((await call(payload)).code,200);
  assert.equal(delivered,2,"retries do not send either copy twice within same window");
- assert.equal((await call({...withPhotos,email:"different@example.com"})).code,429);
+ assert.equal((await call({...payload,email:"different@example.com"})).code,429);
  assert.equal(delivered,2,"cannot change the receipt recipient for an accepted slot");
  reset();
  assert.equal((await call({ ...payload, email:"",photos:[] })).data.confirmation,"not_requested");
@@ -88,19 +78,19 @@ try {
  assert.equal(requests[0].body.attachments,undefined);
  for(const mode of ["failure","timeout","empty"]){
   reset();receiptMode=mode;
-  const result=await call(withPhotos);
+  const result=await call(payload);
   assert.equal(result.code,200);
   assert.equal(result.data.ok,true);
   assert.equal(result.data.confirmation,"unavailable");
   assert.equal(delivered,1,"receipt failure must preserve accepted workshop message");
   receiptMode="ok";
-  assert.equal((await call(withPhotos)).data.confirmation,"accepted");
+  assert.equal((await call(payload)).data.confirmation,"accepted");
   assert.equal(delivered,2,"receipt retry must not duplicate workshop copy");
  }
  reset();workshopMode="failure";
- assert.equal((await call(withPhotos)).code,502);
+ assert.equal((await call(payload)).code,502);
  assert.equal(requests.length,1,"no receipt for rejected workshop delivery");
- console.log("Passed: optional email, validation, limits, image decoding/metadata, trusted filenames, separate receipt, replay and partial failures. No real emails sent.");
+ console.log("Passed: optional email, validation, limits, legacy-photo rejection, separate receipt, replay and partial failures. No real emails sent.");
 } finally {
  globalThis.fetch=saved.fetch;Date.now=saved.now;
  for(const [key,value] of [["RESEND_API_KEY",saved.key],["VERCEL",saved.vercel]]){if(value===undefined)delete process.env[key];else process.env[key]=value;}

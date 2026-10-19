@@ -62,15 +62,13 @@ Ověření bez skutečných e-mailů: `npm run test:inquiry` a `npm run build`. 
 
 Dokumentace: [Resend idempotency keys](https://resend.com/docs/dashboard/emails/idempotency-keys), [Vercel request headers](https://vercel.com/docs/headers/request-headers).
 
-## Fotky a potvrzení přijetí
+## Potvrzení přijetí
 
 - E-mail je nepovinný. Zůstává povinný telefon pro domluvu termínu. U zprávy pro servis je `reply_to` zákazníkův ověřený formát adresy (jinak servisní schránka).
 - Po přijetí zprávy pro servis Resendem se na zadanou adresu odešle samostatný přehled požadavku. Potvrzení výslovně není rezervací. API rozlišuje `confirmation: accepted / unavailable / not_requested`; chyba potvrzení nezneplatní již přijatou poptávku.
-- Při e-mailu se čerpají **dvě odeslané zprávy** z limitu Resendu, bez něj jedna. Přijetí API není zárukou doručení do schránky. Zprávy se odesílají postupně; není použit batch, který nepodporuje přílohy.
+- Při e-mailu se čerpají **dvě odeslané zprávy** z limitu Resendu, bez něj jedna. Přijetí API není zárukou doručení do schránky. Zprávy se odesílají postupně; potvrzení zákazníkovi následuje až po přijetí zprávy pro servis.
 - Potvrzení má vlastní idempotency key odvozený z ID zprávy pro servis. Ochrana proti duplicitní hlavní zprávě je stále omezená na výše popsané časové okno. Bez databáze nebo fronty nemáme trvalou záruku ani automatické doručení potvrzení po výpadku.
-- Až 3 fotky JPG/PNG/WebP po 15 MB. V prohlížeči se postupně dekódují, převedou na JPG s delší stranou nejvýše 1600 px a zmenší na nejvýše 700 000 B každá. HEIC je potřeba převést na JPG. Zmenšené fotky se po chybě zachovají do obnovení/opuštění stránky.
-- Celý JSON požadavek má nejvýše 3 000 000 B (včetně base64), pod limitem 4,5 MB Vercelu. Server znovu kontroluje počet, base64, velikost, formát i rozměry, obrázky dekóduje pomocí sharp a znovu kóduje bez původních metadat. Nepřebírá uživatelské názvy, URL ani MIME příloh.
-- Fotky jsou pouze v přílohách e-mailu pro servis. Neukládají se do veřejného úložiště ani do Git repozitáře; zpracovává je již používaný Resend a schránka servisu. Zákazníkova kopie uvádí pouze jejich počet.
-- Testy mockují pouze externí Resend; skutečný handler ověřuje validaci, poškozené obrázky, rozměry, metadata, příjemce, opakování a částečné selhání. Testy neposílají žádné skutečné e-maily.
+- Testy mockují pouze externí Resend; skutečný handler ověřuje validaci, příjemce, opakování, částečné selhání a odmítnutí fotek ze staršího formuláře. Testy neposílají žádné skutečné e-maily.
 
-Dokumentace příloh: [Resend attachments](https://resend.com/docs/dashboard/emails/attachments), [Vercel Function limits](https://vercel.com/docs/functions/limitations).
+
+Formulář přijímá pouze textové údaje (JSON nejvýše 16 000 B). Fotky lze poslat samostatně e-mailem. Starší otevřený formulář s přílohami dostane vysvětlení, aby nedošlo k jejich tichému zahození.

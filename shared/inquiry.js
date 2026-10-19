@@ -1,7 +1,4 @@
-export const MAX_PHOTOS = 3;
-export const MAX_PHOTO_BYTES = 700_000;
-export const MAX_REQUEST_BYTES = 3_000_000;
-export const MAX_ORIGINAL_PHOTO_BYTES = 15_000_000;
+export const MAX_REQUEST_BYTES = 16_000;
 // Accept one ordinary mailbox only; never recipient lists or header characters.
 export function validEmail(value) {
  const parts = value.split("@");

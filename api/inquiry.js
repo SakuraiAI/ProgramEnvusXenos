@@ -1,7 +1,6 @@
 import { createHmac } from "node:crypto";
 import { isIP } from "node:net";
 import { MAX_REQUEST_BYTES, validEmail } from "../shared/inquiry.js";
-import { emailAttachments } from "../server/inquiry-photos.js";
 
 const SEND_WINDOW_MS = 60_000;
 
@@ -20,11 +19,13 @@ export default async function handler(req, res) {
  const allowed = new Set(["https://programenvusxenos.com", "https://www.programenvusxenos.com", "https://program-envus-xenos.vercel.app"]);
  if (!allowed.has(req.headers.origin)) return fail(403, "Odešlete poptávku z webu PGEX.");
  if (!req.headers["content-type"]?.startsWith("application/json")) return fail(415, "Neplatný formát.");
- if (Number(req.headers["content-length"]) > MAX_REQUEST_BYTES || (typeof req.body === "string" && Buffer.byteLength(req.body) > MAX_REQUEST_BYTES)) return fail(413, "Přílohy jsou příliš velké. Odeberte některou fotku.");
+ if (Number(req.headers["content-length"]) > MAX_REQUEST_BYTES || (typeof req.body === "string" && Buffer.byteLength(req.body) > MAX_REQUEST_BYTES)) return fail(413, "Poptávka je příliš dlouhá. Zkraťte prosím popis a zkuste to znovu.");
  let data;
  try { data = typeof req.body === "string" ? JSON.parse(req.body) : req.body; } catch { return fail(400, "Neplatné údaje."); }
  if (!data || typeof data !== "object" || Array.isArray(data)) return fail(400, "Neplatné údaje.");
- if (Buffer.byteLength(JSON.stringify(data)) > MAX_REQUEST_BYTES) return fail(413, "Přílohy jsou příliš velké. Odeberte některou fotku.");
+ if (Buffer.byteLength(JSON.stringify(data)) > MAX_REQUEST_BYTES) return fail(413, "Poptávka je příliš dlouhá. Zkraťte prosím popis a zkuste to znovu.");
+ // Older cached forms may still include photos. Never silently discard them.
+ if (data.photos !== undefined && (!Array.isArray(data.photos) || data.photos.length > 0)) return fail(400, "Fotky prosím pošlete samostatným e-mailem. Z formuláře je odeberte nebo obnovte stránku.");
  if (data.website) return fail(400, "Poptávku nelze odeslat.");
  const fields = {};
  for (const [key, max, required] of [["name",100,true],["phone",40,true],["email",254,false],["vehicle",120,true],["service",100,false],["date",10,false],["description",1500,true]]) {
@@ -40,10 +41,7 @@ export default async function handler(req, res) {
  const projectKey = process.env.ProgramEnvusXenos?.trim();
  const apiKey = configuredKey || (/^re_[A-Za-z0-9_-]+$/.test(projectKey || "") ? projectKey : "");
  if (!apiKey) return fail(503, "Odesílání není dostupné. Zavolejte nám nebo napište e-mail.");
- let attachments;
- try { attachments = await emailAttachments(data.photos); }
- catch (error) { return fail(400, error.message); }
- const summary = [`Jméno: ${fields.name}`, `Telefon: ${fields.phone}`, `E-mail: ${fields.email || "Neuveden"}`, `Vozidlo: ${fields.vehicle}`, `Služba: ${fields.service || "Dle popisu"}`, `Požadovaný termín: ${fields.date ? fields.date.split("-").reverse().join(". ") : "Dle domluvy"}`, `Počet fotek: ${attachments.length}`, "", "Popis požadavku:", fields.description].join("\n");
+ const summary = [`Jméno: ${fields.name}`, `Telefon: ${fields.phone}`, `E-mail: ${fields.email || "Neuveden"}`, `Vozidlo: ${fields.vehicle}`, `Služba: ${fields.service || "Dle popisu"}`, `Požadovaný termín: ${fields.date ? fields.date.split("-").reverse().join(". ") : "Dle domluvy"}`, "", "Popis požadavku:", fields.description].join("\n");
  const text = `${summary}\n\nOdeslání poptávky ani automatické potvrzení není rezervací termínu.`;
  const address = clientAddress(req);
  if (!address) return fail(503, "Odesílání není dostupné. Zavolejte nám nebo napište e-mail.");
@@ -61,7 +59,7 @@ export default async function handler(req, res) {
   const result = await fetch("https://api.resend.com/emails", {
    method: "POST", signal: AbortSignal.timeout(15000),
    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json", "Idempotency-Key": `inquiry-${key}` },
-   body: JSON.stringify({ from: "PGEX Autoservis <poptavky@programenvusxenos.com>", to: ["programenvus@gmail.com"], reply_to: fields.email || "programenvus@gmail.com", subject: "Nová servisní poptávka z webu PGEX", text, ...(attachments.length ? { attachments } : {}) })
+   body: JSON.stringify({ from: "PGEX Autoservis <poptavky@programenvusxenos.com>", to: ["programenvus@gmail.com"], reply_to: fields.email || "programenvus@gmail.com", subject: "Nová servisní poptávka z webu PGEX", text })
   });
   const response = await result.json();
   if (result.status === 409 && response?.name === "invalid_idempotent_request") {
@@ -83,7 +81,7 @@ export default async function handler(req, res) {
      body: JSON.stringify({
       from: "PGEX Autoservis <poptavky@programenvusxenos.com>", to: [fields.email], reply_to: "programenvus@gmail.com",
       subject: "PGEX Autoservis — přijetí servisní poptávky",
-      text: ["Dobrý den,", "", "děkujeme za servisní poptávku. Přijali jsme ji k vyřízení a ozveme se vám na uvedený telefon.", "", "TOTO NENÍ POTVRZENÍ REZERVACE. Požadovaný termín i rozsah práce s vámi teprve domluvíme. Termín platí až po našem osobním potvrzení.", "", "Přehled údajů z formuláře:", summary, "", "Přiložené fotky byly odeslány pouze do servisu; v tomto potvrzení nejsou přiloženy.", "", "Potřebujete něco upřesnit? Odpovězte na tento e-mail nebo zavolejte +420 731 990 599.", "PGEX Autoservis · Suchdolská 710, Horoměřice", "https://programenvusxenos.com/autoservis", "", "Jde o automatické potvrzení požadavku z našeho webu. Pokud jste jej neodeslali, tuto zprávu ignorujte."].join("\n")
+      text: ["Dobrý den,", "", "děkujeme za servisní poptávku. Přijali jsme ji k vyřízení a ozveme se vám na uvedený telefon.", "", "TOTO NENÍ POTVRZENÍ REZERVACE. Požadovaný termín i rozsah práce s vámi teprve domluvíme. Termín platí až po našem osobním potvrzení.", "", "Přehled údajů z formuláře:", summary, "", "Potřebujete něco upřesnit? Odpovězte na tento e-mail nebo zavolejte +420 731 990 599.", "PGEX Autoservis · Suchdolská 710, Horoměřice", "https://programenvusxenos.com/autoservis", "", "Jde o automatické potvrzení požadavku z našeho webu. Pokud jste jej neodeslali, tuto zprávu ignorujte."].join("\n")
      })
     });
     const accepted = await receipt.json();
