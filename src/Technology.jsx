@@ -82,8 +82,22 @@ export function AIProfilePage({ profile }) {
  const info = aiProfiles[profile];
  return <div className="tech-page ai-profile"><a className="ai-back" href="/technologie#postavy">← Zpět na přehled AI</a><section className="tech-hero"><div><p className="portal-eyebrow">{info.role}</p><h1>{info.name}</h1><span className="tech-status">{info.status}</span><p className="tech-lead">{info.lead}</p><p>{info.intro}</p></div><img className="tech-hero-image tech-marika-image" src={info.image} alt={info.name}/></section><section className="tech-section"><p className="portal-eyebrow">ZAMĚŘENÍ</p><h2>{info.heading}</h2><p className="tech-lead">{info.description}</p><div className="tech-process">{info.pillars.map(([title,text])=><article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div></section><section className="tech-section"><p className="portal-eyebrow">PŘEDSTAVA V PRAXI</p><h2>{info.exampleTitle}</h2><ol className="ai-example-steps">{info.steps.map(step=><li key={step}>{step}</li>)}</ol></section><section className="tech-section"><p className="portal-eyebrow">STAV A DOSTUPNOST</p><h2>Kde jsme dnes</h2><p className="tech-lead">{info.limit}</p><a className="gateway-button" href={PGEX_AI_URL}>Otevřít PGEX AI →</a></section><nav className="tech-section-nav" aria-label="Další AI projekty">{Object.entries(aiProfiles).filter(([key])=>key!==profile).map(([key,item])=><a key={key} href={`/${key}`}>{item.name} →</a>)}</nav><Collaboration/></div>;
 }
-export function NewsPage() { return <div className="tech-page"><header className="tech-project-intro"><p className="portal-eyebrow">PGEX</p><h1>Novinky z vývoje.</h1><p className="tech-lead">Aktualizace projektů a zprávy z vývoje na jednom místě.</p></header>  <section id="novinky" className="tech-section"><p className="portal-eyebrow">NOVINKY Z VÝVOJE</p><h2>Na čem právě pracujeme.</h2><div className="tech-updates"><article><span>Průběžný vývoj</span><h3>PGEX AI: chat, projekty a lokální akce</h3><p>Současná práce se soustředí na přehledné ovládání, přílohy a propojení asistenta s podporovanými aplikacemi v počítači.</p></article><article><time dateTime="2026-10-16">16. října 2026</time><h3>Samostatný prostor pro technologie</h3><p>Web PGEX nově odděluje autoservis od technologických projektů. Představení vývoje a přehled projektů jsou nyní v češtině.</p></article></div></section>
-<Collaboration/></div>; }
+export function NewsPage() {
+ return <div className="tech-page">
+  <header className="tech-project-intro"><p className="portal-eyebrow">PGEX</p><h1>Novinky z vývoje.</h1><p className="tech-lead">Aktualizace projektů a zprávy z vývoje na jednom místě.</p></header>
+  <section id="novinky" className="tech-section"><p className="portal-eyebrow">NOVINKY Z VÝVOJE</p><h2>Co je nového v PGEX.</h2><div className="tech-updates">
+   <article>
+    <time dateTime="2026-10-26">26. října 2026</time>
+    <h3>PGEX AI spouští veřejnou beta verzi</h3>
+    <p>Lunu, Xenu a Mariku si nyní můžete vyzkoušet v jedné webové aplikaci. Přihlásíte se přes Google nebo GitHub a můžete začít rovnou v prohlížeči.</p>
+    <p>Beta nabízí chat s přílohami, projekty, vyhledávání na webu, tvorbu obrázků a hlasový rozhovor. Dostupnost nástrojů závisí na zvoleném modelu, službách a denních limitech beta verze.</p>
+    <a className="gateway-button outline" href={PGEX_AI_URL}>Vyzkoušet PGEX AI →</a>
+   </article>
+   <article><time dateTime="2026-10-16">16. října 2026</time><h3>Samostatný prostor pro technologie</h3><p>Web PGEX nově odděluje autoservis od technologických projektů. Představení vývoje a přehled projektů jsou nyní v češtině.</p></article>
+  </div></section>
+  <Collaboration/>
+ </div>;
+}
 
 export function RevenantPage() {
  return <div className="tech-page revenant-page">
