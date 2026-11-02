@@ -104,7 +104,7 @@ export default function Tuning() {
     </section>
     <section className="workshop-section tuning-contact" aria-labelledby="tuning-contact-title">
       <div><p className="portal-eyebrow">DOMLUVME VAŠI ÚPRAVU</p><h2 id="tuning-contact-title">Co chcete na autě změnit?</h2><p>Pošlete nám popis záměru a údaje o vozidle. Probereme možnosti a další postup.</p><a className="tuning-contact-link" href="/kontakt?oblast=autoservis">Kontakty a cesta do servisu →</a></div>
-      <div className="tuning-contact-actions"><a className="gateway-button" href={inquiryHref}>Poptat tuning <span aria-hidden="true">→</span></a><a className="gateway-button outline" href="tel:+420731990599">Zavolat: +420 731 990 599</a></div>
+      <div className="tuning-contact-actions"><a className="gateway-button" href={inquiryHref}>Poptat tuning <span aria-hidden="true">→</span></a><a className="gateway-button outline" href="tel:+420737781046">Zavolat: +420 737 781 046</a></div>
     </section>
   </div>;
 }

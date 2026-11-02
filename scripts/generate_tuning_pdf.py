@@ -112,7 +112,7 @@ for index, group in enumerate(DATA):
 story.extend([
     Spacer(1, 15), p('Domluva zakázky', 'h2'),
     p('Napište značku, model, rok, motorizaci, současné úpravy a požadovaný výsledek. Termín z poptávky platí až po potvrzení. Před zahájením si odsouhlasíme práci, díly, rozpočet a potřebné ověření.'),
-    p('Suchdolská 710, Horoměřice | +420 731 990 599 | programenvus@gmail.com', 'small'),
+    p('Suchdolská 710, Horoměřice | +420 737 781 046 | programenvus@gmail.com', 'small'),
 ])
 for index, group in enumerate(DATA):
     title = p(group['category'], 'title')

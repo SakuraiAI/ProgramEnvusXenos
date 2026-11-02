@@ -81,7 +81,7 @@ export default async function handler(req, res) {
      body: JSON.stringify({
       from: "PGEX Autoservis <poptavky@programenvusxenos.com>", to: [fields.email], reply_to: "programenvus@gmail.com",
       subject: "PGEX Autoservis — přijetí servisní poptávky",
-      text: ["Dobrý den,", "", "děkujeme za servisní poptávku. Přijali jsme ji k vyřízení a ozveme se vám na uvedený telefon.", "", "TOTO NENÍ POTVRZENÍ REZERVACE. Požadovaný termín i rozsah práce s vámi teprve domluvíme. Termín platí až po našem osobním potvrzení.", "", "Přehled údajů z formuláře:", summary, "", "Potřebujete něco upřesnit? Odpovězte na tento e-mail nebo zavolejte +420 731 990 599.", "PGEX Autoservis · Suchdolská 710, Horoměřice", "https://programenvusxenos.com/autoservis", "", "Jde o automatické potvrzení požadavku z našeho webu. Pokud jste jej neodeslali, tuto zprávu ignorujte."].join("\n")
+      text: ["Dobrý den,", "", "děkujeme za servisní poptávku. Přijali jsme ji k vyřízení a ozveme se vám na uvedený telefon.", "", "TOTO NENÍ POTVRZENÍ REZERVACE. Požadovaný termín i rozsah práce s vámi teprve domluvíme. Termín platí až po našem osobním potvrzení.", "", "Přehled údajů z formuláře:", summary, "", "Potřebujete něco upřesnit? Odpovězte na tento e-mail nebo zavolejte +420 737 781 046.", "PGEX Autoservis · Suchdolská 710, Horoměřice", "https://programenvusxenos.com/autoservis", "", "Jde o automatické potvrzení požadavku z našeho webu. Pokud jste jej neodeslali, tuto zprávu ignorujte."].join("\n")
      })
     });
     const accepted = await receipt.json();
