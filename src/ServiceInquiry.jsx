@@ -69,7 +69,7 @@ export default function ServiceInquiry() {
     </div>
     <label>Co potřebujete vyřešit? *<textarea name="description" rows={5} required maxLength={1500} placeholder="Popište závadu, její projevy nebo požadovanou údržbu."/></label>
    </fieldset>
-   <p className="contact-note">Údaje použijeme k vyřízení vaší poptávky. Odesláním ani e-mailovým potvrzením ještě nevzniká rezervace termínu.</p>
+   <p className="contact-note">Údaje použijeme k vyřízení vaší poptávky. Podrobnosti najdete v <a href="/ochrana-osobnich-udaju.html">informacích o zpracování osobních údajů</a>. Odesláním ani e-mailovým potvrzením ještě nevzniká rezervace termínu.</p>
    <button className="gateway-button" type="submit" disabled={sending || Boolean(sent) || retrySeconds > 0}>{sending ? "Odesílání…" : sent ? "Poptávka odeslána" : retrySeconds > 0 ? `Zkusit znovu za ${retrySeconds} s` : "Odeslat servisní poptávku →"}</button>
    {sent && <div className="inquiry-success" role="status" tabIndex={-1} ref={resultRef}><strong>Děkujeme, poptávka byla přijata k odeslání do servisu.</strong><p>Ozveme se na uvedený telefon a domluvíme podrobnosti. Termín platí až po našem potvrzení.</p>{sent.email && <p>{sent.confirmation === "accepted" ? `Potvrzení přijetí jsme předali k odeslání na ${sent.email}. Pokud nedorazí, zkontrolujte i složku spam.` : "Potvrzovací e-mail se nepodařilo potvrdit, ale poptávka pro servis už byla přijata. Znovu ji neposílejte; ozveme se vám telefonicky."}</p>}</div>}
    {error && <p role="alert" tabIndex={-1} ref={resultRef}>{error} Údaje zůstaly ve formuláři. Kontakt: <a href="mailto:programenvus@gmail.com">programenvus@gmail.com</a> · <a href="tel:+420731990599">+420 731 990 599</a></p>}

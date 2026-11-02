@@ -1,6 +1,7 @@
 import "./workshop.css";
 import WorkshopPrices from "./WorkshopPrices";
 import priceGroups from "./workshop-prices.json";
+import { GoogleMapEmbed } from "./CookiePreferences";
 
 const hourlyWork = priceGroups.flatMap(group => group.items).find(item => item.unit === "hour");
 const formatRate = new Intl.NumberFormat("cs-CZ");
@@ -29,13 +30,13 @@ export function WorkshopLocation() {
  const query = encodeURIComponent(address);
  return <section id="kde-nas-najdete" className="workshop-section workshop-location" aria-labelledby="location-title">
    <div><p className="portal-eyebrow">KDE NÁS NAJDETE</p><h2 id="location-title">Cesta do servisu.</h2><address>Suchdolská 710<br/>Horoměřice</address><p>Návštěvu si prosím domluvte předem telefonicky.</p><a className="gateway-button" href={`https://www.google.com/maps/dir/?api=1&destination=${query}`} target="_blank" rel="noopener noreferrer">Navigovat do servisu ↗</a></div>
-   <iframe className="workshop-map" title="Google mapa — Suchdolská 710, Horoměřice" src={`https://maps.google.com/maps?q=${query}&z=16&output=embed`} width="600" height="360" loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+   <GoogleMapEmbed query={query}/>
  </section>;
 }
 export function WorkshopDocuments() {
  return <section id="reklamace" className="workshop-section workshop-documents" aria-labelledby="documents-title">
    <p className="portal-eyebrow">DOKUMENTY KE STAŽENÍ</p><h2 id="documents-title">Podmínky a reklamace.</h2>
-   <div id="obchodni-podminky" className="workshop-document"><h3>Obchodní podmínky autoservisu</h3><p>Kompletní dokument včetně pravidel zakázek, cen, reklamací a bonusové péče o vozidlo.</p><p className="workshop-document-note">Aktualizovaný pracovní návrh s údaji provozovatele. Zbývá doplnit datum účinnosti, informace o zpracování osobních údajů a dokončit právní kontrolu.</p><a className="gateway-button outline" href="/dokumenty/obchodni-podminky-autoservis.docx" download>Stáhnout obchodní podmínky — návrh <span>DOCX ↓</span></a></div>
+   <div id="obchodni-podminky" className="workshop-document"><h3>Obchodní podmínky autoservisu</h3><p>Kompletní dokument včetně pravidel zakázek, cen, reklamací a bonusové péče o vozidlo.</p><p className="workshop-document-note">Aktualizovaný pracovní návrh s údaji provozovatele. Zbývá doplnit datum účinnosti a dokončit právní kontrolu. Informace o <a href="/ochrana-osobnich-udaju.html">zpracování osobních údajů</a> najdete samostatně na webu.</p><a className="gateway-button outline" href="/dokumenty/obchodni-podminky-autoservis.docx" download>Stáhnout obchodní podmínky — návrh <span>DOCX ↓</span></a></div>
    <div className="workshop-document"><h3>Protokol o přijetí reklamace</h3><p>Formulář pro zaznamenání reklamované vady, údajů o vozidle a požadovaného způsobu vyřízení.</p><a className="gateway-button outline" href="/dokumenty/protokol-prijeti-reklamace.docx" download>Stáhnout reklamační protokol <span>DOCX ↓</span></a></div>
  </section>;
 }
