@@ -23,3 +23,15 @@
 @media(prefers-reduced-motion:reduce){.project-picture-link img,.project-ai-link{transition:none}}
 
 @media(max-width:700px){.page-tech .portal-content{padding-top:10px}.technology-overview{padding-top:8px}.technology-overview .tech-hero{gap:20px;padding-bottom:24px}.technology-overview .tech-hero h1{font-size:40px;margin-bottom:16px}.technology-overview .tech-hero .tech-lead{font-size:17px;line-height:1.6;margin:0}.technology-overview .tech-hero .contact-actions{margin-top:20px;gap:10px}.technology-overview .tech-hero-image{height:200px}.technology-overview .tech-section-nav{padding-bottom:24px}.project-ai-link .tech-status{margin-top:12px}}
+
+/* Project overview: current web beta and planned standalone applications. */
+.projects-showcase .project-showcase-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.project-showcase-copy h2{font-size:clamp(27px,2.5vw,34px);line-height:1.2}
+.project-platforms{width:100%;padding-top:18px;margin:6px 0 26px;border-top:1px solid #cda85830}
+.project-platforms>p{margin:0 0 10px;color:#d3bc8b;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.project-platforms .project-tags{margin:0 0 12px}
+.project-platforms small{display:block;max-width:65ch;color:#b6b3ab;font-size:13px;line-height:1.7}
+.service-app-project{scroll-margin-top:32px}
+.service-app-project .tech-project-note a{display:inline-block;margin-top:8px;color:#e0bc78;text-underline-offset:4px}
+@media(max-width:1100px) and (min-width:751px){.projects-showcase .project-showcase-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:750px){.projects-showcase .project-showcase-grid{grid-template-columns:1fr}}
