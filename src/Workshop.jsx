@@ -34,10 +34,10 @@ export function WorkshopLocation() {
  </section>;
 }
 export function WorkshopDocuments() {
- return <section id="reklamace" className="workshop-section workshop-documents" aria-labelledby="documents-title">
-   <p className="portal-eyebrow">DOKUMENTY KE STAŽENÍ</p><h2 id="documents-title">Podmínky a reklamace.</h2>
-   <div id="obchodni-podminky" className="workshop-document"><h3>Obchodní podmínky autoservisu</h3><p>Kompletní dokument včetně pravidel zakázek, cen, reklamací a bonusové péče o vozidlo.</p><p className="workshop-document-note">Aktualizovaný pracovní návrh s údaji provozovatele. Zbývá doplnit datum účinnosti a dokončit právní kontrolu. Informace o <a href="/ochrana-osobnich-udaju.html">zpracování osobních údajů</a> najdete samostatně na webu.</p><a className="gateway-button outline" href="/dokumenty/obchodni-podminky-autoservis.docx" download>Stáhnout obchodní podmínky — návrh <span>DOCX ↓</span></a></div>
-   <div className="workshop-document"><h3>Protokol o přijetí reklamace</h3><p>Formulář pro zaznamenání reklamované vady, údajů o vozidle a požadovaného způsobu vyřízení.</p><a className="gateway-button outline" href="/dokumenty/protokol-prijeti-reklamace.docx" download>Stáhnout reklamační protokol <span>DOCX ↓</span></a></div>
+ return <section id="reklamace" className="portal-document workshop-documents" aria-labelledby="documents-title">
+   <header><p className="portal-eyebrow">PGEX AUTOSERVIS</p><h1 id="documents-title">Dokumenty ke stažení</h1><p>Obchodní podmínky a formulář pro přijetí reklamace na jednom místě. Dokumenty si můžete stáhnout ve formátu Word (DOCX).</p></header>
+   <div id="obchodni-podminky" className="workshop-document"><h2>Obchodní podmínky autoservisu</h2><p>Kompletní dokument včetně pravidel zakázek, cen, reklamací a bonusové péče o vozidlo.</p><p className="workshop-document-note">Aktualizovaný pracovní návrh s údaji provozovatele. Zbývá doplnit datum účinnosti a dokončit právní kontrolu. Informace o <a href="/ochrana-osobnich-udaju.html">zpracování osobních údajů</a> najdete samostatně na webu.</p><a className="gateway-button outline" href="/dokumenty/obchodni-podminky-autoservis.docx" download>Stáhnout obchodní podmínky — návrh <span>DOCX ↓</span></a></div>
+   <div className="workshop-document"><h2>Protokol o přijetí reklamace</h2><p>Formulář pro zaznamenání reklamované vady, údajů o vozidle a požadovaného způsobu vyřízení.</p><a className="gateway-button outline" href="/dokumenty/protokol-prijeti-reklamace.docx" download>Stáhnout reklamační protokol <span>DOCX ↓</span></a></div>
  </section>;
 }
 export default function Workshop() {
@@ -71,7 +71,6 @@ export default function Workshop() {
    <section className="workshop-section" aria-labelledby="process-title"><p className="portal-eyebrow">OD PRVNÍHO KONTAKTU K OPRAVĚ</p><h2 id="process-title">Jak to u nás probíhá.</h2><ol className="workshop-steps">{steps.map(([title,text],i)=><li key={title}><span className="workshop-number">0{i+1}</span><h3>{title}</h3><p>{text}</p></li>)}</ol></section>
    <section id="servis-kontakt" className="workshop-contact workshop-section" aria-labelledby="contact-title"><div><p className="portal-eyebrow">DOMLUVME SE</p><h2 id="contact-title">Co potřebuje vaše auto?</h2><p>Termín návštěvy si prosím domluvte předem.</p><a className="workshop-phone" href="tel:+420737781046">+420 737 781 046</a><a className="workshop-email" href="mailto:programenvus@gmail.com?subject=Popt%C3%A1vka%20autoservisu">programenvus@gmail.com</a></div><div className="workshop-hours"><h3>Otevírací doba</h3><dl><div><dt>Pondělí–pátek</dt><dd>7:00–20:00</dd></div><div><dt>Sobota–neděle</dt><dd>9:00–18:30</dd></div></dl><a className="gateway-button" href="/poptavka">Servisní poptávka →</a></div></section>
    <WorkshopLocation/>
-   <WorkshopDocuments/>
    <nav className="workshop-mobile-contact" aria-label="Rychlý kontakt na servis"><a href="/poptavka">Servisní poptávka →</a><a href="tel:+420737781046">Zavolat</a></nav>
  </div>;
 }

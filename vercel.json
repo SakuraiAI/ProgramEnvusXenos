@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/autoservis/dokumenty",
+      "destination": "/index.html"
+    },
+    {
       "source": "/tuning",
       "destination": "/index.html"
     },

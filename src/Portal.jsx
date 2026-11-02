@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { TechnologyPage, ProjectsPage, AIProfilePage, RevenantPage, NewsPage } from "./Technology";
 import "./portal.css";
 import ServiceInquiry from "./ServiceInquiry";
-import Workshop, { WorkshopLocation } from "./Workshop";
+import Workshop, { WorkshopLocation, WorkshopDocuments } from "./Workshop";
 import Tuning from "./Tuning";
 import { CookiePreferencesProvider, CookieSettingsButton } from "./CookiePreferences";
 
 const aliases = { home: "home", systems: "auto", portfolio: "tech", "portfolio-unreal": "projects", marika: "marika", "portfolio-blender": "about", contact: "contact", "portfolio-vscode": "booking" };
-const routes = { "/tuning": "tuning", "/revenant": "revenant", "/luna": "luna", "/xeno": "xeno", "/novinky": "news", "/services": "auto", "/systems": "auto", "/technology": "tech", "/portfolio": "tech", "/projects": "projects", "/about": "about", "/contact": "contact", "/book-service": "booking", "/marika": "marika", "/": "home", "/index.html": "home", "/autoservis": "auto", "/technologie": "tech", "/projekty": "projects", "/o-nas": "about", "/kontakt": "contact", "/poptavka": "booking" };
+const routes = { "/autoservis/dokumenty": "documents", "/tuning": "tuning", "/revenant": "revenant", "/luna": "luna", "/xeno": "xeno", "/novinky": "news", "/services": "auto", "/systems": "auto", "/technology": "tech", "/portfolio": "tech", "/projects": "projects", "/about": "about", "/contact": "contact", "/book-service": "booking", "/marika": "marika", "/": "home", "/index.html": "home", "/autoservis": "auto", "/technologie": "tech", "/projekty": "projects", "/o-nas": "about", "/kontakt": "contact", "/poptavka": "booking" };
 const links = {
- auto: [["Autoservis", "/autoservis"], ["Tuning", "/tuning"], ["Ceník", "/autoservis#cenik"], ["Dokumenty ke stažení", "/autoservis#reklamace"], ["Servisní poptávka", "/poptavka"], ["Kontakt", "/kontakt?oblast=autoservis"]],
+ auto: [["Autoservis", "/autoservis"], ["Tuning", "/tuning"], ["Ceník", "/autoservis#cenik"], ["Dokumenty ke stažení", "/autoservis/dokumenty"], ["Servisní poptávka", "/poptavka"], ["Kontakt", "/kontakt?oblast=autoservis"]],
  tech: [["Technologie", "/technologie"], ["Projekty", "/projekty"], ["Novinky", "/novinky"], ["Kontakt", "/kontakt?oblast=technologie"]],
  shared: [["O nás", "/o-nas"], ["Kontakt", "/kontakt"]],
 };
-const titles = { tuning: "Tuning a individuální úpravy", revenant: "Revenant", luna: "Luna", xeno: "Xeno", news: "Novinky", home: "Vyberte si svou cestu", auto: "Autoservis", tech: "Vývoj a technologie", projects: "Projekty", marika: "Marika", about: "O nás", contact: "Kontakt", booking: "Servisní poptávka" };
+const titles = { documents: "Dokumenty ke stažení", tuning: "Tuning a individuální úpravy", revenant: "Revenant", luna: "Luna", xeno: "Xeno", news: "Novinky", home: "Vyberte si svou cestu", auto: "Autoservis", tech: "Vývoj a technologie", projects: "Projekty", marika: "Marika", about: "O nás", contact: "Kontakt", booking: "Servisní poptávka" };
 let introSeenInDocument = false;
 // Add only real, verified profile URLs here. Social links belong on About only.
 const socials = [{ name: "Instagram", href: "https://www.instagram.com/programenvusxenos_/", detail: "Fotky a dění kolem PGEX" }, { name: "TikTok", href: "https://www.tiktok.com/@programenvusxenos", detail: "Videa ze světa PGEX" }, { name: "X", href: "https://x.com/PGEnvus", detail: "Příspěvky ze světa PGEX" }, { name: "Reddit", href: "https://www.reddit.com/user/CicadaSensitive9928/", detail: "Profil u/CicadaSensitive9928" }, { name: "LinkedIn", href: "https://www.linkedin.com/in/program-envus-xenos-946294366/", detail: "Program Envus Xenos" }, { name: "Twitch", href: "https://www.twitch.tv/programenvusxenos", detail: "Kanál programenvusxenos" }, { name: "Kick", href: "https://kick.com/programenvusxenos", detail: "Kanál programenvusxenos" }, { name: "Discord", href: "https://discord.gg/DaNX74Tneb", detail: "Připojte se ke komunitě PGEX" }];
@@ -22,7 +22,7 @@ export default function Portal({ page }) {
  const pathname = window.location.pathname.replace(/\/$/, "") || "/";
  const current = routes[pathname] || aliases[page] || "home";
  const context = new URLSearchParams(window.location.search).get("oblast");
- const area = ["auto", "booking", "tuning"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "projects", "marika", "luna", "xeno", "news", "revenant"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
+ const area = ["auto", "booking", "tuning", "documents"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "projects", "marika", "luna", "xeno", "news", "revenant"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
  const navigation = links[area].map(([label, href]) => [label, current === "tuning" && href === "/autoservis#cenik" ? "/tuning#cenik" : href]);
  const [intro] = useState(() => {
    if (current !== "home" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
@@ -32,6 +32,17 @@ export default function Portal({ page }) {
    document.title = `${titles[current]} | PGEX`;
    document.documentElement.lang = "cs";
    if (current === "home") introSeenInDocument = true;
+ }, [current]);
+ useEffect(() => {
+   if (current !== "auto") return;
+   const redirectDocumentLink = () => {
+     if (["#reklamace", "#obchodni-podminky"].includes(window.location.hash)) {
+       window.location.replace(`/autoservis/dokumenty${window.location.hash}`);
+     }
+   };
+   redirectDocumentLink();
+   window.addEventListener("hashchange", redirectDocumentLink);
+   return () => window.removeEventListener("hashchange", redirectDocumentLink);
  }, [current]);
  return <CookiePreferencesProvider><div className={`portal page-${current} ${current === "home" ? "portal-home" : ""} ${intro ? "portal-intro" : ""}`}>
    <a className="skip-link" href="#content">Přejít na obsah</a>
@@ -49,6 +60,7 @@ export default function Portal({ page }) {
        </div>
      </>}
      {current === "auto" && <Workshop/>}
+     {current === "documents" && <WorkshopDocuments/>}
      {current === "tuning" && <Tuning/>}
      {current === "tech" && <TechnologyPage/>}
      {current === "projects" && <ProjectsPage/>}
@@ -59,7 +71,7 @@ export default function Portal({ page }) {
      {current === "contact" && <Contact area={area}/>}
      {current === "booking" && <ServiceInquiry/>}
    </main>
-   <footer className="portal-footer">{area === "auto" && <a href="/autoservis#reklamace">Obchodní podmínky a reklamace</a>}{area === "tech" && <a href="https://ai.programenvusxenos.com/podminky-pouzivani.html">Podmínky PGEX AI</a>}<a href="/ochrana-osobnich-udaju.html">Ochrana osobních údajů</a><a href="/cookies.html">Cookies</a><CookieSettingsButton/><span>© {new Date().getFullYear()} PGEX · Program Envus Xenos</span>{current !== "home" && <a href="/">Zpět na rozcestník ↗</a>}</footer>
+   <footer className="portal-footer">{area === "auto" && <a href="/autoservis/dokumenty">Obchodní podmínky a reklamace</a>}{area === "tech" && <a href="https://ai.programenvusxenos.com/podminky-pouzivani.html">Podmínky PGEX AI</a>}<a href="/ochrana-osobnich-udaju.html">Ochrana osobních údajů</a><a href="/cookies.html">Cookies</a><CookieSettingsButton/><span>© {new Date().getFullYear()} PGEX · Program Envus Xenos</span>{current !== "home" && <a href="/">Zpět na rozcestník ↗</a>}</footer>
  </div></CookiePreferencesProvider>;
 }
 
