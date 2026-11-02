@@ -9,7 +9,7 @@ import { CookiePreferencesProvider, CookieSettingsButton } from "./CookiePrefere
 const aliases = { home: "home", systems: "auto", portfolio: "tech", "portfolio-unreal": "projects", marika: "marika", "portfolio-blender": "about", contact: "contact", "portfolio-vscode": "booking" };
 const routes = { "/tuning": "tuning", "/revenant": "revenant", "/luna": "luna", "/xeno": "xeno", "/novinky": "news", "/services": "auto", "/systems": "auto", "/technology": "tech", "/portfolio": "tech", "/projects": "projects", "/about": "about", "/contact": "contact", "/book-service": "booking", "/marika": "marika", "/": "home", "/index.html": "home", "/autoservis": "auto", "/technologie": "tech", "/projekty": "projects", "/o-nas": "about", "/kontakt": "contact", "/poptavka": "booking" };
 const links = {
- auto: [["Autoservis", "/autoservis"], ["Tuning", "/tuning"], ["Ceník", "/autoservis#cenik"], ["Servisní poptávka", "/poptavka"], ["Kontakt", "/kontakt?oblast=autoservis"]],
+ auto: [["Autoservis", "/autoservis"], ["Tuning", "/tuning"], ["Ceník", "/autoservis#cenik"], ["Dokumenty ke stažení", "/autoservis#reklamace"], ["Servisní poptávka", "/poptavka"], ["Kontakt", "/kontakt?oblast=autoservis"]],
  tech: [["Technologie", "/technologie"], ["Projekty", "/projekty"], ["Novinky", "/novinky"], ["Kontakt", "/kontakt?oblast=technologie"]],
  shared: [["O nás", "/o-nas"], ["Kontakt", "/kontakt"]],
 };
