@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/novinky/ukonceni-verejneho-provozu-pgex-ai",
+      "destination": "/novinky/aktualizace-socialnich-siti",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/autoservis/dokumenty",

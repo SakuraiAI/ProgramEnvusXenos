@@ -1,6 +1,6 @@
 import React from "react";
 
-const closureSlug = "ukonceni-verejneho-provozu-pgex-ai";
+const aiDevelopmentSlug = "pgex-nova-etapa-vlastni-vyvoj-ai";
 
 function NewAiChapterContent() {
   return (
@@ -98,16 +98,27 @@ function ArchiveNotice() {
   return (
     <p className="news-archive-note">
       Archivní článek zachycuje stav v době vydání. Veřejný provoz PGEX AI byl ukončen.{' '}
-      <a href={`/novinky/${closureSlug}`}>Aktuální informace o ukončení provozu →</a>
+      <a href={`/novinky/${aiDevelopmentSlug}`}>Aktuální informace o další etapě vývoje →</a>
     </p>
   );
 }
 
-function PublicClosureContent() {
+function SocialNetworksContent() {
   return (
     <>
-      <p>Aplikace již není veřejně dostupná. Původní koncepty Luny, Xeny a Mariky na webu zůstávají. Starší články v Novinkách zachycují stav v době svého vydání.</p>
-      <p><a href="/technologie#pgex-ai">Aktuální stav projektu →</a></p>
+      <p>PGEX můžete sledovat také mimo tento web. Na jednom místě proto přinášíme přehled našich profilů a kanálů, abyste se snadno dostali k tématům, která vás zajímají. Chceme postupně přibližovat práci kolem autoservisu, tuningu a technologických projektů i běžné zákulisí jejich přípravy.</p>
+      <h2 id="kde-sledovat-kratke-novinky">Kde sledovat krátké novinky</h2>
+      <p>Na <a href="https://www.instagram.com/programenvusxenos_/" target="_blank" rel="noopener noreferrer">Instagramu</a> a <a href="https://www.tiktok.com/@programenvusxenos" target="_blank" rel="noopener noreferrer">TikToku</a> chceme dávat prostor fotografiím a kratším videím ze světa PGEX. Zamýšlenými tématy jsou dění v dílně, péče o auta, úpravy vozidel a pohled do přípravy vlastních projektů. Vedle výsledků nás zajímají také jednotlivé pracovní kroky a rozhodnutí, která k nim vedou.</p>
+      <p>Pro stručnější zprávy a odkazy na nové články můžete sledovat náš profil na <a href="https://x.com/PGEnvus" target="_blank" rel="noopener noreferrer">X</a>. Krátký příspěvek může otevřít téma, ke kterému na webu připojíme širší souvislosti.</p>
+      <h2 id="prostor-pro-projekty-a-diskuzi">Prostor pro projekty a diskuzi</h2>
+      <p>Na <a href="https://www.linkedin.com/in/program-envus-xenos-946294366/" target="_blank" rel="noopener noreferrer">LinkedInu</a> najdete PGEX pod názvem Program Envus Xenos. Tento profil chceme využívat pro představení projektů, zkušeností z vývoje a možností spolupráce. Pro otázky, názory a technická témata jsou v našem přehledu také <a href="https://www.reddit.com/user/CicadaSensitive9928/" target="_blank" rel="noopener noreferrer">Reddit</a> a komunitní <a href="https://discord.gg/DaNX74Tneb" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
+      <p>Zajímá nás, co vás na našich projektech oslovuje, které souvislosti byste chtěli lépe vysvětlit a jaké zkušenosti máte sami. Taková diskuze může pomoci při výběru dalších témat i při zpřesňování nápadů.</p>
+      <h2 id="video-a-pohled-do-zakulisi">Video a pohled do zákulisí</h2>
+      <p>Mezi našimi kanály jsou také <a href="https://www.twitch.tv/programenvusxenos" target="_blank" rel="noopener noreferrer">Twitch</a> a <a href="https://kick.com/programenvusxenos" target="_blank" rel="noopener noreferrer">Kick</a>. Do budoucna zde chceme zkoušet delší videoformáty a živé pohledy do práce na projektech. Prostor mohou dostat technické postupy, vysvětlování souvislostí nebo rozhovor nad tím, co právě řešíme.</p>
+      <p>Smyslem takového obsahu je přiblížit cestu od nápadu k výsledku, včetně otázek a rozhodnutí během práce. Informace o případném vysílání budou patřit přímo na jednotlivé kanály.</p>
+      <h2 id="novinky-ktere-maji-souvislosti">Novinky, které mají souvislosti</h2>
+      <p>Podrobnější informace o službách a projektech zůstávají na hlavním webu PGEX. O směru KAGEON AI, modelové rodině Mira a Sakurai Corpo si můžete přečíst v článku <a href="/novinky/pgex-nova-etapa-vlastni-vyvoj-ai">Nová etapa PGEX: vlastní vývoj AI</a>.</p>
+      <p>Vyberte si síť, která vám vyhovuje, a sledujte témata, ke kterým máte blízko. Servisní návštěvu prosím domlouvejte přes <a href="/kontakt?oblast=autoservis">oficiální kontakt</a>; komentář na sociální síti sám o sobě není rezervací. Děkujeme, že jste součástí dění kolem PGEX.</p>
     </>
   );
 }
@@ -179,15 +190,22 @@ export const newsArticles = [
     ],
   },
   {
-    slug: closureSlug,
+    slug: "aktualizace-socialnich-siti",
     date: "2026-11-09",
     dateLabel: "9. listopadu 2026",
-    category: "technologie",
-    title: "Veřejný provoz PGEX AI byl ukončen.",
-    excerpt: "PGEX AI již není veřejně dostupné. Původní koncepty Luny, Xeny a Mariky zůstávají součástí webu.",
-    image: "/pgex-wordmark.svg",
-    imageAlt: "Logo PGEX — Program Envus Xenos",
-    Content: PublicClosureContent,
+    category: "pgex",
+    title: "Aktualizace sociálních sítí PGEX",
+    cardTitle: "Aktualizace sociálních sítí PGEX",
+    excerpt: "Kde sledovat PGEX, dění v dílně a zákulisí technologických projektů. Přehled našich sociálních profilů a kanálů.",
+    image: "/news/pgex-socialni-site.png",
+    imageAlt: "Ilustrační vizuál propojených sociálních sítí PGEX",
+    Content: SocialNetworksContent,
+    sections: [
+      { id: "kde-sledovat-kratke-novinky", title: "Kde sledovat krátké novinky" },
+      { id: "prostor-pro-projekty-a-diskuzi", title: "Prostor pro projekty a diskuzi" },
+      { id: "video-a-pohled-do-zakulisi", title: "Video a pohled do zákulisí" },
+      { id: "novinky-ktere-maji-souvislosti", title: "Novinky, které mají souvislosti" },
+    ],
   },
   {
     slug: "prehlednejsi-web-a-dalsi-smer-projektu",
