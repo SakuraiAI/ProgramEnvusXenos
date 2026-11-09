@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { categoryLabels, getNewsArticle, newsArticles } from "./newsData";
 import "./news.css";
 
-export const newsArticleHref = (article) => `/novinky/${article.slug}`;
+const newsArticleHref = (article) => `/novinky/${article.slug}`;
 const countLabel = (count) => count === 1 ? "příspěvek" : count >= 2 && count <= 4 ? "příspěvky" : "příspěvků";
 
 function Arrow({ diagonal = false }) {
@@ -20,7 +20,7 @@ function NewsCard({ article, featured = false, compact = false }) {
   <div className="news-card-copy">
    <div className="news-meta"><span>{categoryLabels[article.category]}</span><time dateTime={article.date}>{article.dateLabel}</time></div>
    {featured && <p className="news-feature-label">NEJNOVĚJŠÍ PŘÍSPĚVEK</p>}
-   <h2 id={`news-card-${article.slug}`}>{article.title}</h2>
+   <h2 id={`news-card-${article.slug}`}>{article.cardTitle || article.title}</h2>
    <p className="news-card-excerpt">{article.excerpt}</p>
    <span className="news-read">Číst článek <span className="news-read-arrow"><Arrow diagonal/></span></span>
   </div>
@@ -55,7 +55,7 @@ export function NewsArticlePage({ slug }) {
  return <article className="tech-page news-article">
   <header className="news-article-header"><a className="news-back" href="/novinky"><span aria-hidden="true">←</span> Všechny novinky</a><div className="news-meta"><a href={`/novinky?tema=${article.category}`}>{categoryLabels[article.category]}</a><time dateTime={article.date}>{article.dateLabel}</time></div><h1>{article.title}</h1><p className="news-article-deck">{article.excerpt}</p><p className="news-byline">PGEX <span aria-hidden="true">/</span> Program Envus Xenos</p></header>
   <div className="news-article-cover"><NewsVisual article={article} eager/></div>
-  <div className="news-reading-layout"><aside className="news-reading-aside"><p className="portal-eyebrow">V TOMTO ČLÁNKU</p>{article.sections?.length ? <nav aria-label="Obsah článku">{article.sections.map(section => <a key={section.id} href={`#${section.id}`}>{section.title}</a>)}</nav> : <p>Novinka ze světa PGEX.</p>}<a className="news-back" href="/novinky">← Zpět na přehled</a></aside><div className="news-article-body"><Content/></div></div>
+  <div className="news-reading-layout"><aside className="news-reading-aside">{article.sections?.length ? <details className="news-toc" open={article.sections.length <= 3}><summary><span>V tomto článku</span><span className="news-toc-toggle" aria-hidden="true">+</span></summary><nav aria-label="Obsah článku">{article.sections.map(section => <a key={section.id} href={`#${section.id}`}>{section.title}</a>)}</nav></details> : <><p className="portal-eyebrow">V TOMTO ČLÁNKU</p><p>Novinka ze světa PGEX.</p></>}<a className="news-back" href="/novinky">← Zpět na přehled</a></aside><div className="news-article-body"><Content/></div></div>
   <footer className="news-article-footer"><div className="news-section-heading"><div><p className="portal-eyebrow">POKRAČOVAT VE ČTENÍ</p><h2>Další ze světa PGEX.</h2></div><a className="news-back" href="/novinky">Všechny novinky <Arrow/></a></div><div className="news-related">{newer && <div><p className="news-adjacent-label">NOVĚJŠÍ ČLÁNEK</p><NewsCard article={newer} compact/></div>}{older && <div><p className="news-adjacent-label">STARŠÍ ČLÁNEK</p><NewsCard article={older} compact/></div>}</div></footer>
  </article>;
 }
