@@ -21,6 +21,10 @@
       "destination": "/index.html"
     },
     {
+      "source": "/novinky/:slug",
+      "destination": "/index.html"
+    },
+    {
       "source": "/novinky",
       "destination": "/index.html"
     },

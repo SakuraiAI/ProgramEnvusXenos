@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { TechnologyPage, ProjectsPage, AIProfilePage, RevenantPage, NewsPage } from "./Technology";
+import { TechnologyPage, ProjectsPage, AIProfilePage, RevenantPage } from "./Technology";
+import { NewsPage, NewsArticlePage } from "./News";
+import { getNewsArticle } from "./newsData";
 import "./portal.css";
 import ServiceInquiry from "./ServiceInquiry";
 import Workshop, { WorkshopLocation, WorkshopDocuments } from "./Workshop";
@@ -20,19 +22,22 @@ const socials = [{ name: "Instagram", href: "https://www.instagram.com/programen
 
 export default function Portal({ page }) {
  const pathname = window.location.pathname.replace(/\/$/, "") || "/";
- const current = routes[pathname] || aliases[page] || "home";
+ const articleSlug = pathname.startsWith("/novinky/") ? pathname.slice("/novinky/".length) : null;
+ const newsArticle = articleSlug !== null ? getNewsArticle(articleSlug) : null;
+ const current = articleSlug !== null ? "newsArticle" : routes[pathname] || aliases[page] || "home";
  const context = new URLSearchParams(window.location.search).get("oblast");
- const area = ["auto", "booking", "tuning", "documents"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "projects", "marika", "luna", "xeno", "news", "revenant"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
+ const area = ["auto", "booking", "tuning", "documents"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "projects", "marika", "luna", "xeno", "news", "newsArticle", "revenant"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
  const navigation = links[area].map(([label, href]) => [label, current === "tuning" && href === "/autoservis#cenik" ? "/tuning#cenik" : href]);
  const [intro] = useState(() => {
    if (current !== "home" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
    return !introSeenInDocument;
  });
  useEffect(() => {
-   document.title = `${titles[current]} | PGEX`;
+   document.title = `${current === "newsArticle" ? newsArticle?.title || "Článek nebyl nalezen" : titles[current]} | PGEX`;
+   if (current === "newsArticle") document.querySelector('meta[name="description"]')?.setAttribute("content", newsArticle?.excerpt || "Přehled novinek a článků PGEX.");
    document.documentElement.lang = "cs";
    if (current === "home") introSeenInDocument = true;
- }, [current]);
+ }, [current, newsArticle]);
  useEffect(() => {
    if (current !== "auto") return;
    const redirectDocumentLink = () => {
@@ -49,7 +54,7 @@ export default function Portal({ page }) {
    <header className="portal-header">
      <a className="portal-brand" href="/" aria-label="PGEX — úvodní rozcestník"><span className="portal-wordmark"><img src="/pgex-wordmark.svg" alt="PGEX" width="230" height="44"/></span></a>
      {area !== "shared" && <span className="area-label">{area === "auto" ? "AUTOSERVIS" : "VÝVOJ A TECHNOLOGIE"}</span>}
-     <nav aria-label="Hlavní navigace">{navigation.map(([label, href]) => <a key={href} href={href} aria-current={pathname === href ? "page" : undefined}>{label}</a>)}</nav>
+     <nav aria-label="Hlavní navigace">{navigation.map(([label, href]) => <a key={href} href={href} aria-current={pathname === href || (current === "newsArticle" && href === "/novinky") ? "page" : undefined}>{label}</a>)}</nav>
    </header>
    <main id="content" className={current === "home" ? "gateway-main" : "portal-content"}>
      {current === "home" && <>
@@ -66,6 +71,7 @@ export default function Portal({ page }) {
      {current === "projects" && <ProjectsPage/>}
      {["luna", "xeno", "marika"].includes(current) && <AIProfilePage profile={current}/>}
      {current === "news" && <NewsPage/>}
+     {current === "newsArticle" && <NewsArticlePage slug={articleSlug}/>}
      {current === "revenant" && <RevenantPage/>}
      {current === "about" && <About/>}
      {current === "contact" && <Contact area={area}/>}
