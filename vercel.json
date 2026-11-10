@@ -8,6 +8,10 @@
   ],
   "rewrites": [
     {
+      "source": "/sakura-corporation",
+      "destination": "/index.html"
+    },
+    {
       "source": "/autoservis/dokumenty",
       "destination": "/index.html"
     },
