@@ -52,6 +52,22 @@
       "destination": "/portfolio.html"
     },
     {
+      "source": "/technologie/konstrukce",
+      "destination": "/technology-engineering.html"
+    },
+    {
+      "source": "/technologie/vykon-a-chlazeni",
+      "destination": "/technology-performance.html"
+    },
+    {
+      "source": "/technologie/elektronika",
+      "destination": "/technology-electronics.html"
+    },
+    {
+      "source": "/technologie/vlastni-komponenty",
+      "destination": "/technology-components.html"
+    },
+    {
       "source": "/projekty",
       "destination": "/index.html"
     },
