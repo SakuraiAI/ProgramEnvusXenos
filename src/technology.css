@@ -48,3 +48,8 @@
 .sakura-page .ai-example-steps + .gateway-button{margin-top:24px}
 .service-app-page .service-app-hero-image{width:100%;height:auto;object-fit:contain}
 .service-app-page .tech-hero{align-items:start}
+.mira-project{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,.7fr);align-items:center;gap:48px}
+.mira-project figure{width:100%;max-width:360px;margin:0;justify-self:end}
+.mira-portrait{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:contain;border:1px solid #c86d6d45;border-radius:16px}
+.mira-project figcaption{margin-top:12px;font-size:13px;line-height:1.6;color:#aaa69d}
+@media(max-width:700px){.mira-project{grid-template-columns:1fr;gap:28px}.mira-project figure{justify-self:start}}

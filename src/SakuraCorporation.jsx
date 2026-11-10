@@ -14,6 +14,7 @@ export default function SakuraCorporation() {
           <p className="tech-lead">Sakura Corporation připravujeme jako technologickou a výzkumnou značku propojenou s PGEX. Jejím zaměřením má být dlouhodobější vývoj vlastních technologií, jejich dokumentace a ověřování v praxi.</p>
           <p>Vyobrazení představuje vizuální koncept projektu.</p>
           <div className="contact-actions">
+            <a className="gateway-button outline" href="#mira">Mira / KAGEON AI ↓</a>
             <a className="gateway-button outline" href="#asistentky">Luna, Xeno a Marika ↓</a>
           </div>
         </div>
@@ -38,6 +39,28 @@ export default function SakuraCorporation() {
             <p>PGEX se nadále věnuje autoservisu, automobilovým technologiím a vlastním projektům. Sakura Corporation má nabídnout prostor pro soustředěnější výzkum při zachování této návaznosti. Praktické zkušenosti a otázky z jednotlivých oborů mohou pomáhat určovat další témata.</p>
           </article>
         </div>
+      </section>
+
+      <section id="mira" className="tech-section mira-project">
+        <div>
+          <p className="portal-eyebrow">SAKURA CORPORATION / KAGEON AI</p>
+          <h2>Mira.</h2>
+          <span className="tech-status">Experimentální vývoj</span>
+          <p className="tech-lead">Vlastní rodina jazykových modelů v rámci výzkumu KAGEON AI.</p>
+          <p>První prototyp Mira M-0001 sloužil k ověřování základních principů trénování neuronové sítě. Následující Mira M-0002 navázala trénovacími experimenty a testováním práce s textem a kontextem.</p>
+          <ul className="project-tags" aria-label="Experimentální modely Mira">
+            <li>Mira M-0001</li>
+            <li>Mira M-0002</li>
+          </ul>
+          <p>Mira zatím není hotovou konverzační asistentkou a není připravena pro veřejný provoz.</p>
+          <div className="contact-actions">
+            <a className="gateway-button outline" href="/novinky/pgex-nova-etapa-vlastni-vyvoj-ai">Více o výzkumu KAGEON AI →</a>
+          </div>
+        </div>
+        <figure>
+          <img className="mira-portrait" src="/characters/mira.jpg" alt="Mira se stříbrnými vlasy a červenými technologickými prvky" width="1024" height="1280" loading="lazy" />
+          <figcaption>Vizuální podoba Miry.</figcaption>
+        </figure>
       </section>
 
       <SakuraAssistants />

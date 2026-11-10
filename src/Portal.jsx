@@ -42,8 +42,8 @@ export default function Portal({ page }) {
    if (current === "home") introSeenInDocument = true;
  }, [current, newsArticle]);
  useEffect(() => {
-   if (current === "sakura" && window.location.hash === "#asistentky") {
-     document.getElementById("asistentky")?.scrollIntoView();
+   if (current === "sakura" && ["#asistentky", "#mira"].includes(window.location.hash)) {
+     document.getElementById(window.location.hash.slice(1))?.scrollIntoView();
    }
  }, [current]);
  useEffect(() => {
