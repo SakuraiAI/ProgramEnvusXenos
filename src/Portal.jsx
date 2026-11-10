@@ -18,7 +18,7 @@ const links = {
  tech: [["Technologie", "/technologie"], ["Projekty", "/projekty"], ["Novinky", "/novinky"], ["Kontakt", "/kontakt?oblast=technologie"]],
  shared: [["O nás", "/o-nas"], ["Kontakt", "/kontakt"]],
 };
-const titles = { serviceApp: "Servisní aplikace PGEX", sakura: "Sakura Corporation", documents: "Dokumenty ke stažení", tuning: "Tuning a individuální úpravy", revenant: "Revenant", luna: "Luna — Sakura Corporation", xeno: "Xeno — Sakura Corporation", news: "Novinky", home: "Vyberte si svou cestu", auto: "Autoservis", tech: "Vývoj a technologie", projects: "Projekty", marika: "Marika — Sakura Corporation", about: "O nás", contact: "Kontakt", booking: "Servisní poptávka" };
+const titles = { serviceApp: "Servisní aplikace PGEX", sakura: "Sakura Corporation", documents: "Dokumenty ke stažení", tuning: "Tuning a individuální úpravy", revenant: "Revenant", luna: "Luna — Sakura Corporation", xeno: "Xeno — Sakura Corporation", news: "Novinky", home: "Vyberte si svou cestu", auto: "Autoservis", tech: "PGEX Technologie", projects: "Projekty", marika: "Marika — Sakura Corporation", about: "O nás", contact: "Kontakt", booking: "Servisní poptávka" };
 let introSeenInDocument = false;
 // Add only real, verified profile URLs here. Social links belong on About only.
 const socials = [{ name: "Instagram", href: "https://www.instagram.com/programenvusxenos_/", detail: "Fotky a dění kolem PGEX" }, { name: "TikTok", href: "https://www.tiktok.com/@programenvusxenos", detail: "Videa ze světa PGEX" }, { name: "X", href: "https://x.com/PGEnvus", detail: "Příspěvky ze světa PGEX" }, { name: "Reddit", href: "https://www.reddit.com/user/CicadaSensitive9928/", detail: "Profil u/CicadaSensitive9928" }, { name: "LinkedIn", href: "https://www.linkedin.com/in/program-envus-xenos-946294366/", detail: "Program Envus Xenos" }, { name: "Twitch", href: "https://www.twitch.tv/programenvusxenos", detail: "Kanál programenvusxenos" }, { name: "Kick", href: "https://kick.com/programenvusxenos", detail: "Kanál programenvusxenos" }, { name: "Discord", href: "https://discord.gg/DaNX74Tneb", detail: "Připojte se ke komunitě PGEX" }];
@@ -36,14 +36,18 @@ export default function Portal({ page }) {
    return !introSeenInDocument;
  });
  useEffect(() => {
-   document.title = `${current === "newsArticle" ? newsArticle?.title || "Článek nebyl nalezen" : titles[current]} | PGEX`;
+   document.title = current === "tech" ? "PGEX Technologie" : `${current === "newsArticle" ? newsArticle?.title || "Článek nebyl nalezen" : titles[current]} | PGEX`;
    if (current === "newsArticle") document.querySelector('meta[name="description"]')?.setAttribute("content", newsArticle?.excerpt || "Přehled novinek a článků PGEX.");
+   if (current === "tech") document.querySelector('meta[name="description"]')?.setAttribute("content", "PGEX Technologie: Sakura Corporation, vlastní výzkum KAGEON AI a modely Mira, AI asistentky, servisní aplikace a supersport Revenant.");
    document.documentElement.lang = "cs";
    if (current === "home") introSeenInDocument = true;
  }, [current, newsArticle]);
  useEffect(() => {
-   if (current === "sakura" && ["#asistentky", "#mira"].includes(window.location.hash)) {
-     document.getElementById(window.location.hash.slice(1))?.scrollIntoView();
+   const hash = window.location.hash.slice(1);
+   const target = current === "tech" && hash === "postavy" ? "vyzkum" : hash;
+   const anchors = current === "sakura" ? ["asistentky", "mira"] : current === "tech" ? ["vyzkum", "software", "revenant", "pristup", "pgex-ai"] : [];
+   if (anchors.includes(target)) {
+     document.getElementById(target)?.scrollIntoView();
    }
  }, [current]);
  useEffect(() => {

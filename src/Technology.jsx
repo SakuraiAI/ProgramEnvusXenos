@@ -4,28 +4,11 @@ function AIAvailability() {
  return <div className="project-platforms"><p>Veřejný provoz PGEX AI byl ukončen.</p><small>Zachováváme původní představení projektu a jeho konceptů.</small></div>;
 }
 
-const features = [
- ["01", "Luna, Xeno a Marika", "Původní koncept tří asistentek pro komunikaci, programování a promýšlení složitějších zadání."],
- ["02", "Přílohy a souvislosti", "Původní návrh práce s textovými soubory, kódem a obrázky v kontextu konverzace."],
- ["03", "Projekty na jednom místě", "Koncept uspořádání konverzací podle projektů, aby se jednotlivá témata nemíchala."],
- ["04", "Nástroje v prohlížeči", "Původní nabídka beta verze zahrnovala vyhledávání na webu, tvorbu obrázků a hlasový rozhovor."],
-];
-
 function Collaboration() {
  return <section className="tech-collaboration"><div><p className="portal-eyebrow">KONTAKT A SPOLUPRÁCE</p><h2>Máte dotaz?</h2><p>Zajímají vás naše technologické projekty nebo možnosti spolupráce? Napište nám.</p></div><a className="gateway-button" href="/kontakt?oblast=technologie">Ozvat se →</a></section>;
 }
 
-export function TechnologyPage() {
- return <div className="tech-page technology-overview">
-  <section className="tech-hero"><div><h1>Od umělé inteligence<br/><span>k vlastním projektům.</span></h1><p className="tech-lead">Sakura Corporation, vlastní software a supersport Revenant. Poznejte naše projekty a jejich zaměření.</p><div className="contact-actions"><a className="gateway-button" href="/projekty">Projekty <span aria-hidden="true">→</span></a><a className="gateway-button outline" href="#pristup">O vývoji <span aria-hidden="true">↓</span></a></div></div><img className="tech-hero-image" src="/technology/development-workspace.jpg" width="1536" height="1024" alt="Ilustrace pracoviště pro vývoj softwaru"/></section>
-  <nav className="tech-section-nav" aria-label="Obsah technologií"><a href="#postavy">AI Sakura Corporation</a><a href="#pgex-ai">Projekt PGEX AI</a><a href="#revenant">Supersport Revenant</a><a href="#pristup">Náš přístup</a></nav>
-  <section id="postavy" className="tech-section"><p className="portal-eyebrow">SAKURA CORPORATION / AI ASISTENTKY</p><h2>Luna, Xeno a Marika.</h2><p className="tech-lead">Tři AI asistentky pod Sakura Corporation. Každá má vlastní zaměření: komunikaci, technické řešení nebo koordinaci práce.</p><p>Jejich představení, portréty a jednotlivé koncepty najdete společně na stránce Sakura Corporation.</p><div className="contact-actions"><a className="gateway-button outline" href="/sakura-corporation#asistentky">Poznat asistentky Sakura Corporation →</a></div></section>
-  <section id="pgex-ai" className="tech-section"><div className="tech-section-heading"><div><p className="portal-eyebrow">PŮVODNÍ PROJEKT</p><h2>PGEX AI</h2></div><span className="tech-status">Veřejný provoz ukončen</span></div><p className="tech-lead">Původní projekt pracovního prostoru s Lunou, Xenou, Marikou, soubory a konverzacemi.</p><div className="contact-actions"><a className="gateway-button outline" href="/kontakt?oblast=technologie">Dotaz k projektu</a></div><div className="tech-feature-grid">{features.map(([number,title,text])=><article key={number}><span className="tech-number">{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div><div className="tech-project-note"><h3>Veřejný provoz PGEX AI byl ukončen.</h3><p>Aplikace již není veřejně dostupná. Tato stránka zachovává původní představení projektu a jeho konceptů.</p></div></section>
-  <section id="revenant" className="tech-section tech-revenant"><div><p className="portal-eyebrow">AUTOMOBILOVÝ PROJEKT PGEX</p><h2>Revenant.</h2><span className="tech-status">Koncept</span><p className="tech-lead">Vlastní supersport. Další směr technologií PGEX.</p><p>Revenant je projekt supersportovního automobilu. Vedle softwaru a umělé inteligence představuje automobilovou větev našich vlastních projektů.</p><p>Další podrobnosti o technickém řešení a příběhu vzniku představíme s konkrétními podklady k projektu.</p><a className="gateway-button outline" href="/revenant">Zajímá mě Revenant →</a></div><img className="tech-revenant-image" src="/vehicles/xenos-x2.jpg" alt="Černozlatý supersport — projekt Revenant" width="1536" height="1024" loading="lazy"/></section>
-  <section id="pristup" className="tech-section"><p className="portal-eyebrow">JAK PŘEMÝŠLÍME O VÝVOJI</p><h2>Od zadání k ověřenému výsledku.</h2><p className="tech-lead">Každý projekt má jiné zaměření. Společný je důraz na jasný účel, postupné kroky a ověřování v praxi.</p><div className="tech-process"><article><span className="tech-number">01 / ZÁMĚR</span><h3>Ujasnit, co řešíme</h3><p>Začínáme konkrétní potřebou. Určíme, komu má řešení sloužit a jak poznáme, že je užitečné.</p></article><article><span className="tech-number">02 / NÁVRH</span><h3>Rozdělit práci na kroky</h3><p>Od celkové myšlenky přecházíme k menším částem, které lze navrhnout, vyzkoušet a postupně propojit.</p></article><article><span className="tech-number">03 / OVĚŘENÍ</span><h3>Testovat a zpřesňovat</h3><p>Výsledky porovnáváme se zadáním. Zkušenosti z používání pomáhají určit, co upravit a co má smysl rozvíjet dál.</p></article></div></section>
-  <Collaboration/>
- </div>;
-}
+export { default as TechnologyPage } from "./TechnologyLanding";
 
 export function ProjectsPage() {
  return <div className="tech-page projects-showcase">
