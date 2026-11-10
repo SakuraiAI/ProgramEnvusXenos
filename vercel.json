@@ -8,6 +8,10 @@
   ],
   "rewrites": [
     {
+      "source": "/servisni-aplikace",
+      "destination": "/index.html"
+    },
+    {
       "source": "/sakura-corporation",
       "destination": "/index.html"
     },

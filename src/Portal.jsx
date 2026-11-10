@@ -3,6 +3,7 @@ import { TechnologyPage, ProjectsPage, AIProfilePage, RevenantPage } from "./Tec
 import { NewsPage, NewsArticlePage } from "./News";
 import { getNewsArticle } from "./newsData";
 import SakuraCorporation from "./SakuraCorporation";
+import ServiceAppProject from "./ServiceAppProject";
 import "./portal.css";
 import ServiceInquiry from "./ServiceInquiry";
 import Workshop, { WorkshopLocation, WorkshopDocuments } from "./Workshop";
@@ -10,13 +11,13 @@ import Tuning from "./Tuning";
 import { CookiePreferencesProvider, CookieSettingsButton } from "./CookiePreferences";
 
 const aliases = { home: "home", systems: "auto", portfolio: "tech", "portfolio-unreal": "projects", marika: "marika", "portfolio-blender": "about", contact: "contact", "portfolio-vscode": "booking" };
-const routes = { "/sakura-corporation": "sakura", "/autoservis/dokumenty": "documents", "/tuning": "tuning", "/revenant": "revenant", "/luna": "luna", "/xeno": "xeno", "/novinky": "news", "/services": "auto", "/systems": "auto", "/technology": "tech", "/portfolio": "tech", "/projects": "projects", "/about": "about", "/contact": "contact", "/book-service": "booking", "/marika": "marika", "/": "home", "/index.html": "home", "/autoservis": "auto", "/technologie": "tech", "/projekty": "projects", "/o-nas": "about", "/kontakt": "contact", "/poptavka": "booking" };
+const routes = { "/servisni-aplikace": "serviceApp", "/sakura-corporation": "sakura", "/autoservis/dokumenty": "documents", "/tuning": "tuning", "/revenant": "revenant", "/luna": "luna", "/xeno": "xeno", "/novinky": "news", "/services": "auto", "/systems": "auto", "/technology": "tech", "/portfolio": "tech", "/projects": "projects", "/about": "about", "/contact": "contact", "/book-service": "booking", "/marika": "marika", "/": "home", "/index.html": "home", "/autoservis": "auto", "/technologie": "tech", "/projekty": "projects", "/o-nas": "about", "/kontakt": "contact", "/poptavka": "booking" };
 const links = {
  auto: [["Autoservis", "/autoservis"], ["Tuning", "/tuning"], ["Ceník", "/autoservis#cenik"], ["Dokumenty ke stažení", "/autoservis/dokumenty"], ["Servisní poptávka", "/poptavka"], ["Kontakt", "/kontakt?oblast=autoservis"]],
  tech: [["Technologie", "/technologie"], ["Projekty", "/projekty"], ["Novinky", "/novinky"], ["Kontakt", "/kontakt?oblast=technologie"]],
  shared: [["O nás", "/o-nas"], ["Kontakt", "/kontakt"]],
 };
-const titles = { sakura: "Sakura Corporation", documents: "Dokumenty ke stažení", tuning: "Tuning a individuální úpravy", revenant: "Revenant", luna: "Luna", xeno: "Xeno", news: "Novinky", home: "Vyberte si svou cestu", auto: "Autoservis", tech: "Vývoj a technologie", projects: "Projekty", marika: "Marika", about: "O nás", contact: "Kontakt", booking: "Servisní poptávka" };
+const titles = { serviceApp: "Servisní aplikace PGEX", sakura: "Sakura Corporation", documents: "Dokumenty ke stažení", tuning: "Tuning a individuální úpravy", revenant: "Revenant", luna: "Luna", xeno: "Xeno", news: "Novinky", home: "Vyberte si svou cestu", auto: "Autoservis", tech: "Vývoj a technologie", projects: "Projekty", marika: "Marika", about: "O nás", contact: "Kontakt", booking: "Servisní poptávka" };
 let introSeenInDocument = false;
 // Add only real, verified profile URLs here. Social links belong on About only.
 const socials = [{ name: "Instagram", href: "https://www.instagram.com/programenvusxenos_/", detail: "Fotky a dění kolem PGEX" }, { name: "TikTok", href: "https://www.tiktok.com/@programenvusxenos", detail: "Videa ze světa PGEX" }, { name: "X", href: "https://x.com/PGEnvus", detail: "Příspěvky ze světa PGEX" }, { name: "Reddit", href: "https://www.reddit.com/user/CicadaSensitive9928/", detail: "Profil u/CicadaSensitive9928" }, { name: "LinkedIn", href: "https://www.linkedin.com/in/program-envus-xenos-946294366/", detail: "Program Envus Xenos" }, { name: "Twitch", href: "https://www.twitch.tv/programenvusxenos", detail: "Kanál programenvusxenos" }, { name: "Kick", href: "https://kick.com/programenvusxenos", detail: "Kanál programenvusxenos" }, { name: "Discord", href: "https://discord.gg/DaNX74Tneb", detail: "Připojte se ke komunitě PGEX" }];
@@ -27,7 +28,7 @@ export default function Portal({ page }) {
  const newsArticle = articleSlug !== null ? getNewsArticle(articleSlug) : null;
  const current = articleSlug !== null ? "newsArticle" : routes[pathname] || aliases[page] || "home";
  const context = new URLSearchParams(window.location.search).get("oblast");
- const area = ["auto", "booking", "tuning", "documents"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "projects", "sakura", "marika", "luna", "xeno", "news", "newsArticle", "revenant"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
+ const area = ["auto", "booking", "tuning", "documents"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "projects", "serviceApp", "sakura", "marika", "luna", "xeno", "news", "newsArticle", "revenant"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
  const navigation = links[area].map(([label, href]) => [label, current === "tuning" && href === "/autoservis#cenik" ? "/tuning#cenik" : href]);
  const [intro] = useState(() => {
    if (current !== "home" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
@@ -71,6 +72,7 @@ export default function Portal({ page }) {
      {current === "tech" && <TechnologyPage/>}
      {current === "projects" && <ProjectsPage/>}
      {current === "sakura" && <SakuraCorporation/>}
+     {current === "serviceApp" && <ServiceAppProject/>}
      {["luna", "xeno", "marika"].includes(current) && <AIProfilePage profile={current}/>}
      {current === "news" && <NewsPage/>}
      {current === "newsArticle" && <NewsArticlePage slug={articleSlug}/>}

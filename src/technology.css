@@ -39,11 +39,12 @@
 .project-platforms>p{margin:0 0 10px;color:#d3bc8b;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
 .project-platforms .project-tags{margin:0 0 12px}
 .project-platforms small{display:block;max-width:65ch;color:#b6b3ab;font-size:13px;line-height:1.7}
-.service-app-project{scroll-margin-top:32px}
-.service-app-project .tech-project-note a{display:inline-block;margin-top:8px;color:#e0bc78;text-underline-offset:4px}
+#servisni-aplikace{scroll-margin-top:32px}
 @media(max-width:1100px) and (min-width:751px){.projects-showcase .project-showcase-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:750px){.projects-showcase .project-showcase-grid{grid-template-columns:1fr}}
 .sakura-project-card .project-picture-link img{object-position:center 40%}
 .sakura-page .sakura-hero-image{width:100%;height:auto;object-fit:contain}
 .sakura-page .tech-hero{align-items:start}
 .sakura-page .ai-example-steps + .gateway-button{margin-top:24px}
+.service-app-page .service-app-hero-image{width:100%;height:auto;object-fit:contain}
+.service-app-page .tech-hero{align-items:start}
