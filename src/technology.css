@@ -46,3 +46,4 @@
 .sakura-project-card .project-picture-link img{object-position:center 40%}
 .sakura-page .sakura-hero-image{width:100%;height:auto;object-fit:contain}
 .sakura-page .tech-hero{align-items:start}
+.sakura-page .ai-example-steps + .gateway-button{margin-top:24px}
