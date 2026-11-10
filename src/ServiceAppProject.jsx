@@ -8,12 +8,12 @@ export default function ServiceAppProject() {
       <section className="tech-hero">
         <div>
           <p className="portal-eyebrow">PGEX / SOFTWARE PRO AUTOSERVIS</p>
-          <h1>Servisní aplikace PGEX</h1>
+          <h1>PGEX Core</h1>
           <span className="tech-status">Připravujeme</span>
-          <p className="tech-lead">Od přijetí vozu po dokončení zakázky. Navrhujeme pracovní prostor pro přehlednější každodenní chod dílny.</p>
+          <p className="tech-lead">Připravovaná servisní aplikace PGEX. Od přijetí vozu po dokončení zakázky navrhujeme pracovní prostor pro přehlednější každodenní chod dílny.</p>
           <p>Důležité údaje o vozidle, domluvené práci a stavu zakázky mají být na jednom místě. Cílem je usnadnit návaznost jednotlivých kroků a orientaci v tom, co servis právě řeší.</p>
         </div>
-        <img className="tech-hero-image service-app-hero-image" src="/workshop/workshop-hero.jpg" alt="Ilustrace autoservisu — zázemí pro návrh servisní aplikace PGEX" width="1536" height="1024" />
+        <img className="tech-hero-image service-app-hero-image" src="/workshop/workshop-hero.jpg" alt="Ilustrace autoservisu — zamýšlené prostředí pro využití aplikace PGEX Core" width="1536" height="1024" />
       </section>
 
       <section className="tech-section">
@@ -56,7 +56,7 @@ export default function ServiceAppProject() {
         <p>Popis představuje zamýšlené funkce. Aplikace zatím není veřejně dostupná; konkrétní podoba a termín vydání budou upřesněny během vývoje.</p>
         <p>Zajímá vás projekt nebo máte zkušenost z provozu dílny, která by mohla pomoci při návrhu? Napište nám, jaké situace při evidenci zakázek a organizaci práce řešíte.</p>
         <div className="contact-actions">
-          <a className="gateway-button outline" href="/kontakt?oblast=technologie">Dotazy k servisní aplikaci →</a>
+          <a className="gateway-button outline" href="/kontakt?oblast=technologie">Dotazy k PGEX Core →</a>
         </div>
       </section>
     </div>

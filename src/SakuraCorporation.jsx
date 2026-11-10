@@ -8,10 +8,11 @@ export default function SakuraCorporation() {
       <a className="ai-back" href="/projekty">← Zpět na projekty</a>
       <section className="tech-hero">
         <div>
-          <p className="portal-eyebrow">PGEX / VÝZKUM A TECHNOLOGIE</p>
+          <p className="portal-eyebrow">SAMOSTATNÝ VÝZKUMNÝ PROJEKT</p>
           <h1>Sakura Corporation</h1>
           <span className="tech-status">Připravujeme</span>
-          <p className="tech-lead">Sakura Corporation připravujeme jako technologickou a výzkumnou značku propojenou s PGEX. Jejím zaměřením má být dlouhodobější vývoj vlastních technologií, jejich dokumentace a ověřování v praxi.</p>
+          <p className="tech-lead">Sakura Corporation připravujeme jako samostatnou technologickou a výzkumnou společnost. Jejím záměrem je širší výzkum a vývoj vlastních technologií s možností budoucí spolupráce s automobilovou značkou PGEX.</p>
+          <p><span lang="en">Website in Development</span> — samostatný web se připravuje. Tato stránka je stručným představením na webu PGEX.</p>
           <p>Vyobrazení představuje vizuální koncept projektu.</p>
           <div className="contact-actions">
             <a className="gateway-button outline" href="#mira">Mira / KAGEON AI ↓</a>
@@ -24,19 +25,19 @@ export default function SakuraCorporation() {
       <section className="tech-section">
         <p className="portal-eyebrow">ZAMĚŘENÍ PROJEKTU</p>
         <h2>Prostor pro vlastní výzkum.</h2>
-        <p className="tech-lead">Projekt navazuje na zkušenosti PGEX s mechanikou, softwarem a umělou inteligencí. Chceme vytvořit prostředí, ve kterém se tyto zkušenosti mohou doplňovat a postupně přecházet do konkrétních, ověřitelných návrhů.</p>
+        <p className="tech-lead">Zaměření Sakura Corporation přesahuje automobilový vývoj. Současnou experimentální práci KAGEON AI odlišujeme od připravovaných záměrů a dlouhodobých vizí v dalších oborech.</p>
         <div className="tech-process">
           <article>
             <h3>Zázemí pro výzkum</h3>
-            <p>Sakura Corporation má soustředit specializovanější technologickou práci a dát jí vlastní směr. Důležitou součástí záměru je zaznamenávat experimenty, jejich výsledky i známá omezení, aby bylo možné na předchozí práci navazovat a porovnávat další postupy.</p>
+            <p>Mezi dlouhodobé směry patří Computing &amp; Hardware, Robotics &amp; Automation, Space Research a Advanced Research. Vlastní CPU, GPU, roboty ani kosmické systémy zde nepředstavujeme jako hotové výrobky.</p>
           </article>
           <article>
             <h3>KAGEON AI</h3>
-            <p>Jednou z oblastí je vlastní výzkum umělé inteligence KAGEON AI a experimentální rodina modelů Mira. Tyto modely slouží k získávání zkušeností s trénováním a vyhodnocováním; jejich další rozvoj vyžaduje průběžné ověřování schopností i spolehlivosti.</p>
+            <p>KAGEON AI je specializovaná výzkumná oblast pod připravovanou Sakura Corporation. KAGEON MODEL LAB již pracuje s experimentálními modely Mira. Podrobnosti, dokumentace a experimenty budou mít místo na samostatné platformě, až bude připravena.</p>
           </article>
           <article>
             <h3>Propojení s PGEX</h3>
-            <p>PGEX se nadále věnuje autoservisu, automobilovým technologiím a vlastním projektům. Sakura Corporation má nabídnout prostor pro soustředěnější výzkum při zachování této návaznosti. Praktické zkušenosti a otázky z jednotlivých oborů mohou pomáhat určovat další témata.</p>
+            <p>PGEX zůstává samostatným projektem a automobilovou značkou pro servis, tuning a vývoj vlastních automobilových technologií. Se Sakura Corporation počítáme s budoucí technologickou spoluprací; nejde o potvrzenou mateřskou a dceřinou společnost.</p>
           </article>
         </div>
       </section>
@@ -47,7 +48,7 @@ export default function SakuraCorporation() {
           <h2>Mira.</h2>
           <span className="tech-status">Experimentální vývoj</span>
           <p className="tech-lead">Vlastní rodina jazykových modelů v rámci výzkumu KAGEON AI.</p>
-          <p>První prototyp Mira M-0001 sloužil k ověřování základních principů trénování neuronové sítě. Následující Mira M-0002 navázala trénovacími experimenty a testováním práce s textem a kontextem.</p>
+          <p>KAGEON MODEL LAB pracuje s experimentální modelovou rodinou Mira s označením M-0001 a M-0002. Konkrétní parametry, výsledky a omezení mají vycházet z doložené dokumentace výzkumu.</p>
           <ul className="project-tags" aria-label="Experimentální modely Mira">
             <li>Mira M-0001</li>
             <li>Mira M-0002</li>
@@ -70,7 +71,7 @@ export default function SakuraCorporation() {
         <h2>Další kroky připravujeme.</h2>
         <p>Organizační a technická podoba projektu se teprve utváří. Následující body vymezují směr další práce; konkrétní rozsah bude vycházet z podkladů a výsledků jednotlivých etap.</p>
         <ol className="ai-example-steps">
-          <li><strong>Upřesnit záměr.</strong> Vymezit zaměření Sakura Corporation a způsob jejího propojení s jednotlivými projekty PGEX.</li>
+          <li><strong>Upřesnit záměr.</strong> Vymezit širší výzkumné oblasti a konkrétní podobu budoucí spolupráce s PGEX.</li>
           <li><strong>Připravovat dokumentaci.</strong> Srozumitelně zachycovat postupy, podmínky experimentů, dosažené výsledky a otevřené otázky.</li>
           <li><strong>Ověřovat další návrhy.</strong> Posuzovat technickou připravenost, bezpečnost a praktickou využitelnost před případným veřejným zpřístupněním.</li>
         </ol>

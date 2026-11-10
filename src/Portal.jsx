@@ -15,10 +15,10 @@ const aliases = { home: "home", systems: "auto", portfolio: "tech", "portfolio-u
 const routes = { "/servisni-aplikace": "serviceApp", "/sakura-corporation": "sakura", "/autoservis/dokumenty": "documents", "/tuning": "tuning", "/revenant": "revenant", "/luna": "luna", "/xeno": "xeno", "/novinky": "news", "/services": "auto", "/systems": "auto", "/technology": "tech", "/portfolio": "tech", "/projects": "projects", "/about": "about", "/contact": "contact", "/book-service": "booking", "/marika": "marika", "/": "home", "/index.html": "home", "/autoservis": "auto", "/technologie": "tech", "/projekty": "projects", "/o-nas": "about", "/kontakt": "contact", "/poptavka": "booking" };
 const links = {
  auto: [["Autoservis", "/autoservis"], ["Tuning", "/tuning"], ["Ceník", "/autoservis#cenik"], ["Dokumenty ke stažení", "/autoservis/dokumenty"], ["Servisní poptávka", "/poptavka"], ["Kontakt", "/kontakt?oblast=autoservis"]],
- tech: [["Technologie", "/technologie"], ["Projekty", "/projekty"], ["Novinky", "/novinky"], ["Kontakt", "/kontakt?oblast=technologie"]],
+ tech: [["Vývoj technologií", "/technologie"], ["Projekty", "/projekty"], ["Novinky", "/novinky"]],
  shared: [["O nás", "/o-nas"], ["Kontakt", "/kontakt"]],
 };
-const titles = { serviceApp: "Servisní aplikace PGEX", sakura: "Sakura Corporation", documents: "Dokumenty ke stažení", tuning: "Tuning a individuální úpravy", revenant: "Revenant", luna: "Luna — Sakura Corporation", xeno: "Xeno — Sakura Corporation", news: "Novinky", home: "Vyberte si svou cestu", auto: "Autoservis", tech: "PGEX Technologie", projects: "Projekty", marika: "Marika — Sakura Corporation", about: "O nás", contact: "Kontakt", booking: "Servisní poptávka" };
+const titles = { serviceApp: "PGEX Core", sakura: "Sakura Corporation", documents: "Dokumenty ke stažení", tuning: "Tuning a individuální úpravy", revenant: "Revenant", luna: "Luna — Sakura Corporation", xeno: "Xeno — Sakura Corporation", news: "Novinky", home: "Vyberte si svou cestu", auto: "Autoservis", tech: "Vývoj automobilových technologií", projects: "Projekty", marika: "Marika — Sakura Corporation", about: "O nás", contact: "Kontakt", booking: "Servisní poptávka" };
 let introSeenInDocument = false;
 // Add only real, verified profile URLs here. Social links belong on About only.
 const socials = [{ name: "Instagram", href: "https://www.instagram.com/programenvusxenos_/", detail: "Fotky a dění kolem PGEX" }, { name: "TikTok", href: "https://www.tiktok.com/@programenvusxenos", detail: "Videa ze světa PGEX" }, { name: "X", href: "https://x.com/PGEnvus", detail: "Příspěvky ze světa PGEX" }, { name: "Reddit", href: "https://www.reddit.com/user/CicadaSensitive9928/", detail: "Profil u/CicadaSensitive9928" }, { name: "LinkedIn", href: "https://www.linkedin.com/in/program-envus-xenos-946294366/", detail: "Program Envus Xenos" }, { name: "Twitch", href: "https://www.twitch.tv/programenvusxenos", detail: "Kanál programenvusxenos" }, { name: "Kick", href: "https://kick.com/programenvusxenos", detail: "Kanál programenvusxenos" }, { name: "Discord", href: "https://discord.gg/DaNX74Tneb", detail: "Připojte se ke komunitě PGEX" }];
@@ -29,23 +29,54 @@ export default function Portal({ page }) {
  const newsArticle = articleSlug !== null ? getNewsArticle(articleSlug) : null;
  const current = articleSlug !== null ? "newsArticle" : routes[pathname] || aliases[page] || "home";
  const context = new URLSearchParams(window.location.search).get("oblast");
- const area = ["auto", "booking", "tuning", "documents"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "projects", "serviceApp", "sakura", "marika", "luna", "xeno", "news", "newsArticle", "revenant"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
+ const area = ["auto", "booking", "tuning", "documents", "serviceApp"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "projects", "sakura", "marika", "luna", "xeno", "news", "newsArticle", "revenant"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
  const navigation = links[area].map(([label, href]) => [label, current === "tuning" && href === "/autoservis#cenik" ? "/tuning#cenik" : href]);
  const [intro] = useState(() => {
    if (current !== "home" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
    return !introSeenInDocument;
  });
  useEffect(() => {
-   document.title = current === "tech" ? "PGEX Technologie" : `${current === "newsArticle" ? newsArticle?.title || "Článek nebyl nalezen" : titles[current]} | PGEX`;
-   if (current === "newsArticle") document.querySelector('meta[name="description"]')?.setAttribute("content", newsArticle?.excerpt || "Přehled novinek a článků PGEX.");
-   if (current === "tech") document.querySelector('meta[name="description"]')?.setAttribute("content", "PGEX Technologie: Sakura Corporation, vlastní výzkum KAGEON AI a modely Mira, AI asistentky, servisní aplikace a supersport Revenant.");
+   const previousTitle = document.title;
+   const restoreMetadata = [];
+   const setHeadElement = (tag, selector, attributes) => {
+     const previous = document.head.querySelector(selector);
+     const element = previous || document.createElement(tag);
+     const savedAttributes = Object.fromEntries(Object.keys(attributes).map(name => [name, element.getAttribute(name)]));
+     Object.entries(attributes).forEach(([name, value]) => element.setAttribute(name, value));
+     if (!previous) document.head.append(element);
+     restoreMetadata.push(() => {
+       if (!previous) {
+         element.remove();
+         return;
+       }
+       Object.entries(savedAttributes).forEach(([name, value]) => value === null ? element.removeAttribute(name) : element.setAttribute(name, value));
+     });
+   };
+   const pageTitle = `${current === "newsArticle" ? newsArticle?.title || "Článek nebyl nalezen" : titles[current]} | PGEX`;
+   document.title = pageTitle;
+   if (current === "newsArticle") setHeadElement("meta", 'meta[name="description"]', { name: "description", content: newsArticle?.excerpt || "Přehled novinek a článků PGEX." });
+   if (current === "tech") {
+     const description = "Automobilový výzkum a vývoj PGEX: konstrukce vozidel, výkonové systémy, elektronika, vlastní komponenty a budoucí vozidla. Samostatná Sakura Corporation a širší výzkum.";
+     const canonicalUrl = "https://programenvusxenos.com/technologie";
+     setHeadElement("meta", 'meta[name="description"]', { name: "description", content: description });
+     setHeadElement("meta", 'meta[property="og:title"]', { property: "og:title", content: pageTitle });
+     setHeadElement("meta", 'meta[property="og:description"]', { property: "og:description", content: description });
+     setHeadElement("meta", 'meta[property="og:url"]', { property: "og:url", content: canonicalUrl });
+     setHeadElement("meta", 'meta[property="og:type"]', { property: "og:type", content: "website" });
+     setHeadElement("link", 'link[rel="canonical"]', { rel: "canonical", href: canonicalUrl });
+   }
    document.documentElement.lang = "cs";
    if (current === "home") introSeenInDocument = true;
+   return () => {
+     document.title = previousTitle;
+     restoreMetadata.reverse().forEach(restore => restore());
+   };
  }, [current, newsArticle]);
  useEffect(() => {
    const hash = window.location.hash.slice(1);
-   const target = current === "tech" && hash === "postavy" ? "vyzkum" : hash;
-   const anchors = current === "sakura" ? ["asistentky", "mira"] : current === "tech" ? ["vyzkum", "software", "revenant", "pristup", "pgex-ai"] : [];
+   const legacyTechAnchors = { postavy: "sakura", "pgex-ai": "sakura", vyzkum: "automotive-vyvoj", software: "automotive-vyvoj" };
+   const target = current === "tech" ? legacyTechAnchors[hash] || hash : hash;
+   const anchors = current === "sakura" ? ["asistentky", "mira"] : current === "tech" ? ["automotive-vyvoj", "revenant", "pristup", "sakura"] : [];
    if (anchors.includes(target)) {
      document.getElementById(target)?.scrollIntoView();
    }
@@ -61,19 +92,19 @@ export default function Portal({ page }) {
    window.addEventListener("hashchange", redirectDocumentLink);
    return () => window.removeEventListener("hashchange", redirectDocumentLink);
  }, [current]);
- return <CookiePreferencesProvider><div className={`portal page-${current} ${current === "home" ? "portal-home" : ""} ${intro ? "portal-intro" : ""}`}>
+ return <CookiePreferencesProvider><div className={`portal area-${area} page-${current} ${current === "home" ? "portal-home" : ""} ${intro ? "portal-intro" : ""}`}>
    <a className="skip-link" href="#content">Přejít na obsah</a>
    <header className="portal-header">
      <a className="portal-brand" href="/" aria-label="PGEX — úvodní rozcestník"><span className="portal-wordmark"><img src="/pgex-wordmark.svg" alt="PGEX" width="230" height="44"/></span></a>
-     {area !== "shared" && <span className="area-label">{area === "auto" ? "AUTOSERVIS" : "VÝVOJ A TECHNOLOGIE"}</span>}
-     <nav aria-label="Hlavní navigace">{navigation.map(([label, href]) => <a key={href} href={href} aria-current={pathname === href || (current === "newsArticle" && href === "/novinky") ? "page" : undefined}>{label}</a>)}</nav>
+     {area !== "shared" && <span className="area-label">{area === "auto" ? "AUTOSERVIS" : "AUTOMOBILOVÝ VÝVOJ"}</span>}
+     <nav aria-label="Hlavní navigace">{navigation.map(([label, href]) => <a key={href} href={href} aria-current={pathname === href || (current === "contact" && href === `/kontakt?oblast=${context}`) || (current === "newsArticle" && href === "/novinky") ? "page" : undefined}>{label}</a>)}</nav>
    </header>
    <main id="content" className={current === "home" ? "gateway-main" : "portal-content"}>
      {current === "home" && <>
        <div className="gateway-heading"><p className="portal-eyebrow">PROGRAM ENVUS XENOS</p><h1>Vyberte si svou cestu.</h1></div>
        <div className="gateway-grid">
          <a className="gateway-card" href="/autoservis"><div className="gateway-art garage-art"><img src="/workshop/workshop-hero.jpg" alt="Ilustrace auta s otevřenou kapotou v dílně" width="1536" height="1024"/></div><div className="gateway-copy"><h2>Autoservis</h2><p>Diagnostika, údržba a opravy vozidel.</p><span className="gateway-button">Přejít na autoservis <span aria-hidden="true">→</span></span></div></a>
-         <a className="gateway-card" href="/technologie"><div className="gateway-art development-art"><img src="/technology/development-workspace.jpg" alt="Ilustrace vývojářského pracoviště s kódem a vizualizací AI na monitorech" width="1536" height="1024"/></div><div className="gateway-copy"><h2>Vývoj a technologie</h2><p>AI, software a vlastní projekty.</p><span className="gateway-button outline">Prozkoumat projekty <span aria-hidden="true">→</span></span></div></a>
+         <a className="gateway-card" href="/technologie"><div className="gateway-art development-art"><img src="/vehicles/xenos-x2.jpg" alt="Vizuální koncept supersportu PGEX Revenant" width="1536" height="1024"/></div><div className="gateway-copy"><h2>Vývoj technologií</h2><p>Automobilový výzkum, konstrukce a vlastní projekty.</p><span className="gateway-button outline">Prozkoumat vývoj <span aria-hidden="true">→</span></span></div></a>
        </div>
      </>}
      {current === "auto" && <Workshop/>}
@@ -96,17 +127,17 @@ export default function Portal({ page }) {
 }
 
 function About() {
- return <section className="portal-document about-page"><header><p className="portal-eyebrow">O NÁS / PROGRAM ENVUS XENOS</p><h1>Zájem o techniku.<br/>Prostor pro vlastní cestu.</h1><p className="portal-lead">PGEX spojuje péči o auta s vývojem softwaru a vlastních technických projektů. Dva směry, které mají společný zájem: porozumět tomu, jak věci fungují, a hledat možnosti, jak je zlepšit.</p></header><div className="about-directions about-picture-cards"><article><img src="/workshop/workshop-hero.jpg" alt="Ilustrace práce na vozidle v dílně" width="1536" height="1024" loading="lazy"/><div><p className="portal-eyebrow">AUTOSERVIS / HOROMĚŘICE</p><h2>Péče o vaše vozidlo</h2><p>Diagnostika, údržba a opravy s jasnou domluvou o dalším postupu. Na webu najdete přehled služeb, ceník i možnost připravit servisní poptávku.</p><a href="/autoservis">Poznat autoservis →</a></div></article><article><img src="/technology/development-workspace.jpg" alt="Ilustrace pracoviště pro vývoj softwaru" width="1536" height="1024" loading="lazy"/><div><p className="portal-eyebrow">VÝVOJ A TECHNOLOGIE</p><h2>Od nápadu k projektu</h2><p>Technologický směr zahrnuje Sakura Corporation a její AI asistentky Lunu, Xeno a Mariku. Věnujeme se také vlastnímu softwaru a projektu supersportu Revenant.</p><a href="/technologie">Poznat technologie →</a></div></article></div><section className="about-principles"><p className="portal-eyebrow">NA ČEM NÁM ZÁLEŽÍ</p><h2>Srozumitelně. Postupně. S jasným cílem.</h2><div className="info-grid"><article><h3>Jasná domluva</h3><p>U servisu je důležité vědět, co se bude řešit, jaký je další postup a na čem jsme se dohodli.</p></article><article><h3>Praktický smysl</h3><p>U technologií hledáme využití v konkrétních úlohách. Nápady rozdělujeme na kroky, které lze postupně ověřovat.</p></article><article><h3>Prostor pro dialog</h3><p>Dotazy, zkušenosti a zpětná vazba pomáhají zpřesnit zadání i další směr práce.</p></article></div></section><section className="social-section"><p className="portal-eyebrow">KOMUNITA PGEX</p><h2>Buďte součástí diskuze</h2><p>Prostor pro otázky, nápady a setkávání kolem PGEX. Zprávy z vývoje najdete samostatně v <a href="/novinky">Novinkách</a>.</p>{socials.map(s => <a className="social-link" key={s.href} href={s.href} target="_blank" rel="noopener noreferrer"><strong>{s.name} ↗</strong><span>{s.detail}</span></a>)}<p><a className="about-contact-link" href="/kontakt">Kontakty na PGEX →</a></p></section></section>;
+ return <section className="portal-document about-page"><header><p className="portal-eyebrow">O NÁS / PROGRAM ENVUS XENOS</p><h1>Zájem o techniku.<br/>Prostor pro vlastní cestu.</h1><p className="portal-lead">PGEX je samostatný projekt a automobilová značka. Vedle péče o vozidla připravujeme vlastní automobilové technologie, softwarové nástroje pro servis a budoucí koncepty vozů. Postupujeme od konkrétní potřeby přes návrh k ověřování.</p></header><div className="about-directions about-picture-cards"><article><img src="/workshop/workshop-hero.jpg" alt="Ilustrace práce na vozidle v dílně" width="1536" height="1024" loading="lazy"/><div><p className="portal-eyebrow">AUTOSERVIS / HOROMĚŘICE</p><h2>Péče o vaše vozidlo</h2><p>Diagnostika, údržba a opravy s jasnou domluvou o dalším postupu. Na webu najdete přehled služeb, ceník i možnost připravit servisní poptávku. Pro správu servisu připravujeme také aplikaci <a href="/servisni-aplikace">PGEX Core</a>.</p><a href="/autoservis">Poznat autoservis →</a></div></article><article><img src="/vehicles/xenos-x2.jpg" alt="Vizuální koncept supersportu PGEX Revenant" width="1536" height="1024" loading="lazy"/><div><p className="portal-eyebrow">VÝVOJ TECHNOLOGIÍ</p><h2>Od konstrukce k vlastnímu projektu</h2><p>Automobilový vývoj PGEX směřuje ke konstrukci, performance, elektronice a vlastním komponentům. Revenant představuje koncept budoucího vozu. Širší výzkum má vlastní prostor v samostatné připravované Sakura Corporation.</p><a href="/technologie">Poznat technologie →</a></div></article></div><section className="about-principles"><p className="portal-eyebrow">NA ČEM NÁM ZÁLEŽÍ</p><h2>Srozumitelně. Postupně. S jasným cílem.</h2><div className="info-grid"><article><h3>Jasná domluva</h3><p>U servisu je důležité vědět, co se bude řešit, jaký je další postup a na čem jsme se dohodli.</p></article><article><h3>Praktický smysl</h3><p>U technologií hledáme využití v konkrétních úlohách. Nápady rozdělujeme na kroky, které lze postupně ověřovat.</p></article><article><h3>Prostor pro dialog</h3><p>Dotazy, zkušenosti a zpětná vazba pomáhají zpřesnit zadání i další směr práce.</p></article></div></section><section className="social-section"><p className="portal-eyebrow">KOMUNITA PGEX</p><h2>Buďte součástí diskuze</h2><p>Prostor pro otázky, nápady a setkávání kolem PGEX. Zprávy z vývoje najdete samostatně v <a href="/novinky">Novinkách</a>.</p>{socials.map(s => <a className="social-link" key={s.href} href={s.href} target="_blank" rel="noopener noreferrer"><strong>{s.name} ↗</strong><span>{s.detail}</span></a>)}<p><a className="about-contact-link" href="/kontakt">Kontakty na PGEX →</a></p></section></section>;
 }
 
 function Contact({ area }) {
  const tech = area === "tech";
  const email = (subject) => `mailto:programenvus@gmail.com?subject=${encodeURIComponent(subject)}`;
  return <section className="portal-document contact-page contact-refined">
-  <header><p className="portal-eyebrow">{tech ? "PGEX / TECHNOLOGIE" : area === "auto" ? "PGEX / AUTOSERVIS" : "PGEX"}</p><h1>Kontakty</h1><p className="portal-lead">{tech ? "Dotazy k projektům, zpětná vazba a spolupráce. Napište nám, co vás zajímá." : "Domluvte si servis nebo se ozvěte k našim projektům. Všechny důležité údaje najdete tady."}</p></header>
+  <header><p className="portal-eyebrow">{tech ? "PGEX / AUTOMOBILOVÝ VÝVOJ" : area === "auto" ? "PGEX / AUTOSERVIS" : "PGEX"}</p><h1>Kontakty</h1><p className="portal-lead">{tech ? "Dotazy k automobilovému vývoji a budoucím projektům. Napište nám, které téma vás zajímá." : "Domluvte si servis nebo se ozvěte k našim projektům. Všechny důležité údaje najdete tady."}</p></header>
   <nav className="contact-selector" aria-label="Oblast kontaktu"><a href="/kontakt?oblast=autoservis" aria-current={area === "auto" ? "page" : undefined}><span>01</span> Autoservis <small>Návštěva, opravy a údržba</small></a><a href="/kontakt?oblast=technologie" aria-current={tech ? "page" : undefined}><span>02</span> Technologie <small>Projekty a spolupráce</small></a></nav>
-  <div className="contact-card-grid"><a className="contact-action-card" href={tech ? email("Vývoj a technologie") : "tel:+420737781046"}><span className="portal-eyebrow">{tech ? "NAPIŠTE NÁM" : "ZAVOLEJTE NÁM"}</span><strong>{tech ? "programenvus@gmail.com" : "+420 737 781 046"}</strong><span>{tech ? "Dotazy k vývoji a spolupráci" : "Domluva termínu a dotazy k servisu"}</span><span className="contact-action-label">{tech ? "Otevřít e-mail" : "Zavolat"} <span aria-hidden="true">↗</span></span></a><a className="contact-action-card" href={tech ? "tel:+420737781046" : email("Dotaz k autoservisu")}><span className="portal-eyebrow">{tech ? "TELEFON" : "E-MAIL"}</span><strong>{tech ? "+420 737 781 046" : "programenvus@gmail.com"}</strong><span>{tech ? "Pokud dáváte přednost hovoru" : "Podrobnější dotazy a informace"}</span><span className="contact-action-label">{tech ? "Zavolat" : "Otevřít e-mail"} <span aria-hidden="true">↗</span></span></a></div>
-  {tech ? <section className="contact-topic"><p className="portal-eyebrow">VYBERTE TÉMA ZPRÁVY</p><h2>O čem si napíšeme?</h2><div className="contact-topics">{[["Sakura Corporation", "Výzkum, Luna, Xeno a Marika"],["Revenant", "Dotazy k projektu supersportu"],["Spolupráce s PGEX", "Váš nápad nebo nabídka spolupráce"]].map(([title,description])=><a key={title} href={email(title)}><strong>{title} ↗</strong><span>{description}</span></a>)}</div><p>Vybrané téma předvyplní předmět e-mailu. Do zprávy přidejte svůj dotaz a potřebné souvislosti; u chyby v aplikaci také postup, při kterém nastala.</p></section> : <><section className="contact-visit"><div><p className="portal-eyebrow">KDY NÁS ZASTIHNETE</p><h2>Otevírací doba servisu</h2><dl><div><dt>Pondělí–pátek</dt><dd>7:00–20:00</dd></div><div><dt>Sobota–neděle</dt><dd>9:00–18:30</dd></div></dl><p>Návštěvu si prosím domluvte předem telefonicky.</p></div><div className="contact-booking-card"><p className="portal-eyebrow">DOMLUVTE SI SERVIS</p><h2>Servisní poptávka</h2><p>Uveďte značku a model vozu, popište závadu a přidejte termín, který vám vyhovuje.</p><a className="gateway-button" href="/poptavka">Vyplnit poptávku →</a><p className="contact-note">Ozveme se vám s dalším postupem. Termín a cenu potvrdíme po domluvě.</p></div></section><WorkshopLocation/></>}
+  <div className="contact-card-grid"><a className="contact-action-card" href={tech ? email("PGEX — automobilový vývoj") : "tel:+420737781046"}><span className="portal-eyebrow">{tech ? "NAPIŠTE NÁM" : "ZAVOLEJTE NÁM"}</span><strong>{tech ? "programenvus@gmail.com" : "+420 737 781 046"}</strong><span>{tech ? "Dotazy k vývoji a spolupráci" : "Domluva termínu a dotazy k servisu"}</span><span className="contact-action-label">{tech ? "Otevřít e-mail" : "Zavolat"} <span aria-hidden="true">↗</span></span></a><a className="contact-action-card" href={tech ? "tel:+420737781046" : email("Dotaz k autoservisu")}><span className="portal-eyebrow">{tech ? "TELEFON" : "E-MAIL"}</span><strong>{tech ? "+420 737 781 046" : "programenvus@gmail.com"}</strong><span>{tech ? "Pokud dáváte přednost hovoru" : "Podrobnější dotazy a informace"}</span><span className="contact-action-label">{tech ? "Zavolat" : "Otevřít e-mail"} <span aria-hidden="true">↗</span></span></a></div>
+  {tech ? <section className="contact-topic"><p className="portal-eyebrow">VYBERTE TÉMA ZPRÁVY</p><h2>O čem si napíšeme?</h2><div className="contact-topics">{[["Automobilový vývoj PGEX", "Konstrukce, performance, elektronika a komponenty"],["Revenant", "Dotazy ke konceptu budoucího supersportu"],["Sakura Corporation", "Samostatná připravovaná společnost a širší výzkum"]].map(([title,description])=><a key={title} href={email(title)}><strong>{title} ↗</strong><span>{description}</span></a>)}</div><p>Vybrané téma předvyplní předmět e-mailu. Do zprávy přidejte svůj dotaz a potřebné souvislosti. U spolupráce stručně popište svůj záměr.</p></section> : <><section className="contact-visit"><div><p className="portal-eyebrow">KDY NÁS ZASTIHNETE</p><h2>Otevírací doba servisu</h2><dl><div><dt>Pondělí–pátek</dt><dd>7:00–20:00</dd></div><div><dt>Sobota–neděle</dt><dd>9:00–18:30</dd></div></dl><p>Návštěvu si prosím domluvte předem telefonicky.</p></div><div className="contact-booking-card"><p className="portal-eyebrow">DOMLUVTE SI SERVIS</p><h2>Servisní poptávka</h2><p>Uveďte značku a model vozu, popište závadu a přidejte termín, který vám vyhovuje.</p><a className="gateway-button" href="/poptavka">Vyplnit poptávku →</a><p className="contact-note">Ozveme se vám s dalším postupem. Termín a cenu potvrdíme po domluvě.</p></div></section><WorkshopLocation/></>}
   <div className="contact-bottom-note"><p>{tech ? "Chcete nejprve poznat, na čem pracujeme?" : "Hledáte informace o vývoji a projektech PGEX?"}</p><a href={tech ? "/projekty" : "/kontakt?oblast=technologie"}>{tech ? "Prohlédnout projekty →" : "Kontakty pro technologie →"}</a></div>
  </section>;
 }
