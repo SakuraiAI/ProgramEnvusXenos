@@ -1,4 +1,5 @@
 import React from "react";
+import SakuraAssistants from "./SakuraAssistants";
 import "./technology.css";
 
 export default function SakuraCorporation() {
@@ -12,6 +13,9 @@ export default function SakuraCorporation() {
           <span className="tech-status">Připravujeme</span>
           <p className="tech-lead">Sakura Corporation připravujeme jako technologickou a výzkumnou značku propojenou s PGEX. Jejím zaměřením má být dlouhodobější vývoj vlastních technologií, jejich dokumentace a ověřování v praxi.</p>
           <p>Vyobrazení představuje vizuální koncept projektu.</p>
+          <div className="contact-actions">
+            <a className="gateway-button outline" href="#asistentky">Luna, Xeno a Marika ↓</a>
+          </div>
         </div>
         <img className="tech-hero-image sakura-hero-image" src="/projects/sakura-corporation.png" width="1448" height="1086" alt="Vizuální koncept Sakura Corporation s logem a návrhem sídla" />
       </section>
@@ -35,6 +39,8 @@ export default function SakuraCorporation() {
           </article>
         </div>
       </section>
+
+      <SakuraAssistants />
 
       <section className="tech-section">
         <p className="portal-eyebrow">STAV PROJEKTU</p>
