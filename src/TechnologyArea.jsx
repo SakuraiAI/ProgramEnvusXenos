@@ -1,15 +1,15 @@
 import { automotiveResearch } from "./automotiveResearch";
-import { DevelopmentStatus } from "./TechnologyLanding";
+import { DevelopmentStatus } from "./ResearchCard";
 import "./technology-landing.css";
 
 export const getTechnologyArea = pathname => automotiveResearch.find(area => area.detailSlug && area.href === pathname);
 
 export default function TechnologyArea({ area }) {
-  if (!area?.detail) return <div className="tech-page technology-landing"><p className="portal-eyebrow">PGEX / VÝVOJ TECHNOLOGIÍ</p><h1>Oblast nebyla nalezena.</h1><p>Vraťte se na přehled automobilového vývoje a vyberte jednu z dostupných oblastí.</p><a className="gateway-button outline" href="/technologie">Zpět na vývoj technologií →</a></div>;
+  if (!area?.detail) return <div className="tech-page technology-landing"><p className="portal-eyebrow">PGEX / VÝVOJ TECHNOLOGIÍ</p><h1>Oblast nebyla nalezena.</h1><p>Vraťte se na přehled automobilového vývoje a vyberte jednu z dostupných oblastí.</p><a className="gateway-button outline" href="/vyvoj">Zpět na vývoj →</a></div>;
   const { detail } = area;
   const related = automotiveResearch.filter(item => item.id !== area.id);
   return <div className="tech-page technology-landing technology-detail">
-    <nav className="technology-breadcrumb" aria-label="Drobečková navigace"><a href="/technologie">Vývoj technologií</a><span aria-hidden="true">/</span><span aria-current="page">{area.label}</span></nav>
+    <nav className="technology-breadcrumb" aria-label="Drobečková navigace"><a href="/vyvoj">Vývoj</a><span aria-hidden="true">/</span><span aria-current="page">{area.label}</span></nav>
     <section className="technology-landing-hero" aria-labelledby="technology-area-title"><div className="technology-hero-copy"><p className="portal-eyebrow">PGEX / {area.name}</p><DevelopmentStatus stage={area.stage}>{area.status}</DevelopmentStatus><h1 id="technology-area-title">{area.label}</h1><p className="tech-lead">{area.description}</p><a className="technology-text-link" href="#zamereni">Poznat zaměření <span aria-hidden="true">↓</span></a></div><figure className="technology-hero-visual"><img src={area.image} alt={area.imageAlt} width={area.width} height={area.height} fetchpriority="high" decoding="async" /><figcaption className="technology-detail-caption">Koncepční ilustrace výzkumné oblasti PGEX</figcaption></figure></section>
     <nav className="technology-detail-nav" aria-label="Obsah výzkumné oblasti"><a href="#zamereni">Zaměření</a><a href="#technicka-temata">Technická témata</a><a href="#vyzkumne-otazky">Výzkumné otázky</a><a href="#stav">Stav a další kroky</a></nav>
     <section id="zamereni" className="tech-section technology-detail-intro" aria-labelledby="area-scope-title"><div><p className="portal-eyebrow">O OBLASTI</p><h2 id="area-scope-title">Co chceme<br /><span>prozkoumat.</span></h2></div><div>{detail.intro.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div></section>

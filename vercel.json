@@ -52,6 +52,10 @@
       "destination": "/portfolio.html"
     },
     {
+      "source": "/vyvoj",
+      "destination": "/development.html"
+    },
+    {
       "source": "/technologie/konstrukce",
       "destination": "/technology-engineering.html"
     },

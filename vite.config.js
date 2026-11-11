@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 
 const technologyDetailEntries = {
+  "/vyvoj": "/development.html",
   "/technologie/konstrukce": "/technology-engineering.html",
   "/technologie/vykon-a-chlazeni": "/technology-performance.html",
   "/technologie/elektronika": "/technology-electronics.html",
@@ -40,6 +41,7 @@ export default defineConfig({
         main: resolve(__dirname, "index.html"),
         systems: resolve(__dirname, "systems.html"),
         portfolio: resolve(__dirname, "portfolio.html"),
+        development: resolve(__dirname, "development.html"),
         technologyEngineering: resolve(__dirname, "technology-engineering.html"),
         technologyPerformance: resolve(__dirname, "technology-performance.html"),
         technologyElectronics: resolve(__dirname, "technology-electronics.html"),

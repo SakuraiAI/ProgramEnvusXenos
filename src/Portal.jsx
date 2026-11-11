@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { TechnologyPage, ProjectsPage, RevenantPage } from "./Technology";
 import TechnologyArea, { getTechnologyArea } from "./TechnologyArea";
+import DevelopmentPage from "./DevelopmentPage";
 import { automotiveResearch } from "./automotiveResearch";
 import { AIProfilePage } from "./SakuraAssistants";
 import { NewsPage, NewsArticlePage } from "./News";
@@ -13,11 +14,11 @@ import Workshop, { WorkshopLocation, WorkshopDocuments } from "./Workshop";
 import Tuning from "./Tuning";
 import { CookiePreferencesProvider, CookieSettingsButton } from "./CookiePreferences";
 
-const aliases = { home: "home", systems: "auto", portfolio: "tech", "portfolio-unreal": "projects", marika: "marika", "portfolio-blender": "about", contact: "contact", "portfolio-vscode": "booking" };
+const aliases = { home: "home", systems: "auto", portfolio: "tech", development: "development", "portfolio-unreal": "projects", marika: "marika", "portfolio-blender": "about", contact: "contact", "portfolio-vscode": "booking" };
 const routes = { "/servisni-aplikace": "serviceApp", "/sakura-corporation": "sakura", "/autoservis/dokumenty": "documents", "/tuning": "tuning", "/revenant": "revenant", "/luna": "luna", "/xeno": "xeno", "/novinky": "news", "/services": "auto", "/systems": "auto", "/technology": "tech", "/portfolio": "tech", "/projects": "projects", "/about": "about", "/contact": "contact", "/book-service": "booking", "/marika": "marika", "/": "home", "/index.html": "home", "/autoservis": "auto", "/technologie": "tech", "/projekty": "projects", "/o-nas": "about", "/kontakt": "contact", "/poptavka": "booking" };
 const links = {
  auto: [["Autoservis", "/autoservis"], ["Tuning", "/tuning"], ["Ceník", "/autoservis#cenik"], ["Dokumenty ke stažení", "/autoservis/dokumenty"], ["Servisní poptávka", "/poptavka"], ["Kontakt", "/kontakt?oblast=autoservis"]],
- tech: [["Technologie", "/technologie"], ["Vývoj", "/technologie#automotive-vyvoj"], ["Projekty", "/projekty"], ["Novinky", "/novinky"]],
+ tech: [["Technologie", "/technologie"], ["Vývoj", "/vyvoj"], ["Projekty", "/projekty"], ["Novinky", "/novinky"]],
  shared: [["O nás", "/o-nas"], ["Kontakt", "/kontakt"]],
 };
 const titles = { serviceApp: "PGEX Core", sakura: "Sakura Corporation", documents: "Dokumenty ke stažení", tuning: "Tuning a individuální úpravy", revenant: "Revenant", luna: "Luna — Sakura Corporation", xeno: "Xeno — Sakura Corporation", news: "Novinky", home: "Vyberte si svou cestu", auto: "Autoservis", tech: "Vývoj automobilových technologií", projects: "Projekty", marika: "Marika — Sakura Corporation", about: "O nás", contact: "Kontakt", booking: "Servisní poptávka" };
@@ -30,18 +31,11 @@ export default function Portal({ page }) {
  const articleSlug = pathname.startsWith("/novinky/") ? pathname.slice("/novinky/".length) : null;
  const newsArticle = articleSlug !== null ? getNewsArticle(articleSlug) : null;
  const technologyArea = getTechnologyArea(pathname);
- const current = articleSlug !== null ? "newsArticle" : pathname.startsWith("/technologie/") ? "technologyArea" : routes[pathname] || aliases[page] || "home";
+ const current = articleSlug !== null ? "newsArticle" : pathname === "/vyvoj" ? "development" : pathname.startsWith("/technologie/") ? "technologyArea" : routes[pathname] || aliases[page] || "home";
  const context = new URLSearchParams(window.location.search).get("oblast");
- const area = ["auto", "booking", "tuning", "documents", "serviceApp"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "technologyArea", "projects", "sakura", "marika", "luna", "xeno", "news", "newsArticle", "revenant"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
+ const area = ["auto", "booking", "tuning", "documents", "serviceApp"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "development", "technologyArea", "projects", "sakura", "marika", "luna", "xeno", "news", "newsArticle", "revenant"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
  const navigation = links[area].map(([label, href]) => [label, current === "tuning" && href === "/autoservis#cenik" ? "/tuning#cenik" : href]);
- const [activeHash, setActiveHash] = useState(() => window.location.hash);
- const developmentHref = "/technologie#automotive-vyvoj";
- const activeTechnologyHref = current === "tech" ? activeHash && activeHash !== "#content" ? developmentHref : "/technologie" : ["technologyArea", "revenant"].includes(current) ? developmentHref : null;
- useEffect(() => {
-   const updateHash = () => setActiveHash(window.location.hash);
-   window.addEventListener("hashchange", updateHash);
-   return () => window.removeEventListener("hashchange", updateHash);
- }, []);
+ const activeTechnologyHref = current === "tech" ? "/technologie" : ["development", "technologyArea"].includes(current) ? "/vyvoj" : current === "revenant" ? "/projekty" : null;
  const [intro] = useState(() => {
    if (current !== "home" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
    return !introSeenInDocument;
@@ -63,12 +57,12 @@ export default function Portal({ page }) {
        Object.entries(savedAttributes).forEach(([name, value]) => value === null ? element.removeAttribute(name) : element.setAttribute(name, value));
      });
    };
-   const pageTitle = `${current === "technologyArea" ? technologyArea?.label || "Oblast vývoje nebyla nalezena" : current === "newsArticle" ? newsArticle?.title || "Článek nebyl nalezen" : titles[current]} | PGEX`;
+   const pageTitle = `${current === "development" ? "Vývoj automobilových systémů" : current === "tech" ? "Automobilové technologie" : current === "technologyArea" ? technologyArea?.label || "Oblast vývoje nebyla nalezena" : current === "newsArticle" ? newsArticle?.title || "Článek nebyl nalezen" : titles[current]} | PGEX`;
    document.title = pageTitle;
    if (current === "newsArticle") setHeadElement("meta", 'meta[name="description"]', { name: "description", content: newsArticle?.excerpt || "Přehled novinek a článků PGEX." });
-   if (current === "tech") {
-     const description = "Automobilový výzkum a vývoj PGEX: motor, podvozek, převodovka, konstrukce, výkon, elektronika a vlastní díly. Poznejte vývojové záměry i koncept Revenant.";
-     const canonicalUrl = "https://programenvusxenos.com/technologie";
+   if (["tech", "development"].includes(current)) {
+     const description = current === "development" ? "Plánovaný automobilový výzkum PGEX: motor, převodovka, výkon, podvozek, konstrukce, vlastní komponenty a elektronika. Sedm oblastí vývoje, jejich otázky a další kroky." : "Automobilové technologie PGEX. Přehledně oddělené výzkumné oblasti ve Vývoji, konkrétní záměry v Projektech a články v Novinkách.";
+     const canonicalUrl = `https://programenvusxenos.com${current === "development" ? "/vyvoj" : "/technologie"}`;
      setHeadElement("meta", 'meta[name="description"]', { name: "description", content: description });
      setHeadElement("meta", 'meta[property="og:title"]', { property: "og:title", content: pageTitle });
      setHeadElement("meta", 'meta[property="og:description"]', { property: "og:description", content: description });
@@ -99,13 +93,29 @@ export default function Portal({ page }) {
    };
  }, [current, newsArticle, technologyArea, pathname]);
  useEffect(() => {
-   const hash = window.location.hash.slice(1);
-   const legacyTechAnchors = { postavy: "sakura", "pgex-ai": "sakura", vyzkum: "automotive-vyvoj", software: "automotive-vyvoj" };
-   const target = current === "tech" ? legacyTechAnchors[hash] || hash : hash;
-   const anchors = current === "sakura" ? ["asistentky", "mira"] : current === "tech" ? ["automotive-vyvoj", "revenant", "pristup", "sakura", ...automotiveResearch.map(item => item.id)] : [];
-   if (anchors.includes(target)) {
-     document.getElementById(target)?.scrollIntoView();
-   }
+   const researchAnchors = automotiveResearch.filter(item => item.detailSlug).map(item => item.id);
+   const developmentAnchors = ["automotive-vyvoj", "pristup", "pohonne-systemy", "konstrukce-podvozek", "elektronika-rizeni", ...researchAnchors];
+   const followSection = () => {
+     const hash = window.location.hash.slice(1);
+     if (current === "tech") {
+       const legacyDevelopment = { vyzkum: "automotive-vyvoj", software: "automotive-vyvoj" };
+       const legacyTarget = Object.hasOwn(legacyDevelopment, hash) ? legacyDevelopment[hash] : null;
+       if (developmentAnchors.includes(hash) || legacyTarget) {
+         window.location.replace(`/vyvoj#${legacyTarget || hash}`);
+         return;
+       }
+       if (["revenant", "future-vehicles"].includes(hash)) {
+         window.location.replace("/projekty#revenant");
+         return;
+       }
+     }
+     const target = current === "tech" && ["postavy", "pgex-ai"].includes(hash) ? "sakura" : hash;
+     const anchors = current === "sakura" ? ["asistentky", "mira"] : current === "tech" ? ["sakura"] : current === "development" ? [...developmentAnchors, "vyzkum", "software"] : current === "projects" ? ["revenant", "servisni-aplikace"] : [];
+     if (anchors.includes(target)) document.getElementById(target)?.scrollIntoView();
+   };
+   followSection();
+   window.addEventListener("hashchange", followSection);
+   return () => window.removeEventListener("hashchange", followSection);
  }, [current]);
  useEffect(() => {
    if (current !== "auto") return;
@@ -137,6 +147,7 @@ export default function Portal({ page }) {
      {current === "documents" && <WorkshopDocuments/>}
      {current === "tuning" && <Tuning/>}
      {current === "tech" && <TechnologyPage/>}
+     {current === "development" && <DevelopmentPage/>}
      {current === "technologyArea" && <TechnologyArea area={technologyArea}/>}
      {current === "projects" && <ProjectsPage/>}
      {current === "sakura" && <SakuraCorporation/>}

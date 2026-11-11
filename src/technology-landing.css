@@ -102,7 +102,7 @@
 @media(max-width:540px) { .technology-landing .technology-hero-copy h1 { font-size:clamp(36px,10.7vw,44px); } .technology-landing .technology-hero-copy>.portal-eyebrow { font-size:9px; letter-spacing:.13em; margin-bottom:18px; } .technology-landing .technology-hero-copy .tech-lead { font-size:16px; line-height:1.8; } .technology-landing .contact-actions { gap:10px 20px; margin-top:23px; } .technology-landing .gateway-button { min-height:46px; font-size:13px; padding:12px 19px; } .technology-landing .technology-hero-note { margin-top:20px; font-size:10px; } .technology-landing .technology-direction-nav { grid-template-columns:1fr; } .technology-landing .technology-direction-nav>a,.technology-landing .technology-direction-nav>a:first-child { padding:16px 0; } .technology-landing .technology-direction-nav>a+a { border-left:0; border-top:1px solid var(--technology-line); } .technology-landing .technology-direction-nav .technology-direction-number { display:inline; } .technology-landing .technology-direction-nav strong { font-size:15px; } .technology-landing .technology-direction-nav div>span { font-size:11px; } .technology-landing .tech-section { padding:42px 0; } .technology-landing .automotive-research-grid { grid-template-columns:1fr; } .technology-landing .technology-card-content,.technology-landing .technology-vehicle-card .technology-card-content { padding:24px; } .technology-landing .automotive-research-card h3 { font-size:32px; } .technology-landing .technology-vehicle-card h3 { font-size:40px; } .technology-landing .technology-image-label { left:14px; bottom:12px; font-size:7px; } .technology-landing .technology-research-partner,.technology-landing .technology-detail-state { padding:24px; } .technology-landing .technology-research-partner { margin-bottom:35px; } .technology-landing .tech-collaboration { align-items:flex-start; flex-direction:column; gap:15px; } .technology-landing .technology-related>div:last-child { grid-template-columns:1fr; } .technology-detail .technology-hero-copy h1 { font-size:40px; } .technology-landing .technology-detail-nav { gap:5px 22px; } }
 @media(prefers-reduced-motion:reduce) { .technology-landing .technology-card-image img { transition:none; } }
 
-@media(max-width:760px) { .page-tech .portal-header .area-label,.page-technologyArea .portal-header .area-label { display:none; } }
+@media(max-width:760px) { .page-tech .portal-header .area-label,.page-development .portal-header .area-label,.page-technologyArea .portal-header .area-label { display:none; } }
 
 .technology-detail .technology-hero-visual > img { aspect-ratio:16/9; }
 
@@ -120,4 +120,24 @@
 }
 @media(max-width:760px) {
   .technology-landing .automotive-research-grid { grid-template-columns:1fr; }
+}
+
+.technology-overview .technology-overview-section { padding-top:42px; }
+.technology-overview .technology-entry-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.technology-overview .technology-entry { display:flex; flex-direction:column; min-width:0; overflow:hidden; border:1px solid var(--technology-line); border-radius:15px; background:#10120f; text-decoration:none; color:inherit; }
+.technology-overview .technology-entry>img { display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; }
+.technology-overview .technology-entry>div { display:flex; flex-direction:column; flex:1; padding:25px; }
+.technology-overview .technology-entry .portal-eyebrow { font-size:8px; letter-spacing:.1em; margin:0 0 16px; }
+.technology-overview .technology-entry h3 { color:#f0eadd; font:600 34px/1.15 'Cormorant Garamond',Georgia,serif; margin:0 0 16px; }
+.technology-overview .technology-entry>div>p:not(.portal-eyebrow) { font-size:14px; margin:0 0 22px; }
+.technology-overview .technology-entry:focus-visible { outline:2px solid #e0bc78; outline-offset:4px; }
+@media(hover:hover) { .technology-overview .technology-entry:hover { border-color:#e0bc7880; } }
+@media(max-width:760px) {
+  .technology-overview .technology-entry-grid { grid-template-columns:1fr; gap:18px; }
+  .technology-overview .technology-entry { display:grid; grid-template-columns:.85fr 1.15fr; }
+  .technology-overview .technology-entry>img { align-self:center; }
+}
+@media(max-width:540px) {
+  .technology-overview .technology-entry { display:flex; }
+  .technology-overview .technology-entry>div { padding:24px; }
 }
