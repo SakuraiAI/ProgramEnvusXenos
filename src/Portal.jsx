@@ -61,7 +61,7 @@ export default function Portal({ page }) {
    document.title = pageTitle;
    if (current === "newsArticle") setHeadElement("meta", 'meta[name="description"]', { name: "description", content: newsArticle?.excerpt || "Přehled novinek a článků PGEX." });
    if (["tech", "development"].includes(current)) {
-     const description = current === "development" ? "Plánovaný automobilový výzkum PGEX: motor, převodovka, výkon, podvozek, konstrukce, vlastní komponenty a elektronika. Sedm oblastí vývoje, jejich otázky a další kroky." : "Automobilové technologie PGEX. Přehledně oddělené výzkumné oblasti ve Vývoji, konkrétní záměry v Projektech a články v Novinkách.";
+     const description = current === "development" ? "Plánovaný automobilový výzkum PGEX: motor, převodovka, výkon, podvozek, konstrukce, vlastní komponenty a elektronika. Sedm oblastí vývoje, jejich otázky a další kroky." : "Automobilové technologie PGEX: souhra pohonu, podvozku a elektroniky, vlastní komponenty a cesta od výzkumného zadání k ověřování návrhů a samostatným projektům.";
      const canonicalUrl = `https://programenvusxenos.com${current === "development" ? "/vyvoj" : "/technologie"}`;
      setHeadElement("meta", 'meta[name="description"]', { name: "description", content: description });
      setHeadElement("meta", 'meta[property="og:title"]', { property: "og:title", content: pageTitle });
@@ -110,7 +110,7 @@ export default function Portal({ page }) {
        }
      }
      const target = current === "tech" && ["postavy", "pgex-ai"].includes(hash) ? "sakura" : hash;
-     const anchors = current === "sakura" ? ["asistentky", "mira"] : current === "tech" ? ["sakura"] : current === "development" ? [...developmentAnchors, "vyzkum", "software"] : current === "projects" ? ["revenant", "servisni-aplikace"] : [];
+     const anchors = current === "sakura" ? ["asistentky", "mira"] : current === "tech" ? ["sakura", "technology-system", "technology-foundations", "technology-direction"] : current === "development" ? [...developmentAnchors, "vyzkum", "software"] : current === "projects" ? ["revenant", "servisni-aplikace"] : [];
      if (anchors.includes(target)) document.getElementById(target)?.scrollIntoView();
    };
    followSection();
