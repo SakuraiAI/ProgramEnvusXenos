@@ -7,6 +7,9 @@ const technologyDetailEntries = {
   "/technologie/vykon-a-chlazeni": "/technology-performance.html",
   "/technologie/elektronika": "/technology-electronics.html",
   "/technologie/vlastni-komponenty": "/technology-components.html",
+  "/technologie/motor": "/technology-engine.html",
+  "/technologie/podvozek": "/technology-chassis.html",
+  "/technologie/prevodovka": "/technology-transmission.html",
 };
 
 // Serve page-specific technology metadata before React runs, in dev and preview.
@@ -41,6 +44,9 @@ export default defineConfig({
         technologyPerformance: resolve(__dirname, "technology-performance.html"),
         technologyElectronics: resolve(__dirname, "technology-electronics.html"),
         technologyComponents: resolve(__dirname, "technology-components.html"),
+        technologyEngine: resolve(__dirname, "technology-engine.html"),
+        technologyChassis: resolve(__dirname, "technology-chassis.html"),
+        technologyTransmission: resolve(__dirname, "technology-transmission.html"),
         marika: resolve(__dirname, "marika.html"),
         contact: resolve(__dirname, "contact.html"),
         portfolioUnreal: resolve(__dirname, "portfolio-unreal.html"),

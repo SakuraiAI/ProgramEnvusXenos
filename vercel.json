@@ -68,6 +68,18 @@
       "destination": "/technology-components.html"
     },
     {
+      "source": "/technologie/motor",
+      "destination": "/technology-engine.html"
+    },
+    {
+      "source": "/technologie/podvozek",
+      "destination": "/technology-chassis.html"
+    },
+    {
+      "source": "/technologie/prevodovka",
+      "destination": "/technology-transmission.html"
+    },
+    {
       "source": "/projekty",
       "destination": "/index.html"
     },

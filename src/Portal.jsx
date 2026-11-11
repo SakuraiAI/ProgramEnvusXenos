@@ -17,7 +17,7 @@ const aliases = { home: "home", systems: "auto", portfolio: "tech", "portfolio-u
 const routes = { "/servisni-aplikace": "serviceApp", "/sakura-corporation": "sakura", "/autoservis/dokumenty": "documents", "/tuning": "tuning", "/revenant": "revenant", "/luna": "luna", "/xeno": "xeno", "/novinky": "news", "/services": "auto", "/systems": "auto", "/technology": "tech", "/portfolio": "tech", "/projects": "projects", "/about": "about", "/contact": "contact", "/book-service": "booking", "/marika": "marika", "/": "home", "/index.html": "home", "/autoservis": "auto", "/technologie": "tech", "/projekty": "projects", "/o-nas": "about", "/kontakt": "contact", "/poptavka": "booking" };
 const links = {
  auto: [["Autoservis", "/autoservis"], ["Tuning", "/tuning"], ["Ceník", "/autoservis#cenik"], ["Dokumenty ke stažení", "/autoservis/dokumenty"], ["Servisní poptávka", "/poptavka"], ["Kontakt", "/kontakt?oblast=autoservis"]],
- tech: [["Vývoj technologií", "/technologie"], ["Projekty", "/projekty"], ["Novinky", "/novinky"]],
+ tech: [["Technologie", "/technologie"], ["Vývoj", "/technologie#automotive-vyvoj"], ["Projekty", "/projekty"], ["Novinky", "/novinky"]],
  shared: [["O nás", "/o-nas"], ["Kontakt", "/kontakt"]],
 };
 const titles = { serviceApp: "PGEX Core", sakura: "Sakura Corporation", documents: "Dokumenty ke stažení", tuning: "Tuning a individuální úpravy", revenant: "Revenant", luna: "Luna — Sakura Corporation", xeno: "Xeno — Sakura Corporation", news: "Novinky", home: "Vyberte si svou cestu", auto: "Autoservis", tech: "Vývoj automobilových technologií", projects: "Projekty", marika: "Marika — Sakura Corporation", about: "O nás", contact: "Kontakt", booking: "Servisní poptávka" };
@@ -34,6 +34,14 @@ export default function Portal({ page }) {
  const context = new URLSearchParams(window.location.search).get("oblast");
  const area = ["auto", "booking", "tuning", "documents", "serviceApp"].includes(current) || (current === "contact" && context === "autoservis") ? "auto" : ["tech", "technologyArea", "projects", "sakura", "marika", "luna", "xeno", "news", "newsArticle", "revenant"].includes(current) || (current === "contact" && context === "technologie") ? "tech" : "shared";
  const navigation = links[area].map(([label, href]) => [label, current === "tuning" && href === "/autoservis#cenik" ? "/tuning#cenik" : href]);
+ const [activeHash, setActiveHash] = useState(() => window.location.hash);
+ const developmentHref = "/technologie#automotive-vyvoj";
+ const activeTechnologyHref = current === "tech" ? activeHash && activeHash !== "#content" ? developmentHref : "/technologie" : ["technologyArea", "revenant"].includes(current) ? developmentHref : null;
+ useEffect(() => {
+   const updateHash = () => setActiveHash(window.location.hash);
+   window.addEventListener("hashchange", updateHash);
+   return () => window.removeEventListener("hashchange", updateHash);
+ }, []);
  const [intro] = useState(() => {
    if (current !== "home" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
    return !introSeenInDocument;
@@ -59,7 +67,7 @@ export default function Portal({ page }) {
    document.title = pageTitle;
    if (current === "newsArticle") setHeadElement("meta", 'meta[name="description"]', { name: "description", content: newsArticle?.excerpt || "Přehled novinek a článků PGEX." });
    if (current === "tech") {
-     const description = "Automobilový výzkum a vývoj PGEX: konstrukce, výkon a chlazení, elektronika, vlastní díly a koncept Revenant. Poznejte zaměření jednotlivých oblastí a cestu od výzkumu k projektu.";
+     const description = "Automobilový výzkum a vývoj PGEX: motor, podvozek, převodovka, konstrukce, výkon, elektronika a vlastní díly. Poznejte vývojové záměry i koncept Revenant.";
      const canonicalUrl = "https://programenvusxenos.com/technologie";
      setHeadElement("meta", 'meta[name="description"]', { name: "description", content: description });
      setHeadElement("meta", 'meta[property="og:title"]', { property: "og:title", content: pageTitle });
@@ -115,7 +123,7 @@ export default function Portal({ page }) {
    <header className="portal-header">
      <a className="portal-brand" href="/" aria-label="PGEX — úvodní rozcestník"><span className="portal-wordmark"><img src="/pgex-wordmark.svg" alt="PGEX" width="230" height="44"/></span></a>
      {area !== "shared" && <span className="area-label">{area === "auto" ? "AUTOSERVIS" : "AUTOMOBILOVÝ VÝVOJ"}</span>}
-     <nav aria-label="Hlavní navigace">{navigation.map(([label, href]) => <a key={href} href={href} aria-current={pathname === href || (current === "contact" && href === `/kontakt?oblast=${context}`) || (current === "newsArticle" && href === "/novinky") || (current === "technologyArea" && href === "/technologie") ? "page" : undefined}>{label}</a>)}</nav>
+     <nav aria-label="Hlavní navigace">{navigation.map(([label, href]) => <a key={href} href={href} aria-current={(activeTechnologyHref ? href === activeTechnologyHref : pathname === href) || (current === "contact" && href === `/kontakt?oblast=${context}`) || (current === "newsArticle" && href === "/novinky") ? "page" : undefined}>{label}</a>)}</nav>
    </header>
    <main id="content" className={current === "home" ? "gateway-main" : "portal-content"}>
      {current === "home" && <>

@@ -105,3 +105,19 @@
 @media(max-width:760px) { .page-tech .portal-header .area-label,.page-technologyArea .portal-header .area-label { display:none; } }
 
 .technology-detail .technology-hero-visual > img { aspect-ratio:16/9; }
+
+@media(min-width:1001px) {
+  .technology-landing .automotive-research-grid { grid-template-columns:repeat(6,minmax(0,1fr)); }
+  .technology-landing .automotive-research-card { grid-column:span 3; }
+  .technology-landing .technology-system-card { grid-column:span 2; }
+  .technology-landing .technology-system-card .technology-card-content { padding:24px; }
+  .technology-landing .technology-vehicle-card { grid-column:1/-1; }
+}
+@media(min-width:761px) and (max-width:1000px) {
+  .technology-landing .technology-system-card { grid-column:1/-1; }
+  .technology-landing .technology-system-card .technology-area-link { display:grid; grid-template-columns:1fr 1fr; }
+  .technology-landing .technology-system-card .technology-card-image { display:grid; align-items:center; }
+}
+@media(max-width:760px) {
+  .technology-landing .automotive-research-grid { grid-template-columns:1fr; }
+}

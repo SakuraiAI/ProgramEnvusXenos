@@ -7,7 +7,8 @@ export function DevelopmentStatus({ stage, children }) {
 
 function ResearchCard({ area, index }) {
   const vehicle = area.id === "future-vehicles";
-  return <article className={`automotive-research-card${vehicle ? " technology-vehicle-card" : ""}`} id={area.id} aria-labelledby={`${area.id}-title`}>
+  const mechanicalSystem = ["engine-development", "chassis-development", "transmission-development"].includes(area.id);
+  return <article className={`automotive-research-card${vehicle ? " technology-vehicle-card" : ""}${mechanicalSystem ? " technology-system-card" : ""}`} id={area.id} aria-labelledby={`${area.id}-title`}>
     {vehicle && <span id="revenant" className="technology-anchor-alias" aria-hidden="true" />}
     <a className="technology-area-link" href={area.href} aria-labelledby={`${area.id}-title`}>
       <div className="technology-card-image"><img src={area.image} alt={area.imageAlt} width={area.width} height={area.height} loading="lazy" decoding="async" /><span className="technology-image-label">{vehicle ? "VIZUÁLNÍ KONCEPT" : "KONCEPČNÍ ILUSTRACE"}</span></div>
@@ -24,7 +25,7 @@ function ResearchCard({ area, index }) {
 export default function TechnologyLanding() {
   return <div className="tech-page technology-landing">
     <section className="technology-landing-hero" aria-labelledby="technology-title">
-      <div className="technology-hero-copy"><p className="portal-eyebrow">PGEX / AUTOMOBILOVÝ VÝZKUM A VÝVOJ</p><h1 id="technology-title">Vlastní cesta<br />k automobilovým<br /><span>technologiím.</span></h1><p className="tech-lead">Konstrukce, elektronika a vlastní díly. Zkoumáme směry, ze kterých mohou vzniknout konkrétní automobilové projekty PGEX.</p><div className="contact-actions"><a className="gateway-button" href="#automotive-vyvoj">Prozkoumat vývoj <span aria-hidden="true">↓</span></a><a className="technology-text-link" href="/projekty">Projekty PGEX <span aria-hidden="true">↗</span></a></div><p className="technology-hero-note"><span aria-hidden="true" />Výzkumné záměry a automobilové koncepty</p></div>
+      <div className="technology-hero-copy"><p className="portal-eyebrow">PGEX / AUTOMOBILOVÝ VÝZKUM A VÝVOJ</p><h1 id="technology-title">Vlastní cesta<br />k automobilovým<br /><span>technologiím.</span></h1><p className="tech-lead">Motor, podvozek, převodovka i vlastní elektronika. Zkoumáme jejich souhru a směry, ze kterých mohou vzniknout konkrétní automobilové projekty PGEX.</p><div className="contact-actions"><a className="gateway-button" href="#automotive-vyvoj">Prozkoumat vývoj <span aria-hidden="true">↓</span></a><a className="technology-text-link" href="/projekty">Projekty PGEX <span aria-hidden="true">↗</span></a></div><p className="technology-hero-note"><span aria-hidden="true" />Výzkumné záměry a automobilové koncepty</p></div>
       <figure className="technology-hero-visual"><img src="/vehicles/xenos-x2.jpg" width="1536" height="1024" alt="Černozlatý supersport — vizuální koncept budoucího vozidla PGEX Revenant" fetchpriority="high" decoding="async" /><figcaption className="technology-hero-caption"><div><span>FUTURE VEHICLE CONCEPT</span><strong>PGEX Revenant</strong></div><a href="/revenant">Poznat koncept <span aria-hidden="true">↗</span></a></figcaption></figure>
     </section>
     <nav className="technology-direction-nav" aria-label="Obsah vývoje technologií">
@@ -34,7 +35,7 @@ export default function TechnologyLanding() {
     </nav>
     <section id="automotive-vyvoj" className="tech-section" aria-labelledby="automotive-research-title">
       <span id="vyzkum" className="technology-anchor-alias" aria-hidden="true" /><span id="software" className="technology-anchor-alias" aria-hidden="true" />
-      <div className="technology-block-heading"><div><p className="portal-eyebrow">ZAMĚŘENÍ PGEX</p><h2 id="automotive-research-title">Pět směrů.<br /><span>Jeden automobilový celek.</span></h2></div><p>Každá oblast má vlastní otázky a technické souvislosti. Otevřete si detail a poznejte její zaměření, možné výstupy i současný stav.</p></div>
+      <div className="technology-block-heading"><div><p className="portal-eyebrow">ZAMĚŘENÍ PGEX</p><h2 id="automotive-research-title">Od motoru po podvozek.<br /><span>Jeden automobilový celek.</span></h2></div><p>Každá oblast má vlastní otázky a technické souvislosti. Otevřete si detail a poznejte její zaměření, možné výstupy i současný stav.</p></div>
       <div className="automotive-research-grid">{automotiveResearch.map((area, index) => <ResearchCard key={area.id} area={area} index={index} />)}</div>
       <p className="technology-research-note"><strong>Výzkum dnes. Konkrétní projekty postupně.</strong> Oblasti představují naše výzkumné a vývojové záměry. Návrhy s vlastním zadáním a konkrétními podklady budou mít místo v <a href="/projekty">Projektech</a>. Parametry a výsledky zveřejníme podle skutečného stavu.</p>
     </section>

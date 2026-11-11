@@ -14,11 +14,14 @@ const { automotiveResearch: areas } = await server.ssrLoadModule('/src/automotiv
 const render = (component, props) => renderToStaticMarkup(React.createElement(component, props));
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#x27;');
 
-test('the technology landing preserves five anchors and opens five distinct illustrated areas', () => {
+test('the technology landing preserves its anchors and opens eight distinct illustrated areas', () => {
   const html = render(Landing);
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
-  assert.equal((html.match(/<article class="automotive-research-card/g) || []).length, 5);
-  assert.equal(new Set(areas.map(area => area.image)).size, 5);
+  assert.equal(areas.length, 8);
+  assert.equal((html.match(/<article class="automotive-research-card/g) || []).length, 8);
+  assert.equal(new Set(areas.map(area => area.image)).size, 8);
+  assert.equal(new Set(areas.map(area => area.id)).size, areas.length, 'Research area IDs must remain unique.');
+  assert.equal(new Set(areas.map(area => area.href)).size, areas.length, 'Research area destinations must remain unique.');
   for (const area of areas) {
     assert.ok(html.includes(`id="${area.id}"`));
     assert.ok(html.includes(`href="${area.href}"`));
@@ -47,21 +50,33 @@ test('each new detail renders its own questions, evidence limits, outputs and re
     const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
     assert.equal(new Set(ids).size, ids.length, 'Detail must not duplicate element IDs.');
   }
-  assert.equal(descriptions.size, 4);
+  assert.equal(descriptions.size, 7);
 });
 
-test('all four direct URLs have their own static metadata, build entries and host rewrites', () => {
-  const files = ['technology-engineering.html', 'technology-performance.html', 'technology-electronics.html', 'technology-components.html'];
+test('all seven direct URLs have their own static metadata, build entries and host rewrites', () => {
+  const files = {
+    konstrukce: 'technology-engineering.html',
+    'vykon-a-chlazeni': 'technology-performance.html',
+    elektronika: 'technology-electronics.html',
+    'vlastni-komponenty': 'technology-components.html',
+    motor: 'technology-engine.html',
+    podvozek: 'technology-chassis.html',
+    prevodovka: 'technology-transmission.html',
+  };
   const rewrites = JSON.parse(fs.readFileSync('vercel.json', 'utf8')).rewrites;
   const inputs = Object.values(server.config.build.rollupOptions.input);
-  for (const [index, area] of areas.filter(item => item.detailSlug).entries()) {
-    const file = files[index];
+  assert.equal(Object.keys(files).length, 7);
+  for (const area of areas.filter(item => item.detailSlug)) {
+    const file = files[area.detailSlug];
+    assert.ok(file, `A static HTML entry is required for ${area.href}.`);
     const html = fs.readFileSync(file, 'utf8');
     assert.ok(html.includes(`https://programenvusxenos.com${area.href}`));
     assert.ok(html.includes(escape(area.description)));
     assert.ok(html.includes(escape(area.label)));
     assert.ok(html.includes('rel="canonical"'));
     assert.ok(html.includes('property="og:url"'));
+    assert.ok(html.includes(`https://programenvusxenos.com${area.image}`));
+    assert.ok(html.includes(escape(area.imageAlt)));
     assert.ok(inputs.some(input => input.endsWith(file)));
     assert.ok(rewrites.some(rule => rule.source === area.href && rule.destination === `/${file}`));
   }
