@@ -1,51 +1,44 @@
-# ProgramEnvusXenos Landing
+# PGEX — Program Envus Xenos
 
-Dark 3D landing page built with React, Vite, Tailwind CSS, Framer Motion, and React Three Fiber.
+Veřejný web PGEX odděluje autoservis a tuning od automobilových technologií, výzkumných záměrů a projektů. Používá React, Vite a CSS s Tailwindem. Servisní poptávky obsluhuje samostatné serverové API.
 
-## Run
+## Spuštění
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-## Build
+## Kontroly a sestavení
 
 ```bash
+npm run test:technology
+npm run test:inquiry
+node --test test-cookie-preferences.mjs
 npm run build
 ```
 
-## Deploy
+## Struktura webu
 
-The project is ready for:
+- `/`: rozcestník Autoservis / Technologie.
+- `/autoservis`, `/tuning`: služby a samostatné ceníky; `/autoservis/dokumenty` obsahuje dokumenty ke stažení.
+- `/poptavka`: servisní poptávka přes `/api/inquiry`; přijetí zprávy není rezervací termínu.
+- `/technologie`: přehled zaměření PGEX a technického přístupu.
+- `/vyvoj`: sedm výzkumných oblastí ve skupinách Pohonné systémy, Konstrukce a podvozek, Elektronika a řízení. Detailní stránky mají zachované adresy `/technologie/...`.
+- `/projekty`: PGEX Core, Revenant a samostatný záměr Sakura Corporation s uvedeným stavem.
+- `/novinky`: články a aktualizace. Historická oznámení mají archivní upozornění.
+- `/sakura-corporation`, `/luna`, `/xeno`, `/marika`: samostatný výzkumný záměr a koncepty asistentek. Původní veřejná aplikace PGEX AI byla ukončena.
+- `/o-nas`, `/kontakt`: společné informace a kontakty; parametr `oblast` zachovává kontext části webu.
 
-- Vercel
-- GitHub Pages (static pages only; the inquiry API requires Vercel or another backend)
+Vstup `src/main.jsx` vykresluje `src/Portal.jsx`. Obsah Technologií, Vývoje a projektů je rozdělený do samostatných komponent. Servis a tuning používají vlastní obsah, styly a data ceníků. Odkazy na sociální sítě jsou v `src/Portal.jsx`.
 
-`vite.config.js` uses `base: "/"`. Clean routes require the rewrites in `vercel.json` or equivalent host configuration.
+Původní HTML adresy a starší odkazy zůstávají kompatibilní. Směrování obsluhují `vite.config.js` při vývoji i preview a `vercel.json` při nasazení. Animace respektují omezení pohybu.
 
-## Notes
+## Nasazení a lokální soubory
 
-- Replace the GitHub link in `src/App.jsx`
-- Replace the contact email in `src/App.jsx`
+Produkční web používá Vercel se serverovou funkcí `api/inquiry.js`. Samotný statický hosting funkci nenahradí. Vite používá `base: "/"`; u jiného hostingu je potřeba zajistit odpovídající přepisy adres a backend.
 
-# ProgramEnvusXenos
-
-## PGEX rozcestník
-
-- `/`: čistý vstup do obou částí; úvodní animace jednou za relaci, respektuje reduced motion.
-- `/autoservis`: servisní část s vlastním menu; `/poptavka` odesílá poptávku přes serverové API a nabízí záložní e-mail a telefon.
-- `/technologie`, `/projekty`: technologická část, bez nabídky autoservisu v menu.
-- `/o-nas`: společné informace a sociální sítě (ověřené odkazy v `src/Portal.jsx`).
-- `/kontakt`: společný kontakt; parametr `oblast` zachová kontext vybrané části.
-
-Původní HTML adresy zůstávají dostupné. Vercel rewrites směrují nové adresy na společný vstup.
-Rozcestník, autoservis, technologie, projekty, O nás i kontakt jsou česky. Technologickou část spravuje `src/Technology.jsx`; starší adresa Mariky zůstává jako stránka konceptu.
-Poptávkový formulář odesílá zprávy přes `/api/inquiry` a Resend. Úspěch znamená přijetí poskytovatelem k odeslání, nikoli potvrzenou rezervaci.
-
-Autoservis obsahuje přehled služeb, postup opravy a mobilní kontaktní lištu. Odkazy z přehledu služeb předávají výběr do pole Služba v poptávce. Položky ceníku obsahují pouze název a cenu; pod ceníkem je společné tlačítko Servisní poptávka. Ceník je rozdělený do kategorií. Při otevření stránky jsou všechny sbalené; zákazník si rozbalí vybranou kategorii.
-
-Technologie: PGEX AI je označený jako projekt ve vývoji. Funkce vycházejí z místního projektu PGEX-AI-01. Úvodní obrázek je ilustrace vývojářského pracoviště, nikoliv snímek aplikace. Novinky jsou ručně udržovaný obsah.
+Tajné klíče patří do serverového prostředí. Lokální konfigurace `.env*`, zdrojové obrázky v `assets-source/`, pracovní zprávy v `reports/` a výstupy sestavení se neukládají do Gitu. Publikované obrázky a dokumenty jsou v `public/`.
 
 ## Servisní poptávky a omezení opakování
 
